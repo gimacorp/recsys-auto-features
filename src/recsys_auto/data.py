@@ -14,6 +14,7 @@ import pandas as pd
 import certifi
 
 URL = "https://files.grouplens.org/datasets/movielens/ml-100k.zip"
+ARCHIVE_SHA256 = "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229"
 GENRES = [
     "unknown", "Action", "Adventure", "Animation", "Children", "Comedy", "Crime",
     "Documentary", "Drama", "Fantasy", "FilmNoir", "Horror", "Musical", "Mystery",
@@ -32,6 +33,8 @@ def download(root: Path) -> dict:
             temporary.write_bytes(response.read())
         temporary.replace(archive)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    if digest != ARCHIVE_SHA256:
+        raise ValueError(f"Контрольная сумма архива отличается от зафиксированной: {digest}")
     with zipfile.ZipFile(archive) as source:
         for name in ["u.data", "u.item", "u.user", "README"]:
             target = root / "ml-100k" / name
