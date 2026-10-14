@@ -8,6 +8,8 @@ from sklearn.metrics import brier_score_loss, log_loss, roc_auc_score
 
 
 def ranking_per_user(events: pd.DataFrame, prediction: np.ndarray, k: int = 10) -> pd.DataFrame:
+    if isinstance(k, bool) or not isinstance(k, int) or k < 1:
+        raise ValueError("K должен быть положительным целым")
     frame = events[["user", "item", "label"]].copy()
     frame["prediction"] = prediction
     rows = []
@@ -22,12 +24,12 @@ def ranking_per_user(events: pd.DataFrame, prediction: np.ndarray, k: int = 10) 
         rows.append(
             {
                 "user": user,
-                "ndcg@10": float((hits * discounts[: len(hits)]).sum() / ideal),
-                "recall@10": float(hits.sum() / positives),
+                f"ndcg@{k}": float((hits * discounts[: len(hits)]).sum() / ideal),
+                f"recall@{k}": float(hits.sum() / positives),
                 "candidates": len(group),
             }
         )
-    return pd.DataFrame(rows, columns=["user", "ndcg@10", "recall@10", "candidates"])
+    return pd.DataFrame(rows, columns=["user", f"ndcg@{k}", f"recall@{k}", "candidates"])
 
 
 def evaluate(events: pd.DataFrame, prediction: np.ndarray) -> dict:

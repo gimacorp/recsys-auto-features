@@ -14,6 +14,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from .artifacts import artifact_path
 from .data import describe, download, load
 from .features import STATIC_COLUMNS, build_features
 from .grammar import packs
@@ -167,9 +168,11 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
                     features, events.label, fold, fitted, params, config, seed
                 )
                 predictions[method] = prediction
-                model_root = Path("artifacts/models") / output.name
-                model_root.mkdir(parents=True, exist_ok=True)
-                model.save_model(str(model_root / f"fold{fold_index}-seed{seed}-{method}.cbm"))
+                model_path = artifact_path(
+                    output, "models", f"fold{fold_index}-seed{seed}-{method}.cbm"
+                )
+                model_path.parent.mkdir(parents=True, exist_ok=True)
+                model.save_model(str(model_path))
                 record = {
                     "fold": fold_index,
                     "seed": seed,
@@ -235,9 +238,11 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
                         samples=config["bootstrap_samples"],
                         seed=2026,
                     )
-            prediction_root = Path("artifacts/predictions") / output.name
-            prediction_root.mkdir(parents=True, exist_ok=True)
-            np.savez_compressed(prediction_root / f"fold{fold_index}-seed{seed}.npz", **predictions)
+            prediction_path = artifact_path(
+                output, "predictions", f"fold{fold_index}-seed{seed}.npz"
+            )
+            prediction_path.parent.mkdir(parents=True, exist_ok=True)
+            np.savez_compressed(prediction_path, **predictions)
             write_json(checkpoint, seed_records)
             records.extend(seed_records)
     result = {

@@ -8,6 +8,9 @@ data/
 artifacts/cache/
 artifacts/models/
 artifacts/predictions/
+artifacts/**/models/
+artifacts/**/predictions/
+artifacts/**/*.partial.json
 artifacts/smoke*/
 artifacts/ci-smoke/
 artifacts/full/*.partial.json

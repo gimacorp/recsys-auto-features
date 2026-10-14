@@ -6,6 +6,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .artifacts import artifact_path
 from .data import load
 from .metrics import evaluate
 from .split import temporal_fold
@@ -25,20 +26,23 @@ def audit(data_root: Path, experiment_root: Path) -> dict:
     search_checks = 0
     for fold_index, fractions in enumerate(config["folds"]):
         fold = temporal_fold(events, fractions)
-        assert (
-            events.iloc[fold.train].timestamp.max() < events.iloc[fold.validation].timestamp.min()
-        )
-        assert events.iloc[fold.validation].timestamp.max() < events.iloc[fold.test].timestamp.min()
+        if events.iloc[fold.train].timestamp.max() >= events.iloc[fold.validation].timestamp.min():
+            raise ValueError("Пересечение времён train и validation")
+        if events.iloc[fold.validation].timestamp.max() >= events.iloc[fold.test].timestamp.min():
+            raise ValueError("Пересечение времён validation и test")
         for seed in config["seeds"]:
-            prediction_root = Path("artifacts/predictions") / experiment_root.name
-            with np.load(prediction_root / f"fold{fold_index}-seed{seed}.npz") as archive:
+            prediction_path = artifact_path(
+                experiment_root, "predictions", f"fold{fold_index}-seed{seed}.npz", reading=True
+            )
+            with np.load(prediction_path) as archive:
                 for row in result["records"]:
                     if row["fold"] != fold_index or row["seed"] != seed:
                         continue
                     actual = evaluate(events.iloc[fold.test], archive[row["method"]])
                     for name, expected in row["test"].items():
                         if expected is None:
-                            assert actual[name] is None
+                            if actual[name] is not None:
+                                raise ValueError(f"Ожидается пустая метрика {name}")
                         elif not np.isclose(actual[name], expected, rtol=0, atol=1e-12):
                             raise ValueError(f"Метрика {name} отличается для {row['method']}")
                         metric_checks += 1

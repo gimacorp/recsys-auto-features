@@ -6,6 +6,7 @@ from pathlib import Path
 
 from catboost import CatBoostClassifier
 
+from .artifacts import artifact_path
 from .experiment import prepare, provenance, write_json
 from .grammar import packs
 from .metrics import evaluate, paired_bootstrap
@@ -28,9 +29,17 @@ def diagnostics(data_root: Path, experiment_root: Path) -> dict:
             and row["seed"] == config["seeds"][0]
             and row["method"] == "manual"
         )
-        model_root = Path("artifacts/models") / experiment_root.name
         model = CatBoostClassifier()
-        model.load_model(str(model_root / f"fold{fold_index}-seed{baseline['seed']}-manual.cbm"))
+        model.load_model(
+            str(
+                artifact_path(
+                    experiment_root,
+                    "models",
+                    f"fold{fold_index}-seed{baseline['seed']}-manual.cbm",
+                    reading=True,
+                )
+            )
+        )
         online_prediction = model.predict_proba(features.iloc[fold.test][baseline["columns"]])[:, 1]
         for entity in ["user", "item", "user_genre", "genre"]:
             columns = [
@@ -74,7 +83,14 @@ def diagnostics(data_root: Path, experiment_root: Path) -> dict:
             )
             model = CatBoostClassifier()
             model.load_model(
-                str(model_root / f"fold{fold_index}-seed{baseline['seed']}-{method}.cbm")
+                str(
+                    artifact_path(
+                        experiment_root,
+                        "models",
+                        f"fold{fold_index}-seed{baseline['seed']}-{method}.cbm",
+                        reading=True,
+                    )
+                )
             )
             prediction = model.predict_proba(frozen[record["columns"]])[:, 1]
             rows.append(

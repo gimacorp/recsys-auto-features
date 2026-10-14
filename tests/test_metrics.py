@@ -28,3 +28,15 @@ def test_empty_ranking_is_explicit():
     result = evaluate(events, np.array([0.2, 0.8]))
     assert result["ranking_users"] == 0
     assert result["ndcg@10"] is None
+
+
+def test_custom_cutoff_has_correct_metric_names():
+    events = pd.DataFrame({"user": [1, 1, 1], "item": [1, 2, 3], "label": [1, 0, 1]})
+    result = ranking_per_user(events, np.array([0.9, 0.8, 0.7]), k=1)
+    assert result.iloc[0]["ndcg@1"] == 1
+    assert result.iloc[0]["recall@1"] == 0.5
+
+
+def test_invalid_cutoff_rejected():
+    with pytest.raises(ValueError):
+        ranking_per_user(pd.DataFrame(), np.array([]), k=0)

@@ -14,7 +14,7 @@ MULTI_STATS = (
 )
 
 
-@dataclass(frozen=True, order=True)
+@dataclass(frozen=True)
 class FeaturePack:
     entity: str
     days: int | None

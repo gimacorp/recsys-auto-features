@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 from catboost import CatBoostClassifier
 
+from .artifacts import artifact_path
 from .data import GENRES, load
 from .experiment import provenance, write_json
 from .grammar import packs
@@ -63,9 +64,12 @@ def catalogue_evaluation(data_root: Path, experiment_root: Path, batch_users: in
             model = CatBoostClassifier()
             model.load_model(
                 str(
-                    Path("artifacts/models")
-                    / experiment_root.name
-                    / f"fold{fold_index}-seed{record['seed']}-{record['method']}.cbm"
+                    artifact_path(
+                        experiment_root,
+                        "models",
+                        f"fold{fold_index}-seed{record['seed']}-{record['method']}.cbm",
+                        reading=True,
+                    )
                 )
             )
             models[key] = (model, record["columns"])

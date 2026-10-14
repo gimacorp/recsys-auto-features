@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .artifacts import artifact_path
 from .experiment import prepare, provenance, write_json
 from .features import STATIC_COLUMNS
 from .grammar import packs
@@ -35,10 +36,8 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
             baseline = fit_validation(
                 features, events.label, fold, STATIC_COLUMNS, params, config, seed
             )
-            prediction_path = (
-                Path("artifacts/predictions")
-                / experiment_root.name
-                / f"fold{fold_index}-seed{seed}.npz"
+            prediction_path = artifact_path(
+                experiment_root, "predictions", f"fold{fold_index}-seed{seed}.npz", reading=True
             )
             manual_prediction = np.load(prediction_path)["manual"]
             for strategy in ["random", "residual"]:
@@ -56,7 +55,7 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                 model, prediction, seconds = refit(
                     features, events.label, fold, found.fitted, params, config, seed
                 )
-                model_root = Path("artifacts/models") / experiment_root.name
+                model_root = experiment_root / "models"
                 model_root.mkdir(parents=True, exist_ok=True)
                 model.save_model(
                     str(model_root / f"fold{fold_index}-seed{seed}-auto_{strategy}.cbm")
@@ -105,7 +104,7 @@ def export_saved_models(data_root: Path, experiment_root: Path) -> dict:
     automatic = json.loads((experiment_root / "from_static.json").read_text())
     config = automatic["config"]
     events, features, manifest, _ = prepare(data_root, config, Path("artifacts/cache"))
-    model_root = Path("artifacts/models") / experiment_root.name
+    model_root = experiment_root / "models"
     model_root.mkdir(parents=True, exist_ok=True)
     checks = []
     for row in automatic["records"]:
