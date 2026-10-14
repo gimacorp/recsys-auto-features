@@ -75,7 +75,7 @@ def generate(experiment: Path, output: Path) -> None:
     sections = [
         "# Таблицы, рассчитанные из артефактов",
         "",
-        "Таблицы генерируются командой `python -m recsys_auto.report`. Основная таблица — равновзвешенное среднее по двум fold и трём seed. Пользовательское ранжирование относится к наблюдаемым кандидатам.",
+        f"Таблицы генерируются командой `python -m recsys_auto.report`. Основная таблица — равновзвешенное среднее по сочетаниям fold/seed ({fold_count} × {len(inputs['results']['config']['seeds'])}). Пользовательское ранжирование относится к наблюдаемым кандидатам.",
         "",
         "## Основной эксперимент",
         "",
@@ -173,6 +173,60 @@ def generate(experiment: Path, output: Path) -> None:
         "Время измерено на одной машине и включает текущую нагрузку. Основной эксперимент, дополнительные проверки и поиск с нуля запускались в разных условиях нагрузки; сравнение времени между экспериментами требует отдельного изолированного benchmark.",
         "",
     ]
+    if (experiment / "statistics.json").exists():
+        statistics = json.loads((experiment / "statistics.json").read_text())
+        rows = [
+            {
+                "method": row["method"],
+                "reference": row["reference"],
+                "delta": row["delta"],
+                "ci_low": row["ci95"][0],
+                "ci_high": row["ci95"][1],
+            }
+            for row in statistics["comparisons"]
+        ]
+        sections += [
+            "## Средние по seed эффекты с совместным bootstrap",
+            "",
+            table(pd.DataFrame(rows)),
+            "",
+            "Усредняются индивидуальные потери по seed. Пользователи ресемплируются одинаково во всех временных периодах; оценка условна на выбранные seed и периоды.",
+            "",
+        ]
+        if "preregistered_criteria" in statistics:
+            sections += [
+                "Зафиксированные критерии: `"
+                + json.dumps(statistics["preregistered_criteria"], ensure_ascii=False)
+                + "`.",
+                "",
+            ]
+    if (experiment / "adaptive.json").exists():
+        adaptive = json.loads((experiment / "adaptive.json").read_text())
+        rows = [
+            {"fold": fold, "entity": entity, "days": ", ".join(map(str, values["days"])) or "∅"}
+            for fold, entities in adaptive["training_windows"].items()
+            for entity, values in entities.items()
+        ]
+        metrics = [
+            {
+                "fold": row["fold"],
+                "seed": row["seed"],
+                "evaluations": row["search_evaluations"],
+                "logloss": row["test"]["logloss"],
+                "packs": ", ".join(row["selected_packs"]) or "∅",
+            }
+            for row in adaptive["records"]
+        ]
+        sections += [
+            "## Окна из обучающей истории: дополнительное исследование",
+            "",
+            table(pd.DataFrame(rows)),
+            "",
+            table(pd.DataFrame(metrics)),
+            "",
+            "Пул окна выводится из train-интервалов. Тестовые периоды MovieLens 100K уже использовались в предыдущем исследовании; результаты имеют exploratory статус.",
+            "",
+        ]
     (output / "generated_results.md").write_text("\n".join(sections), encoding="utf-8")
     plt.rcParams.update(
         {
