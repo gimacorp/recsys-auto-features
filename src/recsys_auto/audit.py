@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from .artifacts import artifact_path
-from .data import load
+from .data import load_for_config
 from .metrics import evaluate
 from .split import temporal_fold
 
@@ -15,7 +15,7 @@ from .split import temporal_fold
 def audit(data_root: Path, experiment_root: Path) -> dict:
     result = json.loads((experiment_root / "results.json").read_text())
     config = result["config"]
-    events = load(data_root)
+    events = load_for_config(data_root, config)
     expected_records = len(config["folds"]) * len(config["seeds"]) * 6
     if len(result["records"]) != expected_records:
         raise ValueError("Ожидается полный набор методов, fold и seed")

@@ -11,8 +11,9 @@ from .experiment import run
 def main():
     parser = argparse.ArgumentParser(description="Автоматический поиск признаков RecSys")
     commands = parser.add_subparsers(dest="command", required=True)
-    get = commands.add_parser("download", help="Скачать и проверить MovieLens 100K")
+    get = commands.add_parser("download", help="Скачать и проверить MovieLens")
     get.add_argument("--data", type=Path, default=Path("data"))
+    get.add_argument("--dataset", choices=["ml-100k", "ml-1m"], default="ml-100k")
     experiment = commands.add_parser("run", help="Выполнить зафиксированный эксперимент")
     experiment.add_argument("--config", type=Path, default=Path("configs/full.json"))
     experiment.add_argument("--data", type=Path, default=Path("data"))
@@ -22,7 +23,10 @@ def main():
     if args.command == "download":
         print(
             json.dumps(
-                {"archive": download(args.data), "summary": describe(load(args.data))},
+                {
+                    "archive": download(args.data, args.dataset),
+                    "summary": describe(load(args.data, args.dataset)),
+                },
                 ensure_ascii=False,
                 indent=2,
             )

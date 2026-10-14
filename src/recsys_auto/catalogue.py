@@ -12,7 +12,7 @@ import pandas as pd
 from catboost import CatBoostClassifier
 
 from .artifacts import artifact_path
-from .data import GENRES, load
+from .data import GENRES, load_for_config
 from .experiment import provenance, write_json
 from .grammar import packs
 from .snapshot import snapshot_features
@@ -35,7 +35,7 @@ def catalogue_evaluation(data_root: Path, experiment_root: Path, batch_users: in
         experiment["records"].extend(
             json.loads((experiment_root / "from_static.json").read_text())["records"]
         )
-    events = load(data_root)
+    events = load_for_config(data_root, config)
     records = []
     fold_descriptions = []
     intervals = []
@@ -172,7 +172,10 @@ def catalogue_evaluation(data_root: Path, experiment_root: Path, batch_users: in
                 "feature_seconds": feature_seconds,
             }
         )
-    manifest = json.loads((data_root / "manifest.json").read_text())
+    manifest_file = (
+        "manifest.json" if config["dataset"] == "ml-100k" else f"{config['dataset']}-manifest.json"
+    )
+    manifest = json.loads((data_root / manifest_file).read_text())
     result = {
         "protocol": "fixed-snapshot-known-catalogue",
         "folds": fold_descriptions,

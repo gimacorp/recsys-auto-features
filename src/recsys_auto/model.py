@@ -66,7 +66,7 @@ def make_model(params: dict, config: dict, seed: int, iterations: int) -> CatBoo
         allow_writing_files=False,
         cat_features=CAT_COLUMNS,
         has_time=True,
-        one_hot_max_size=2000,
+        one_hot_max_size=config.get("one_hot_max_size", 2000),
     )
 
 

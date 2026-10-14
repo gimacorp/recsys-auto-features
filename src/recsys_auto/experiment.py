@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 from .artifacts import artifact_path
-from .data import describe, download, load
+from .data import describe, download, load_for_config
 from .features import STATIC_COLUMNS, build_features
 from .grammar import packs
 from .metrics import evaluate, paired_bootstrap, segment_metrics
@@ -53,14 +53,15 @@ def provenance(config_path: Path, manifest: dict) -> dict:
 
 
 def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
-    manifest = download(data_root)
-    events = load(data_root)
+    manifest = download(data_root, config["dataset"])
+    events = load_for_config(data_root, config)
     windows = list(dict.fromkeys(config["manual_days"] + config["candidate_days"]))
     fingerprint = hashlib.sha256(
         json.dumps(
             {
                 "windows": windows,
                 "data": manifest,
+                "cohort_modulus": config.get("cohort_modulus", 1),
                 "engine": Path(__file__).with_name("features.py").read_text(),
                 "grammar": Path(__file__).with_name("grammar.py").read_text(),
                 "loader": Path(__file__).with_name("data.py").read_text(),
@@ -84,8 +85,6 @@ def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
 
 def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) -> dict:
     config = json.loads(config_path.read_text())
-    if config["dataset"] != "ml-100k":
-        raise ValueError("Поддерживается MovieLens 100K")
     if (output / "results.json").exists() and not resume:
         raise ValueError(
             "Каталог содержит завершённый запуск. Выберите новый --output или --resume"
