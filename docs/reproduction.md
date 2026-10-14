@@ -39,6 +39,7 @@ recsys run --config configs/smoke.json --output artifacts/smoke-local
 recsys run --config configs/full.json --output artifacts/reproduced
 python -m recsys_auto.audit --experiment artifacts/reproduced
 python -m recsys_auto.from_static --experiment artifacts/reproduced
+python -m recsys_auto.statistics --experiment artifacts/reproduced
 python -m recsys_auto.catalogue --experiment artifacts/reproduced
 python -m recsys_auto.diagnostics --experiment artifacts/reproduced
 python -m recsys_auto.report --experiment artifacts/reproduced --output docs/reproduced
@@ -64,7 +65,7 @@ recsys run --config configs/full.json --output artifacts/reproduced --resume
 - `provenance.json`: SHA-256 данных, конфигурации и модулей; Git revision, Python и версии библиотек.
 - `audit.json`: результат пересчёта основных метрик из сохранённых предсказаний.
 - `feature_stats.json`: время расчёта каждого пакета и размер матрицы.
-- `artifacts/models/<имя-запуска>` и `artifacts/predictions/<имя-запуска>`: локальные модели и предсказания, исключённые из Git.
+- `<каталог-запуска>/models` и `<каталог-запуска>/predictions`: локальные модели и предсказания, исключённые из Git. Каталоги с одинаковыми именами в разных местах сохраняют независимые артефакты. Чтение первой опубликованной версии поддерживает прежнее расположение `artifacts/models/<имя-запуска>` и `artifacts/predictions/<имя-запуска>`.
 - `docs/generated_results.md` и `docs/figures`: таблицы и графики, сгенерированные из JSON.
 
 Публикуются агрегированные результаты. Исходные данные скачиваются с GroupLens; модели и индивидуальные предсказания создаются локально при воспроизведении. Самостоятельная генерация отчёта использует сохранённые JSON, а аудит и дополнительные эксперименты требуют локального выполнения основной команды обучения.
@@ -74,3 +75,40 @@ recsys run --config configs/full.json --output artifacts/reproduced --resume
 Фиксированы seed, порядок событий, конфигурации и количество потоков. Одинаковые timestamp сортируются стабильным порядком user/item, но исключаются из истории друг друга. Межплатформенные различия CatBoost и BLAS могут дать небольшие численные изменения. Bootstrap повторяется с фиксированным seed 2026; его интервалы оценивают вариативность пользователей конкретного тестового периода.
 
 В provenance основного запуска зафиксированы модули, существовавшие в момент его старта. Дополнительные модули анализа и отчёта добавлялись отдельными коммитами и имеют собственную provenance там, где они выполняют эксперименты. История Git связывает сохранённые результаты с этапами разработки.
+
+## Дополнения исследования
+
+Генерация окон из train-интервалов и совместная статистическая оценка для уже воспроизведённого MovieLens 100K:
+
+```bash
+python -m recsys_auto.adaptive --experiment artifacts/reproduced
+python -m recsys_auto.report --experiment artifacts/reproduced --output docs/reproduced
+```
+
+Первая независимая когорта MovieLens 1M:
+
+```bash
+recsys run --config configs/external.json --output artifacts/external-local
+python -m recsys_auto.audit --experiment artifacts/external-local
+python -m recsys_auto.from_static --experiment artifacts/external-local
+python -m recsys_auto.statistics --experiment artifacts/external-local
+python -m recsys_auto.catalogue --experiment artifacts/external-local
+python -m recsys_auto.diagnostics --experiment artifacts/external-local
+python -m recsys_auto.stress --experiment artifacts/external-local
+python -m recsys_auto.report --experiment artifacts/external-local --output docs/external-local
+```
+
+Отдельная пользовательская репликация парных горизонтов:
+
+```bash
+recsys run --config configs/replication.json --output artifacts/replication-local
+python -m recsys_auto.audit --experiment artifacts/replication-local
+python -m recsys_auto.from_static --experiment artifacts/replication-local --config configs/paired.json
+python -m recsys_auto.statistics --experiment artifacts/replication-local
+python -m recsys_auto.catalogue --experiment artifacts/replication-local
+python -m recsys_auto.diagnostics --experiment artifacts/replication-local
+python -m recsys_auto.stress --experiment artifacts/replication-local
+python -m recsys_auto.report --experiment artifacts/replication-local --output docs/replication-local
+```
+
+Протоколы каждой независимой проверки зафиксированы до её тестовых метрик. Все пакеты нового запуска сохраняются в его собственном каталоге. Дополнительные проверки используют больше памяти и CPU, чем короткий запуск; размеры выбранных когорт и фактическое время сохранены в опубликованных JSON.
