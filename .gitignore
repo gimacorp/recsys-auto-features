@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+data/
+artifacts/cache/
+artifacts/models/
+artifacts/predictions/
+catboost_info/
+.DS_Store
+.env
+.env.*
