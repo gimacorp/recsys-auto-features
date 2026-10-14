@@ -21,17 +21,15 @@ from .features import STATIC_COLUMNS, build_features
 from .grammar import packs
 from .metrics import evaluate, paired_bootstrap, segment_metrics
 from .model import fit_validation, refit, tune
+from .persistence import atomic_target
 from .search import search
 from .split import temporal_fold
 
 
 def write_json(path: Path, value: dict | list) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(".tmp")
-    temporary.write_text(
-        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8"
-    )
-    temporary.replace(path)
+    payload = json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    with atomic_target(path) as temporary:
+        temporary.write_text(payload, encoding="utf-8")
 
 
 def provenance(config_path: Path, manifest: dict) -> dict:
@@ -90,7 +88,8 @@ def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
         stats["cache_hit"] = True
     else:
         features, stats = build_features(events, windows)
-        features.to_pickle(cache)
+        with atomic_target(cache) as temporary:
+            features.to_pickle(temporary)
         stats["cache_hit"] = False
         write_json(stats_path, stats)
     return events, features, manifest, stats

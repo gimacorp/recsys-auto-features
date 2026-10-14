@@ -13,6 +13,8 @@ import certifi
 import numpy as np
 import pandas as pd
 
+from .persistence import atomic_target, write_bytes
+
 URL = "https://files.grouplens.org/datasets/movielens/ml-100k.zip"
 ARCHIVE_SHA256 = "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229"
 DATASETS = {
@@ -54,14 +56,12 @@ def download(root: Path, dataset: str = "ml-100k") -> dict:
     url = f"https://files.grouplens.org/datasets/movielens/{dataset}.zip"
     archive = root / f"{dataset}.zip"
     if not archive.exists():
-        temporary = archive.with_suffix(".part")
         context = ssl.create_default_context(cafile=certifi.where())
         with urllib.request.urlopen(url, context=context, timeout=60) as response:
-            temporary.write_bytes(response.read())
-        if hashlib.sha256(temporary.read_bytes()).hexdigest() != expected_digest:
-            temporary.unlink()
+            payload = response.read()
+        if hashlib.sha256(payload).hexdigest() != expected_digest:
             raise ValueError("Контрольная сумма загрузки отличается от зафиксированной")
-        temporary.replace(archive)
+        write_bytes(archive, payload)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     if digest != expected_digest:
         raise ValueError(f"Контрольная сумма архива отличается от зафиксированной: {digest}")
@@ -69,10 +69,11 @@ def download(root: Path, dataset: str = "ml-100k") -> dict:
         for name in members:
             target = root / dataset / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(source.read(f"{dataset}/{name}"))
+            write_bytes(target, source.read(f"{dataset}/{name}"))
     manifest = {"url": url, "sha256": digest, "bytes": archive.stat().st_size}
     manifest_path = root / ("manifest.json" if dataset == "ml-100k" else f"{dataset}-manifest.json")
-    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    with atomic_target(manifest_path) as temporary:
+        temporary.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     return manifest
 
 
