@@ -1,0 +1,11 @@
+{
+  "events": 100000,
+  "users": 943,
+  "items": 1682,
+  "positive_fraction": 0.55375,
+  "start_utc": "1997-09-20 03:05:10+00:00",
+  "end_utc": "1998-04-22 23:10:38+00:00",
+  "distinct_timestamps": 49282,
+  "max_events_same_timestamp": 12,
+  "user_item_repeated_events": 0
+}

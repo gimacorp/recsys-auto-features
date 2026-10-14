@@ -1,0 +1,31 @@
+{
+  "python": "3.13.14 (v3.13.14:fd17997c386, Jun 10 2026, 08:55:00) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "catboost": "1.2.8",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.18.1"
+  },
+  "git_revision": "c0d15cbf84d9ceb0751cb6ba893d17e073bc4f5c",
+  "config_sha256": "acf0b8c17fefad7582d7ec11c198f9d6fa29f09d3296c7bc441969669dedbfac",
+  "source_sha256": {
+    "__init__.py": "17d0fc3d8a4859c06944e5f5c57c016d38d26876ed61dd5e36a2f99ccae0ff30",
+    "cli.py": "b6fc7efbf3ca9a7c752b49e39c8ef464537fddffb37bd46fb947faceeeaf9675",
+    "data.py": "05d36ece70d393fd5ea55a0c6f76e8e724327d5b53c3e2b090945aff3c9b50d3",
+    "experiment.py": "6e310c1c8016e2af1aa1fa1801561ac3879fe50e0334fe4c00d774937ad67653",
+    "features.py": "bf4bc11bd0b484ea96c4e5f81cf9d08b7712d0e64446b2d68aabfd153533f779",
+    "grammar.py": "48a9135e81384ed9e671499d40abcfefd1706295c369d8305dd1028bbccc3607",
+    "metrics.py": "a05d7ce3c70aafa94ee5cf375e4efa2bd7318b8a5773c19a8217bb63325dda29",
+    "model.py": "f9dbe0ac1b0e3bb0959b734e9d03e44c1297478af95088047e06c045d57dfbbd",
+    "search.py": "31161c1e424576cbd63721414a6a23d0df351aa7912fed18076841b4e395e667",
+    "split.py": "5fe7d66e903ecbfa9db81003dc563c8e057214b74f8a37cdd497079d8aaa5691"
+  },
+  "dataset": {
+    "url": "https://files.grouplens.org/datasets/movielens/ml-100k.zip",
+    "sha256": "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229",
+    "bytes": 4924029
+  },
+  "started_utc": "2026-10-14 10:19:43.935498+00:00"
+}
