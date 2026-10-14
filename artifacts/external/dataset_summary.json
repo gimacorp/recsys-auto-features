@@ -1,0 +1,11 @@
+{
+  "events": 171470,
+  "users": 1006,
+  "items": 3480,
+  "positive_fraction": 0.5720650842713011,
+  "start_utc": "2000-04-26 00:35:49+00:00",
+  "end_utc": "2003-02-27 13:14:38+00:00",
+  "distinct_timestamps": 80514,
+  "max_events_same_timestamp": 21,
+  "user_item_repeated_events": 0
+}

@@ -1,0 +1,113 @@
+{
+  "comparisons": [
+    {
+      "method": "auto_residual",
+      "reference": "manual",
+      "delta": 0.007905638053081995,
+      "ci95": [
+        0.005026788385887031,
+        0.010794429630688227
+      ],
+      "users": 306,
+      "samples": 1000,
+      "folds": 1
+    },
+    {
+      "method": "auto_residual",
+      "reference": "auto_random",
+      "delta": -0.002640169728331532,
+      "ci95": [
+        -0.004599429011899823,
+        -0.0005981131428572019
+      ],
+      "users": 306,
+      "samples": 1000,
+      "folds": 1
+    },
+    {
+      "method": "residual",
+      "reference": "manual",
+      "delta": -0.00023530333395068237,
+      "ci95": [
+        -0.0008277830580047536,
+        0.00039607033753858134
+      ],
+      "users": 306,
+      "samples": 1000,
+      "folds": 1
+    }
+  ],
+  "summaries": [
+    {
+      "fold": 0,
+      "method": "manual",
+      "mean_seed_logloss": 0.5510183594489855
+    },
+    {
+      "fold": 0,
+      "method": "auto_random",
+      "mean_seed_logloss": 0.561564167230399
+    },
+    {
+      "fold": 0,
+      "method": "auto_residual",
+      "mean_seed_logloss": 0.5589239975020674
+    },
+    {
+      "fold": 0,
+      "method": "residual",
+      "mean_seed_logloss": 0.5507830561150348
+    }
+  ],
+  "mean_manual_features": 107.0,
+  "mean_auto_features": 46.0,
+  "feature_ratio": 0.42990654205607476,
+  "scope": "conditional on fixed seeds and test periods; shared user draws across folds",
+  "provenance": {
+    "python": "3.13.14 (v3.13.14:fd17997c386, Jun 10 2026, 08:55:00) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "catboost": "1.2.8",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.18.1"
+    },
+    "git_revision": "a4c20b90c087e4e93b6bc4dbebd833bcb0a646ea",
+    "config_sha256": "bd0aa5c50e9327ee265df6fb64e5a4006377bb4dcc6495c25202244d994f5a84",
+    "source_sha256": {
+      "__init__.py": "17d0fc3d8a4859c06944e5f5c57c016d38d26876ed61dd5e36a2f99ccae0ff30",
+      "adaptive.py": "604bfcc1c55c924c6da9dc350a5e2b0e5afd239667b25aff52f6df8e93b08e5f",
+      "artifacts.py": "c29ce50e9e4f0f2efed8611f63b31fd594769dcd49fec8122954d14afffb6d3b",
+      "audit.py": "eee9fab540b2eedf9ce79accd0ac2e6fe7f082b65b9a46c9c37efedb93d52c6e",
+      "catalogue.py": "e940493b599d72877f5eb1f139bb7e1c7b59f6155e48aa703b2462f18caf897e",
+      "cli.py": "53289e824c7dbce57ce43d509fc4eb608335db3bcb95f0edbda861c991d8036a",
+      "config.py": "75c755e62334f6603b835de15ba774d82c3c22424bac9fa39ef45c254cd9b243",
+      "data.py": "2ebcb650c743834b6b678c09b511c93f4ea40afa67d6bf54e8a8690c39cc89b8",
+      "diagnostics.py": "c1342e0f53c875d945a08a145929241ac5f840b11977cb020e91833ab0d991f6",
+      "experiment.py": "9abc6d763f05b33fbe32b92b8bc30ea989dc0a5e3bfa52413b77d625805ef128",
+      "features.py": "7280fe47c9b105dd0343a2ec81d7a3f07769ff410cca7d6195f04f27ae9cc4d3",
+      "from_static.py": "7d5b0e94b591df6e38fb53c272dd38257fad195480c0409e5c5d2ad96314b07d",
+      "grammar.py": "8af695c81cd0ac3e1d40e8c16a05602cf940d69049a4c57230fcd8438eb6c37c",
+      "metrics.py": "ca95a80e3fadfe82e5dcd2f10521520563e359ce9e1ceb3966163c7a01d5d662",
+      "model.py": "26be7c36d768de6682da24d6f9b567c1c683362830196460f32ed2eed75c19aa",
+      "report.py": "d8afa2db42c613c3f7ccde18a1559499ade98a1dc5719cf28d90ba104875c1b6",
+      "search.py": "af9a56c68645751bf558af6013fa4278c250d12ed95782fcd5363ec883ec6f83",
+      "snapshot.py": "e9dea84463f882c78d5b52721065624d7b962796156df890deeb36a41c14e8ea",
+      "split.py": "5fe7d66e903ecbfa9db81003dc563c8e057214b74f8a37cdd497079d8aaa5691",
+      "statistics.py": "6db18baae9d5caf759e0e1b1fcf727d6521aef1d7e4a84d82858b9d789ae7940"
+    },
+    "dataset": {
+      "url": "https://files.grouplens.org/datasets/movielens/ml-1m.zip",
+      "sha256": "a6898adb50b9ca05aa231689da44c217cb524e7ebd39d264c56e2832f2c54e20",
+      "bytes": 5917549
+    },
+    "started_utc": "2026-10-14 14:33:11.066743+00:00"
+  },
+  "preregistered_criteria": {
+    "logloss_margin": 0.01,
+    "feature_ratio_limit": 0.6,
+    "loss_passed": false,
+    "compactness_passed": true
+  }
+}
