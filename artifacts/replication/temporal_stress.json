@@ -1,0 +1,70 @@
+{
+  "scope": "exploratory temporal diagnostics; models and selections remain fixed",
+  "records": [
+    {
+      "fold": 0,
+      "period_days": "0–7",
+      "events": 7066,
+      "users": 91,
+      "positive_fraction": 0.6180300028304557,
+      "logloss": {
+        "manual": 0.5406857200172974,
+        "auto_random": 0.5392082045162205,
+        "auto_residual": 0.5393066954036486
+      },
+      "auto_residual_minus_manual": -0.001379024613648805
+    },
+    {
+      "fold": 0,
+      "period_days": "7–30",
+      "events": 10602,
+      "users": 131,
+      "positive_fraction": 0.6275231088473873,
+      "logloss": {
+        "manual": 0.5197747705333643,
+        "auto_random": 0.5191563413456968,
+        "auto_residual": 0.5190016366068275
+      },
+      "auto_residual_minus_manual": -0.0007731339265367732
+    },
+    {
+      "fold": 0,
+      "period_days": "30–90",
+      "events": 5690,
+      "users": 130,
+      "positive_fraction": 0.5917398945518454,
+      "logloss": {
+        "manual": 0.5352136659507394,
+        "auto_random": 0.5336770470011201,
+        "auto_residual": 0.5336377778092978
+      },
+      "auto_residual_minus_manual": -0.001575888141441606
+    },
+    {
+      "fold": 0,
+      "period_days": "90–365",
+      "events": 6557,
+      "users": 145,
+      "positive_fraction": 0.5935641299374714,
+      "logloss": {
+        "manual": 0.5551299839412056,
+        "auto_random": 0.5509632094362091,
+        "auto_residual": 0.5502357014527176
+      },
+      "auto_residual_minus_manual": -0.004894282488488
+    },
+    {
+      "fold": 0,
+      "period_days": "365–∞",
+      "events": 4510,
+      "users": 102,
+      "positive_fraction": 0.5450110864745011,
+      "logloss": {
+        "manual": 0.5714805472104771,
+        "auto_random": 0.5660483792577443,
+        "auto_residual": 0.5665917988977918
+      },
+      "auto_residual_minus_manual": -0.004888748312685376
+    }
+  ]
+}

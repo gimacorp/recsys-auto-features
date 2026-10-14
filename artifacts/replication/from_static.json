@@ -1,0 +1,3888 @@
+{
+  "config": {
+    "dataset": "ml-1m",
+    "cohort_modulus": 6,
+    "seeds": [
+      17,
+      42,
+      73
+    ],
+    "folds": [
+      [
+        0.65,
+        0.8,
+        1.0
+      ]
+    ],
+    "manual_days": [
+      7,
+      30,
+      90,
+      null
+    ],
+    "candidate_days": [
+      1,
+      3,
+      10,
+      14,
+      21,
+      45,
+      60,
+      120,
+      180
+    ],
+    "search_rounds": 8,
+    "proposals_per_round": 3,
+    "min_improvement": 0.0001,
+    "max_iterations": 500,
+    "early_stopping_rounds": 40,
+    "thread_count": 4,
+    "one_hot_max_size": 65535,
+    "bootstrap_samples": 1000,
+    "tuning_grid": [
+      {
+        "depth": 4,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 4,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      },
+      {
+        "depth": 6,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 6,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      },
+      {
+        "depth": 8,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 8,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      }
+    ],
+    "cohort_offset": 1,
+    "pair_long_history": true,
+    "feature_budget_ratio": 0.6,
+    "scope": "preregistered follow-up on untouched user cohort"
+  },
+  "records": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_random",
+      "feature_count": 64,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__1d__log_count_mean",
+        "user_genre__1d__log_count_max",
+        "user_genre__1d__positive_rate_mean",
+        "user_genre__1d__positive_rate_min",
+        "user_genre__1d__rating_mean",
+        "user_genre__1d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__21d__log_count",
+        "item__21d__positive_rate",
+        "item__21d__rating_mean",
+        "item__21d__gap_days",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__180d__log_count",
+        "user__180d__positive_rate",
+        "user__180d__rating_mean",
+        "user__180d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "user__3d__log_count",
+        "user__3d__positive_rate",
+        "user__3d__rating_mean",
+        "user__3d__gap_days",
+        "item__120d__log_count",
+        "item__120d__positive_rate",
+        "item__120d__rating_mean",
+        "item__120d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__1d",
+        "item__21d",
+        "user__180d",
+        "user__3d",
+        "item__120d"
+      ],
+      "materialized_packs": [
+        "item__120d",
+        "item__21d",
+        "item__all",
+        "user__180d",
+        "user__3d",
+        "user__all",
+        "user_genre__1d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5719040276095972,
+          "auc": 0.7637298444765128,
+          "seconds": 5.770881375006866,
+          "iterations": 499,
+          "accepted": true,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__1d__log_count_mean",
+            "user_genre__1d__log_count_max",
+            "user_genre__1d__positive_rate_mean",
+            "user_genre__1d__positive_rate_min",
+            "user_genre__1d__rating_mean",
+            "user_genre__1d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6420136451851591,
+          "auc": 0.6793554979161351,
+          "seconds": 5.667173333000392,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "genre__21d__log_count_mean",
+            "genre__21d__log_count_max",
+            "genre__21d__positive_rate_mean",
+            "genre__21d__positive_rate_min",
+            "genre__21d__rating_mean",
+            "genre__21d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5781445330894855,
+          "auc": 0.7593454464652795,
+          "seconds": 5.3565574590465985,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "user__90d__log_count",
+            "user__90d__positive_rate",
+            "user__90d__rating_mean",
+            "user__90d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5707231889348429,
+          "auc": 0.7650307417280316,
+          "seconds": 6.4254442090168595,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.5719040276095972,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "user__7d__log_count",
+            "user__7d__positive_rate",
+            "user__7d__rating_mean",
+            "user__7d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5411923195087003,
+          "auc": 0.7935791230019436,
+          "seconds": 6.4169991669477895,
+          "iterations": 481,
+          "accepted": true,
+          "starting_logloss": 0.5719040276095972,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "item__21d__log_count",
+            "item__21d__positive_rate",
+            "item__21d__rating_mean",
+            "item__21d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5707910114737598,
+          "auc": 0.7648891562389608,
+          "seconds": 6.476982291031163,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5719040276095972,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "user__10d__log_count",
+            "user__10d__positive_rate",
+            "user__10d__rating_mean",
+            "user__10d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5418910508575007,
+          "auc": 0.7932684120530067,
+          "seconds": 5.993877125030849,
+          "iterations": 422,
+          "accepted": false,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "item__45d__log_count",
+            "item__45d__positive_rate",
+            "item__45d__rating_mean",
+            "item__45d__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5416774568896382,
+          "auc": 0.7933381102524453,
+          "seconds": 5.663210167025682,
+          "iterations": 376,
+          "accepted": false,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "user_genre__45d__log_count_mean",
+            "user_genre__45d__log_count_max",
+            "user_genre__45d__positive_rate_mean",
+            "user_genre__45d__positive_rate_min",
+            "user_genre__45d__rating_mean",
+            "user_genre__45d__gap_days_min"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5418841071882953,
+          "auc": 0.7929034177480767,
+          "seconds": 6.453109125024639,
+          "iterations": 456,
+          "accepted": false,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "item__1d__log_count",
+            "item__1d__positive_rate",
+            "item__1d__rating_mean",
+            "item__1d__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5412394411398808,
+          "auc": 0.7935263233626375,
+          "seconds": 6.016496333992109,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "genre__180d__log_count_mean",
+            "genre__180d__log_count_max",
+            "genre__180d__positive_rate_mean",
+            "genre__180d__positive_rate_min",
+            "genre__180d__rating_mean",
+            "genre__180d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5406976402333435,
+          "auc": 0.7939251147878328,
+          "seconds": 3.3518799580051564,
+          "iterations": 327,
+          "accepted": false,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5404952834879562,
+          "auc": 0.7940065732662553,
+          "seconds": 3.9732850000145845,
+          "iterations": 377,
+          "accepted": true,
+          "starting_logloss": 0.5411923195087003,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d"
+          ],
+          "added_columns": [
+            "user__180d__log_count",
+            "user__180d__positive_rate",
+            "user__180d__rating_mean",
+            "user__180d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5403284388556271,
+          "auc": 0.7941433366760944,
+          "seconds": 3.6493422919884324,
+          "iterations": 325,
+          "accepted": false,
+          "starting_logloss": 0.5404952834879562,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "user__120d__log_count",
+            "user__120d__positive_rate",
+            "user__120d__rating_mean",
+            "user__120d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5397834740148186,
+          "auc": 0.7946404973014569,
+          "seconds": 4.411473790998571,
+          "iterations": 407,
+          "accepted": true,
+          "starting_logloss": 0.5404952834879562,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "user__3d__log_count",
+            "user__3d__positive_rate",
+            "user__3d__rating_mean",
+            "user__3d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5407376561140158,
+          "auc": 0.793777849825871,
+          "seconds": 3.4303049170412123,
+          "iterations": 301,
+          "accepted": false,
+          "starting_logloss": 0.5404952834879562,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "item__3d__log_count",
+            "item__3d__positive_rate",
+            "item__3d__rating_mean",
+            "item__3d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5391421644391637,
+          "auc": 0.7949574410766393,
+          "seconds": 4.471293542010244,
+          "iterations": 397,
+          "accepted": true,
+          "starting_logloss": 0.5397834740148186,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d",
+            "user__3d"
+          ],
+          "added_columns": [
+            "item__120d__log_count",
+            "item__120d__positive_rate",
+            "item__120d__rating_mean",
+            "item__120d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5402999576601899,
+          "auc": 0.794147301361667,
+          "seconds": 3.1933163750218228,
+          "iterations": 262,
+          "accepted": false,
+          "starting_logloss": 0.5397834740148186,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d",
+            "user__3d"
+          ],
+          "added_columns": [
+            "user__1d__log_count",
+            "user__1d__positive_rate",
+            "user__1d__rating_mean",
+            "user__1d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5398706256859215,
+          "auc": 0.7943531427287233,
+          "seconds": 4.048872291983571,
+          "iterations": 348,
+          "accepted": false,
+          "starting_logloss": 0.5397834740148186,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__21d",
+            "user__180d",
+            "user__3d"
+          ],
+          "added_columns": [
+            "user__60d__log_count",
+            "user__60d__positive_rate",
+            "user__60d__rating_mean",
+            "user__60d__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 18,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 90.77049875218654,
+      "search_scoring_seconds": 0.001617209054529667,
+      "refit_seconds": 4.683778542035725,
+      "iterations": 397,
+      "validation_logloss": 0.5391421644391637,
+      "test": {
+        "logloss": 0.5384702638142392,
+        "auc": 0.7874683841414085,
+        "brier": 0.18021883813813305,
+        "ndcg@10": 0.8454333129778863,
+        "recall@10": 0.33873631856952396,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0024634290545827928,
+        "logloss_ci95": [
+          -0.004399377579229458,
+          -0.0006479420212336006
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.006576149235551243,
+        "ndcg@10_ci95": [
+          -0.001345530513135118,
+          0.014699703770031564
+        ],
+        "recall@10_delta": 0.003685294666037143,
+        "recall@10_ci95": [
+          0.0004692471968822241,
+          0.00696283340913413
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_residual",
+      "feature_count": 60,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__10d__log_count_mean",
+        "user_genre__10d__log_count_max",
+        "user_genre__10d__positive_rate_mean",
+        "user_genre__10d__positive_rate_min",
+        "user_genre__10d__rating_mean",
+        "user_genre__10d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__180d__log_count",
+        "item__180d__positive_rate",
+        "item__180d__rating_mean",
+        "item__180d__gap_days",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__7d__log_count",
+        "user__7d__positive_rate",
+        "user__7d__rating_mean",
+        "user__7d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "user__120d__log_count",
+        "user__120d__positive_rate",
+        "user__120d__rating_mean",
+        "user__120d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__10d",
+        "item__180d",
+        "user__7d",
+        "user__120d"
+      ],
+      "materialized_packs": [
+        "item__180d",
+        "item__all",
+        "user__120d",
+        "user__7d",
+        "user__all",
+        "user_genre__10d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.33427951939760736,
+          "logloss": 0.5733223131639305,
+          "auc": 0.7625152551462758,
+          "seconds": 3.9086277909809723,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__14d__log_count_mean",
+            "user_genre__14d__log_count_max",
+            "user_genre__14d__positive_rate_mean",
+            "user_genre__14d__positive_rate_min",
+            "user_genre__14d__rating_mean",
+            "user_genre__14d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.33384124910713964,
+          "logloss": 0.5730697912972078,
+          "auc": 0.7626110977715116,
+          "seconds": 3.9202544579748064,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__10d__log_count_mean",
+            "user_genre__10d__log_count_max",
+            "user_genre__10d__positive_rate_mean",
+            "user_genre__10d__positive_rate_min",
+            "user_genre__10d__rating_mean",
+            "user_genre__10d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.3337313202804426,
+          "logloss": 0.5732311658202901,
+          "auc": 0.762518076640303,
+          "seconds": 3.9032231669989415,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6429659351948732,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__60d__log_count_mean",
+            "user_genre__60d__log_count_max",
+            "user_genre__60d__positive_rate_mean",
+            "user_genre__60d__positive_rate_min",
+            "user_genre__60d__rating_mean",
+            "user_genre__60d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.22033750569291705,
+          "logloss": 0.5416922562706523,
+          "auc": 0.7931116975183763,
+          "seconds": 4.474229125014972,
+          "iterations": 492,
+          "accepted": true,
+          "starting_logloss": 0.5730697912972078,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "item__180d__log_count",
+            "item__180d__positive_rate",
+            "item__180d__rating_mean",
+            "item__180d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.2202678807794343,
+          "logloss": 0.5422332315558076,
+          "auc": 0.792777386960992,
+          "seconds": 2.59077133302344,
+          "iterations": 244,
+          "accepted": false,
+          "starting_logloss": 0.5730697912972078,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.21802222373272703,
+          "logloss": 0.5417229341153555,
+          "auc": 0.7930708953094918,
+          "seconds": 5.044058375002351,
+          "iterations": 476,
+          "accepted": false,
+          "starting_logloss": 0.5730697912972078,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "item__120d__log_count",
+            "item__120d__positive_rate",
+            "item__120d__rating_mean",
+            "item__120d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04959172296128144,
+          "logloss": 0.540421520456818,
+          "auc": 0.7940107142952046,
+          "seconds": 3.5037053750129417,
+          "iterations": 298,
+          "accepted": false,
+          "starting_logloss": 0.5416922562706523,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d"
+          ],
+          "added_columns": [
+            "user__1d__log_count",
+            "user__1d__positive_rate",
+            "user__1d__rating_mean",
+            "user__1d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.04461166323414615,
+          "logloss": 0.5398714763283552,
+          "auc": 0.7947242239205522,
+          "seconds": 3.3400143749895506,
+          "iterations": 277,
+          "accepted": false,
+          "starting_logloss": 0.5416922562706523,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d"
+          ],
+          "added_columns": [
+            "user__3d__log_count",
+            "user__3d__positive_rate",
+            "user__3d__rating_mean",
+            "user__3d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.039201778059735376,
+          "logloss": 0.5398248104878381,
+          "auc": 0.7946132796133842,
+          "seconds": 5.430579625011887,
+          "iterations": 468,
+          "accepted": true,
+          "starting_logloss": 0.5416922562706523,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d"
+          ],
+          "added_columns": [
+            "user__7d__log_count",
+            "user__7d__positive_rate",
+            "user__7d__rating_mean",
+            "user__7d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.023817057335035495,
+          "logloss": 0.5402731481280568,
+          "auc": 0.7943657482397541,
+          "seconds": 3.948607665952295,
+          "iterations": 311,
+          "accepted": false,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user_genre__1d__log_count_mean",
+            "user_genre__1d__log_count_max",
+            "user_genre__1d__positive_rate_mean",
+            "user_genre__1d__positive_rate_min",
+            "user_genre__1d__rating_mean",
+            "user_genre__1d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__3d",
+          "strategy": "residual",
+          "proxy_score": 0.02098496939000401,
+          "logloss": 0.540398542419128,
+          "auc": 0.7942197663278779,
+          "seconds": 4.028988791978918,
+          "iterations": 326,
+          "accepted": false,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user_genre__3d__log_count_mean",
+            "user_genre__3d__log_count_max",
+            "user_genre__3d__positive_rate_mean",
+            "user_genre__3d__positive_rate_min",
+            "user_genre__3d__rating_mean",
+            "user_genre__3d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__180d",
+          "strategy": "residual",
+          "proxy_score": 0.02034205156120606,
+          "logloss": 0.5399196934895998,
+          "auc": 0.794315034316938,
+          "seconds": 4.003055999986827,
+          "iterations": 337,
+          "accepted": false,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user__180d__log_count",
+            "user__180d__positive_rate",
+            "user__180d__rating_mean",
+            "user__180d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.020110690506758924,
+          "logloss": 0.5396238377229964,
+          "auc": 0.7946286458103815,
+          "seconds": 4.442260000039823,
+          "iterations": 374,
+          "accepted": true,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user__120d__log_count",
+            "user__120d__positive_rate",
+            "user__120d__rating_mean",
+            "user__120d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.01855595891052657,
+          "logloss": 0.5401274760867053,
+          "auc": 0.7943563229903099,
+          "seconds": 5.258396917022765,
+          "iterations": 498,
+          "accepted": false,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user_genre__180d__log_count_mean",
+            "user_genre__180d__log_count_max",
+            "user_genre__180d__positive_rate_mean",
+            "user_genre__180d__positive_rate_min",
+            "user_genre__180d__rating_mean",
+            "user_genre__180d__gap_days_min"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.018295233027857346,
+          "logloss": 0.5399713258138036,
+          "auc": 0.7942467894301555,
+          "seconds": 4.620568917016499,
+          "iterations": 397,
+          "accepted": false,
+          "starting_logloss": 0.5398248104878381,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d"
+          ],
+          "added_columns": [
+            "user__90d__log_count",
+            "user__90d__positive_rate",
+            "user__90d__rating_mean",
+            "user__90d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__1d",
+          "strategy": "residual",
+          "proxy_score": 0.015861541456125814,
+          "logloss": 0.5404295897473271,
+          "auc": 0.7940510847668565,
+          "seconds": 5.0719122079899535,
+          "iterations": 412,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "item__1d__log_count",
+            "item__1d__positive_rate",
+            "item__1d__rating_mean",
+            "item__1d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.01571968336350287,
+          "logloss": 0.5396793515264199,
+          "auc": 0.7945562659754558,
+          "seconds": 4.995142417028546,
+          "iterations": 410,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__60d__log_count",
+            "user__60d__positive_rate",
+            "user__60d__rating_mean",
+            "user__60d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.015187791974922038,
+          "logloss": 0.540304192097387,
+          "auc": 0.794036022610164,
+          "seconds": 4.487967291031964,
+          "iterations": 355,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__45d__log_count",
+            "user__45d__positive_rate",
+            "user__45d__rating_mean",
+            "user__45d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__30d",
+          "strategy": "residual",
+          "proxy_score": 0.015011512170184513,
+          "logloss": 0.5398333157693908,
+          "auc": 0.7946309200318603,
+          "seconds": 4.215864416968543,
+          "iterations": 334,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__30d__log_count",
+            "user__30d__positive_rate",
+            "user__30d__rating_mean",
+            "user__30d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.014992400906719019,
+          "logloss": 0.5400559530765392,
+          "auc": 0.7943064178147041,
+          "seconds": 4.635923667054158,
+          "iterations": 369,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__21d__log_count",
+            "user__21d__positive_rate",
+            "user__21d__rating_mean",
+            "user__21d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.014486967039509515,
+          "logloss": 0.5407051390049811,
+          "auc": 0.7936479820501414,
+          "seconds": 3.5968511249520816,
+          "iterations": 270,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__10d__log_count",
+            "user__10d__positive_rate",
+            "user__10d__rating_mean",
+            "user__10d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.014302239665651105,
+          "logloss": 0.5399352787610593,
+          "auc": 0.7943426898230492,
+          "seconds": 4.963803874969017,
+          "iterations": 397,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "user__14d__log_count",
+            "user__14d__positive_rate",
+            "user__14d__rating_mean",
+            "user__14d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__30d",
+          "strategy": "residual",
+          "proxy_score": 0.012754588104511072,
+          "logloss": 0.5403434998206962,
+          "auc": 0.7942287111936409,
+          "seconds": 4.00048666598741,
+          "iterations": 313,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "item__30d__log_count",
+            "item__30d__positive_rate",
+            "item__30d__rating_mean",
+            "item__30d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__45d",
+          "strategy": "residual",
+          "proxy_score": 0.010517306713776165,
+          "logloss": 0.5400451450154037,
+          "auc": 0.7943982136634851,
+          "seconds": 4.339355457981583,
+          "iterations": 345,
+          "accepted": false,
+          "starting_logloss": 0.5396238377229964,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__180d",
+            "user__7d",
+            "user__120d"
+          ],
+          "added_columns": [
+            "item__45d__log_count",
+            "item__45d__positive_rate",
+            "item__45d__rating_mean",
+            "item__45d__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 102.72464903997025,
+      "search_scoring_seconds": 0.08327091496903449,
+      "refit_seconds": 4.752502458984964,
+      "iterations": 374,
+      "validation_logloss": 0.5396238377229964,
+      "test": {
+        "logloss": 0.5389837419387745,
+        "auc": 0.7866180700564671,
+        "brier": 0.18047671488164946,
+        "ndcg@10": 0.8455375728774837,
+        "recall@10": 0.3359703819017901,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0019499509300473614,
+        "logloss_ci95": [
+          -0.0037568359471761154,
+          -0.00031713471313538495
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.006680409135148545,
+        "ndcg@10_ci95": [
+          -0.0016447008370007125,
+          0.015771165607680653
+        ],
+        "recall@10_delta": 0.0009193579983032708,
+        "recall@10_ci95": [
+          -0.0036088664195088023,
+          0.004651463075671997
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_random",
+      "feature_count": 60,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__10d__log_count_mean",
+        "user_genre__10d__log_count_max",
+        "user_genre__10d__positive_rate_mean",
+        "user_genre__10d__positive_rate_min",
+        "user_genre__10d__rating_mean",
+        "user_genre__10d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "user__60d__log_count",
+        "user__60d__positive_rate",
+        "user__60d__rating_mean",
+        "user__60d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "item__90d__log_count",
+        "item__90d__positive_rate",
+        "item__90d__rating_mean",
+        "item__90d__gap_days",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__10d__log_count",
+        "user__10d__positive_rate",
+        "user__10d__rating_mean",
+        "user__10d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__10d",
+        "user__60d",
+        "item__90d",
+        "user__10d"
+      ],
+      "materialized_packs": [
+        "item__90d",
+        "item__all",
+        "user__10d",
+        "user__60d",
+        "user__all",
+        "user_genre__10d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5787059307096805,
+          "auc": 0.759156841143094,
+          "seconds": 4.003486541972961,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "user__45d__log_count",
+            "user__45d__positive_rate",
+            "user__45d__rating_mean",
+            "user__45d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6361852666999959,
+          "auc": 0.68394758889988,
+          "seconds": 4.219408334000036,
+          "iterations": 497,
+          "accepted": false,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "genre__1d__log_count_mean",
+            "genre__1d__log_count_max",
+            "genre__1d__positive_rate_mean",
+            "genre__1d__positive_rate_min",
+            "genre__1d__rating_mean",
+            "genre__1d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5736455706370541,
+          "auc": 0.7618822918784371,
+          "seconds": 4.2893501670332626,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__10d__log_count_mean",
+            "user_genre__10d__log_count_max",
+            "user_genre__10d__positive_rate_mean",
+            "user_genre__10d__positive_rate_min",
+            "user_genre__10d__rating_mean",
+            "user_genre__10d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5737765443725502,
+          "auc": 0.7617055289261179,
+          "seconds": 4.794512583001051,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.5736455706370541,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "genre__21d__log_count_mean",
+            "genre__21d__log_count_max",
+            "genre__21d__positive_rate_mean",
+            "genre__21d__positive_rate_min",
+            "genre__21d__rating_mean",
+            "genre__21d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5716426974342774,
+          "auc": 0.7642665151394651,
+          "seconds": 4.714820125023834,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.5736455706370541,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "user__60d__log_count",
+            "user__60d__positive_rate",
+            "user__60d__rating_mean",
+            "user__60d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.572997937246873,
+          "auc": 0.762360456065565,
+          "seconds": 4.761344290978741,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5736455706370541,
+          "starting_packs": [
+            "user_genre__10d"
+          ],
+          "added_columns": [
+            "user_genre__180d__log_count_mean",
+            "user_genre__180d__log_count_max",
+            "user_genre__180d__positive_rate_mean",
+            "user_genre__180d__positive_rate_min",
+            "user_genre__180d__rating_mean",
+            "user_genre__180d__gap_days_min"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5393865551910054,
+          "auc": 0.7947779964888331,
+          "seconds": 4.843006457958836,
+          "iterations": 430,
+          "accepted": true,
+          "starting_logloss": 0.5716426974342774,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d"
+          ],
+          "added_columns": [
+            "item__90d__log_count",
+            "item__90d__positive_rate",
+            "item__90d__rating_mean",
+            "item__90d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.572029777197524,
+          "auc": 0.763425360273015,
+          "seconds": 5.657144083001185,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5716426974342774,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d"
+          ],
+          "added_columns": [
+            "user_genre__60d__log_count_mean",
+            "user_genre__60d__log_count_max",
+            "user_genre__60d__positive_rate_mean",
+            "user_genre__60d__positive_rate_min",
+            "user_genre__60d__rating_mean",
+            "user_genre__60d__gap_days_min"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5721984415769957,
+          "auc": 0.7633865343261108,
+          "seconds": 5.5324122500023805,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5716426974342774,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d"
+          ],
+          "added_columns": [
+            "user__7d__log_count",
+            "user__7d__positive_rate",
+            "user__7d__rating_mean",
+            "user__7d__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5396015206044621,
+          "auc": 0.7946033131721977,
+          "seconds": 6.735283333982807,
+          "iterations": 413,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user__14d__log_count",
+            "user__14d__positive_rate",
+            "user__14d__rating_mean",
+            "user__14d__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.539722481253633,
+          "auc": 0.7946464260873976,
+          "seconds": 5.367468500044197,
+          "iterations": 423,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user_genre__14d__log_count_mean",
+            "user_genre__14d__log_count_max",
+            "user_genre__14d__positive_rate_mean",
+            "user_genre__14d__positive_rate_min",
+            "user_genre__14d__rating_mean",
+            "user_genre__14d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "item__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5395313781705771,
+          "auc": 0.7949313300952758,
+          "seconds": 4.747082917019725,
+          "iterations": 395,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "item__14d__log_count",
+            "item__14d__positive_rate",
+            "item__14d__rating_mean",
+            "item__14d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5395187139008571,
+          "auc": 0.7947068024110956,
+          "seconds": 4.583507666015066,
+          "iterations": 375,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user__120d__log_count",
+            "user__120d__positive_rate",
+            "user__120d__rating_mean",
+            "user__120d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5394642943968717,
+          "auc": 0.7948355026720552,
+          "seconds": 5.445090584049467,
+          "iterations": 497,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "item__60d__log_count",
+            "item__60d__positive_rate",
+            "item__60d__rating_mean",
+            "item__60d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5403948480352442,
+          "auc": 0.7940747391025585,
+          "seconds": 3.9321182079729624,
+          "iterations": 312,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "item__1d__log_count",
+            "item__1d__positive_rate",
+            "item__1d__rating_mean",
+            "item__1d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5397414433026574,
+          "auc": 0.7947142939642022,
+          "seconds": 5.540965042018797,
+          "iterations": 473,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user_genre__30d__log_count_mean",
+            "user_genre__30d__log_count_max",
+            "user_genre__30d__positive_rate_mean",
+            "user_genre__30d__positive_rate_min",
+            "user_genre__30d__rating_mean",
+            "user_genre__30d__gap_days_min"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5391595243445719,
+          "auc": 0.7950799085113536,
+          "seconds": 4.6525911670178175,
+          "iterations": 359,
+          "accepted": false,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user__3d__log_count",
+            "user__3d__positive_rate",
+            "user__3d__rating_mean",
+            "user__3d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5387947338966089,
+          "auc": 0.7953956847717663,
+          "seconds": 5.123410500003956,
+          "iterations": 410,
+          "accepted": true,
+          "starting_logloss": 0.5393865551910054,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d"
+          ],
+          "added_columns": [
+            "user__10d__log_count",
+            "user__10d__positive_rate",
+            "user__10d__rating_mean",
+            "user__10d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5395693953298143,
+          "auc": 0.7946996817871606,
+          "seconds": 5.244936917035375,
+          "iterations": 380,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "item__30d__log_count",
+            "item__30d__positive_rate",
+            "item__30d__rating_mean",
+            "item__30d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5405790495539546,
+          "auc": 0.7936348657513987,
+          "seconds": 3.6700576670118608,
+          "iterations": 237,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "item__120d__log_count",
+            "item__120d__positive_rate",
+            "item__120d__rating_mean",
+            "item__120d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5403270858908402,
+          "auc": 0.7940990015188698,
+          "seconds": 4.788488416990731,
+          "iterations": 310,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "item__180d__log_count",
+            "item__180d__positive_rate",
+            "item__180d__rating_mean",
+            "item__180d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5395682350162574,
+          "auc": 0.7945949703062382,
+          "seconds": 4.355726625013631,
+          "iterations": 310,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "user__30d__log_count",
+            "user__30d__positive_rate",
+            "user__30d__rating_mean",
+            "user__30d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5395142121639536,
+          "auc": 0.7947732534600804,
+          "seconds": 5.835159500013106,
+          "iterations": 417,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "user__21d__log_count",
+            "user__21d__positive_rate",
+            "user__21d__rating_mean",
+            "user__21d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5396725583716415,
+          "auc": 0.7945137246560288,
+          "seconds": 5.305707249965053,
+          "iterations": 401,
+          "accepted": false,
+          "starting_logloss": 0.5387947338966089,
+          "starting_packs": [
+            "user_genre__10d",
+            "user__60d",
+            "item__90d",
+            "user__10d"
+          ],
+          "added_columns": [
+            "item__10d__log_count",
+            "item__10d__positive_rate",
+            "item__10d__rating_mean",
+            "item__10d__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 118.14307912712684,
+      "search_scoring_seconds": 0.002019668056163937,
+      "refit_seconds": 5.337590250011999,
+      "iterations": 410,
+      "validation_logloss": 0.5387947338966089,
+      "test": {
+        "logloss": 0.5382645135576271,
+        "auc": 0.7871579574954002,
+        "brier": 0.18021942959731962,
+        "ndcg@10": 0.8447600542601863,
+        "recall@10": 0.3364715201886663,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0010659128813679778,
+        "logloss_ci95": [
+          -0.002260125680987188,
+          0.00022214635781718224
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.0013680511990032088,
+        "ndcg@10_ci95": [
+          -0.007857524096953238,
+          0.004944973094818564
+        ],
+        "recall@10_delta": -0.0005542633536605145,
+        "recall@10_ci95": [
+          -0.004173999972905956,
+          0.0036434299153155865
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_residual",
+      "feature_count": 64,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__7d__log_count_mean",
+        "user_genre__7d__log_count_max",
+        "user_genre__7d__positive_rate_mean",
+        "user_genre__7d__positive_rate_min",
+        "user_genre__7d__rating_mean",
+        "user_genre__7d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__120d__log_count",
+        "item__120d__positive_rate",
+        "item__120d__rating_mean",
+        "item__120d__gap_days",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__1d__log_count",
+        "user__1d__positive_rate",
+        "user__1d__rating_mean",
+        "user__1d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "user__180d__log_count",
+        "user__180d__positive_rate",
+        "user__180d__rating_mean",
+        "user__180d__gap_days",
+        "user__14d__log_count",
+        "user__14d__positive_rate",
+        "user__14d__rating_mean",
+        "user__14d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__7d",
+        "item__120d",
+        "user__1d",
+        "user__180d",
+        "user__14d"
+      ],
+      "materialized_packs": [
+        "item__120d",
+        "item__all",
+        "user__14d",
+        "user__180d",
+        "user__1d",
+        "user__all",
+        "user_genre__7d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.3343107947895722,
+          "logloss": 0.5729773430994607,
+          "auc": 0.7626022380370341,
+          "seconds": 4.389170166978147,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__14d__log_count_mean",
+            "user_genre__14d__log_count_max",
+            "user_genre__14d__positive_rate_mean",
+            "user_genre__14d__positive_rate_min",
+            "user_genre__14d__rating_mean",
+            "user_genre__14d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.33387889241421254,
+          "logloss": 0.5736455706370541,
+          "auc": 0.7618822918784371,
+          "seconds": 6.030946583021432,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__10d__log_count_mean",
+            "user_genre__10d__log_count_max",
+            "user_genre__10d__positive_rate_mean",
+            "user_genre__10d__positive_rate_min",
+            "user_genre__10d__rating_mean",
+            "user_genre__10d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.33369139219192295,
+          "logloss": 0.572649823822979,
+          "auc": 0.7630774256695793,
+          "seconds": 5.0997755830176175,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6427466832697012,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__7d__log_count_mean",
+            "user_genre__7d__log_count_max",
+            "user_genre__7d__positive_rate_mean",
+            "user_genre__7d__positive_rate_min",
+            "user_genre__7d__rating_mean",
+            "user_genre__7d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.22035933514519093,
+          "logloss": 0.5423576481771535,
+          "auc": 0.7925756622996607,
+          "seconds": 4.839900667022448,
+          "iterations": 482,
+          "accepted": false,
+          "starting_logloss": 0.572649823822979,
+          "starting_packs": [
+            "user_genre__7d"
+          ],
+          "added_columns": [
+            "item__180d__log_count",
+            "item__180d__positive_rate",
+            "item__180d__rating_mean",
+            "item__180d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.22032291407470728,
+          "logloss": 0.5415866526401051,
+          "auc": 0.7931722623470632,
+          "seconds": 5.787351083010435,
+          "iterations": 459,
+          "accepted": false,
+          "starting_logloss": 0.572649823822979,
+          "starting_packs": [
+            "user_genre__7d"
+          ],
+          "added_columns": [
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.21800719160015264,
+          "logloss": 0.541031162555421,
+          "auc": 0.7936156078385019,
+          "seconds": 4.802182791987434,
+          "iterations": 467,
+          "accepted": true,
+          "starting_logloss": 0.572649823822979,
+          "starting_packs": [
+            "user_genre__7d"
+          ],
+          "added_columns": [
+            "item__120d__log_count",
+            "item__120d__positive_rate",
+            "item__120d__rating_mean",
+            "item__120d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04616920955520703,
+          "logloss": 0.5397258422060133,
+          "auc": 0.7946591471337443,
+          "seconds": 4.327246250002645,
+          "iterations": 338,
+          "accepted": true,
+          "starting_logloss": 0.541031162555421,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d"
+          ],
+          "added_columns": [
+            "user__1d__log_count",
+            "user__1d__positive_rate",
+            "user__1d__rating_mean",
+            "user__1d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.04152930686533326,
+          "logloss": 0.5400106200696431,
+          "auc": 0.7943619051703033,
+          "seconds": 4.209153208998032,
+          "iterations": 293,
+          "accepted": false,
+          "starting_logloss": 0.541031162555421,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d"
+          ],
+          "added_columns": [
+            "user__3d__log_count",
+            "user__3d__positive_rate",
+            "user__3d__rating_mean",
+            "user__3d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.036148300697425355,
+          "logloss": 0.5402893865888299,
+          "auc": 0.7942178143891221,
+          "seconds": 3.647405291965697,
+          "iterations": 285,
+          "accepted": false,
+          "starting_logloss": 0.541031162555421,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d"
+          ],
+          "added_columns": [
+            "user__7d__log_count",
+            "user__7d__positive_rate",
+            "user__7d__rating_mean",
+            "user__7d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.02024757592765675,
+          "logloss": 0.539523087783912,
+          "auc": 0.7950873453372054,
+          "seconds": 4.771584582980722,
+          "iterations": 359,
+          "accepted": false,
+          "starting_logloss": 0.5397258422060133,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d"
+          ],
+          "added_columns": [
+            "user_genre__1d__log_count_mean",
+            "user_genre__1d__log_count_max",
+            "user_genre__1d__positive_rate_mean",
+            "user_genre__1d__positive_rate_min",
+            "user_genre__1d__rating_mean",
+            "user_genre__1d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__180d",
+          "strategy": "residual",
+          "proxy_score": 0.018700314587716933,
+          "logloss": 0.539291336103768,
+          "auc": 0.7951320879084381,
+          "seconds": 5.781285582983401,
+          "iterations": 491,
+          "accepted": true,
+          "starting_logloss": 0.5397258422060133,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d"
+          ],
+          "added_columns": [
+            "user__180d__log_count",
+            "user__180d__positive_rate",
+            "user__180d__rating_mean",
+            "user__180d__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.01849185538470979,
+          "logloss": 0.5394407396475445,
+          "auc": 0.7949452855452593,
+          "seconds": 5.134766917035449,
+          "iterations": 384,
+          "accepted": false,
+          "starting_logloss": 0.5397258422060133,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d"
+          ],
+          "added_columns": [
+            "user__120d__log_count",
+            "user__120d__positive_rate",
+            "user__120d__rating_mean",
+            "user__120d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__1d",
+          "strategy": "residual",
+          "proxy_score": 0.017840153382539966,
+          "logloss": 0.5395163206029301,
+          "auc": 0.7948971802882572,
+          "seconds": 5.653581708960701,
+          "iterations": 432,
+          "accepted": false,
+          "starting_logloss": 0.539291336103768,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "item__1d__log_count",
+            "item__1d__positive_rate",
+            "item__1d__rating_mean",
+            "item__1d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.014788651069536137,
+          "logloss": 0.5388451439682411,
+          "auc": 0.7953379657603308,
+          "seconds": 5.398636874975637,
+          "iterations": 407,
+          "accepted": true,
+          "starting_logloss": 0.539291336103768,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "user__14d__log_count",
+            "user__14d__positive_rate",
+            "user__14d__rating_mean",
+            "user__14d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.014652421776541599,
+          "logloss": 0.5392283819159928,
+          "auc": 0.7952526642124574,
+          "seconds": 6.782391541986726,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.539291336103768,
+          "starting_packs": [
+            "user_genre__7d",
+            "item__120d",
+            "user__1d",
+            "user__180d"
+          ],
+          "added_columns": [
+            "user__10d__log_count",
+            "user__10d__positive_rate",
+            "user__10d__rating_mean",
+            "user__10d__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 15,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 76.65537883492652,
+      "search_scoring_seconds": 0.053316042001824826,
+      "refit_seconds": 5.823113542050123,
+      "iterations": 407,
+      "validation_logloss": 0.5388451439682411,
+      "test": {
+        "logloss": 0.5379075845829472,
+        "auc": 0.7877018611675819,
+        "brier": 0.18006479358792488,
+        "ndcg@10": 0.8421434197358684,
+        "recall@10": 0.3371274631014622,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.001422841856048019,
+        "logloss_ci95": [
+          -0.0029330555494526188,
+          -2.717717704018456e-05
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.003984685723321213,
+        "ndcg@10_ci95": [
+          -0.011429194697078133,
+          0.003725760319166291
+        ],
+        "recall@10_delta": 0.00010167955913543964,
+        "recall@10_ci95": [
+          -0.0035404172308939772,
+          0.0043557893752046075
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_random",
+      "feature_count": 62,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__120d__log_count_mean",
+        "user_genre__120d__log_count_max",
+        "user_genre__120d__positive_rate_mean",
+        "user_genre__120d__positive_rate_min",
+        "user_genre__120d__rating_mean",
+        "user_genre__120d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__7d__log_count",
+        "item__7d__positive_rate",
+        "item__7d__rating_mean",
+        "item__7d__gap_days",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user_genre__180d__log_count_mean",
+        "user_genre__180d__log_count_max",
+        "user_genre__180d__positive_rate_mean",
+        "user_genre__180d__positive_rate_min",
+        "user_genre__180d__rating_mean",
+        "user_genre__180d__gap_days_min",
+        "user__1d__log_count",
+        "user__1d__positive_rate",
+        "user__1d__rating_mean",
+        "user__1d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__120d",
+        "item__7d",
+        "user_genre__180d",
+        "user__1d"
+      ],
+      "materialized_packs": [
+        "item__7d",
+        "item__all",
+        "user__1d",
+        "user__all",
+        "user_genre__120d",
+        "user_genre__180d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "item__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5926899447479046,
+          "auc": 0.7433315220030836,
+          "seconds": 4.017210333026014,
+          "iterations": 497,
+          "accepted": false,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5731521869757896,
+          "auc": 0.7626386225402918,
+          "seconds": 4.067511542001739,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5730129079636977,
+          "auc": 0.7625958805542639,
+          "seconds": 4.9070945419953205,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__120d__log_count_mean",
+            "user_genre__120d__log_count_max",
+            "user_genre__120d__positive_rate_mean",
+            "user_genre__120d__positive_rate_min",
+            "user_genre__120d__rating_mean",
+            "user_genre__120d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.573533010997848,
+          "auc": 0.7621299448681892,
+          "seconds": 4.746667250001337,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "user_genre__60d__log_count_mean",
+            "user_genre__60d__log_count_max",
+            "user_genre__60d__positive_rate_mean",
+            "user_genre__60d__positive_rate_min",
+            "user_genre__60d__rating_mean",
+            "user_genre__60d__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.573620065339149,
+          "auc": 0.7617099891973871,
+          "seconds": 4.929623666976113,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5732993821972179,
+          "auc": 0.76233100064085,
+          "seconds": 5.20769291598117,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "user_genre__90d__log_count_mean",
+            "user_genre__90d__log_count_max",
+            "user_genre__90d__positive_rate_mean",
+            "user_genre__90d__positive_rate_min",
+            "user_genre__90d__rating_mean",
+            "user_genre__90d__gap_days_min"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5423541952624761,
+          "auc": 0.7925004062434531,
+          "seconds": 4.340365041978657,
+          "iterations": 387,
+          "accepted": true,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "item__7d__log_count",
+            "item__7d__positive_rate",
+            "item__7d__rating_mean",
+            "item__7d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5735775164605902,
+          "auc": 0.7619075819509782,
+          "seconds": 4.925208124972414,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "genre__120d__log_count_mean",
+            "genre__120d__log_count_max",
+            "genre__120d__positive_rate_mean",
+            "genre__120d__positive_rate_min",
+            "genre__120d__rating_mean",
+            "genre__120d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5739323478920975,
+          "auc": 0.7614438171126786,
+          "seconds": 5.032644791994244,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5730129079636977,
+          "starting_packs": [
+            "user_genre__120d"
+          ],
+          "added_columns": [
+            "genre__45d__log_count_mean",
+            "genre__45d__log_count_max",
+            "genre__45d__positive_rate_mean",
+            "genre__45d__positive_rate_min",
+            "genre__45d__rating_mean",
+            "genre__45d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5416955321277654,
+          "auc": 0.793012227692306,
+          "seconds": 4.744758500019088,
+          "iterations": 419,
+          "accepted": true,
+          "starting_logloss": 0.5423541952624761,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d"
+          ],
+          "added_columns": [
+            "user_genre__180d__log_count_mean",
+            "user_genre__180d__log_count_max",
+            "user_genre__180d__positive_rate_mean",
+            "user_genre__180d__positive_rate_min",
+            "user_genre__180d__rating_mean",
+            "user_genre__180d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5424704782063203,
+          "auc": 0.7924087684956307,
+          "seconds": 3.303094125003554,
+          "iterations": 259,
+          "accepted": false,
+          "starting_logloss": 0.5423541952624761,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d"
+          ],
+          "added_columns": [
+            "user_genre__14d__log_count_mean",
+            "user_genre__14d__log_count_max",
+            "user_genre__14d__positive_rate_mean",
+            "user_genre__14d__positive_rate_min",
+            "user_genre__14d__rating_mean",
+            "user_genre__14d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5421303444023482,
+          "auc": 0.7928290920552012,
+          "seconds": 5.198266334016807,
+          "iterations": 424,
+          "accepted": false,
+          "starting_logloss": 0.5423541952624761,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d"
+          ],
+          "added_columns": [
+            "genre__60d__log_count_mean",
+            "genre__60d__log_count_max",
+            "genre__60d__positive_rate_mean",
+            "genre__60d__positive_rate_min",
+            "genre__60d__rating_mean",
+            "genre__60d__gap_days_min",
+            "genre__all__log_count_mean",
+            "genre__all__log_count_max",
+            "genre__all__positive_rate_mean",
+            "genre__all__positive_rate_min",
+            "genre__all__rating_mean",
+            "genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5418833620421797,
+          "auc": 0.7929304043655176,
+          "seconds": 5.172406124998815,
+          "iterations": 415,
+          "accepted": false,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "item__30d__log_count",
+            "item__30d__positive_rate",
+            "item__30d__rating_mean",
+            "item__30d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5429250935495027,
+          "auc": 0.7920881397519557,
+          "seconds": 5.129622374952305,
+          "iterations": 424,
+          "accepted": false,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "item__14d__log_count",
+            "item__14d__positive_rate",
+            "item__14d__rating_mean",
+            "item__14d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5419659058479134,
+          "auc": 0.7925907122947411,
+          "seconds": 6.044555542001035,
+          "iterations": 453,
+          "accepted": false,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "item__21d__log_count",
+            "item__21d__positive_rate",
+            "item__21d__rating_mean",
+            "item__21d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5413047364509613,
+          "auc": 0.7932348885690155,
+          "seconds": 2.88290812500054,
+          "iterations": 197,
+          "accepted": false,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5405456739964452,
+          "auc": 0.7938164082173069,
+          "seconds": 4.443478750006761,
+          "iterations": 327,
+          "accepted": false,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "user__180d__log_count",
+            "user__180d__positive_rate",
+            "user__180d__rating_mean",
+            "user__180d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5398613459985149,
+          "auc": 0.7948118483363531,
+          "seconds": 4.577417416032404,
+          "iterations": 343,
+          "accepted": true,
+          "starting_logloss": 0.5416955321277654,
+          "starting_packs": [
+            "user_genre__120d",
+            "item__7d",
+            "user_genre__180d"
+          ],
+          "added_columns": [
+            "user__1d__log_count",
+            "user__1d__positive_rate",
+            "user__1d__rating_mean",
+            "user__1d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 18,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 83.67052550095832,
+      "search_scoring_seconds": 0.0015295420307666063,
+      "refit_seconds": 4.791556250012945,
+      "iterations": 343,
+      "validation_logloss": 0.5398613459985149,
+      "test": {
+        "logloss": 0.5368867525820088,
+        "auc": 0.7881290368957116,
+        "brier": 0.17972386449508368,
+        "ndcg@10": 0.8477898748465866,
+        "recall@10": 0.33733338458471895,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0032297596324745797,
+        "logloss_ci95": [
+          -0.004982736859473143,
+          -0.0014501083900288574
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 4.4853213582811585e-05,
+        "ndcg@10_ci95": [
+          -0.006864333927697067,
+          0.006450172774118781
+        ],
+        "recall@10_delta": 0.00012524407020861916,
+        "recall@10_ci95": [
+          -0.0038581924668123773,
+          0.003903207482288774
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_residual",
+      "feature_count": 58,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__1d__log_count_mean",
+        "user_genre__1d__log_count_max",
+        "user_genre__1d__positive_rate_mean",
+        "user_genre__1d__positive_rate_min",
+        "user_genre__1d__rating_mean",
+        "user_genre__1d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__3d__log_count",
+        "user__3d__positive_rate",
+        "user__3d__rating_mean",
+        "user__3d__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "user_genre__90d__log_count_mean",
+        "user_genre__90d__log_count_max",
+        "user_genre__90d__positive_rate_mean",
+        "user_genre__90d__positive_rate_min",
+        "user_genre__90d__rating_mean",
+        "user_genre__90d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__1d",
+        "item__all",
+        "user__3d",
+        "user_genre__90d"
+      ],
+      "materialized_packs": [
+        "item__all",
+        "user__3d",
+        "user__all",
+        "user_genre__1d",
+        "user_genre__90d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.3352929033717881,
+          "logloss": 0.5727597733407311,
+          "auc": 0.7630115249335457,
+          "seconds": 4.377941749989986,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__14d__log_count_mean",
+            "user_genre__14d__log_count_max",
+            "user_genre__14d__positive_rate_mean",
+            "user_genre__14d__positive_rate_min",
+            "user_genre__14d__rating_mean",
+            "user_genre__14d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.33493543559720196,
+          "logloss": 0.5721008264247692,
+          "auc": 0.763784872731252,
+          "seconds": 4.625462707947008,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__1d__log_count_mean",
+            "user_genre__1d__log_count_max",
+            "user_genre__1d__positive_rate_mean",
+            "user_genre__1d__positive_rate_min",
+            "user_genre__1d__rating_mean",
+            "user_genre__1d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.3348584328055612,
+          "logloss": 0.5734394558749811,
+          "auc": 0.7620794498543924,
+          "seconds": 4.537007167004049,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6443293358322449,
+          "starting_packs": [],
+          "added_columns": [
+            "user_genre__10d__log_count_mean",
+            "user_genre__10d__log_count_max",
+            "user_genre__10d__positive_rate_mean",
+            "user_genre__10d__positive_rate_min",
+            "user_genre__10d__rating_mean",
+            "user_genre__10d__gap_days_min",
+            "user_genre__all__log_count_mean",
+            "user_genre__all__log_count_max",
+            "user_genre__all__positive_rate_mean",
+            "user_genre__all__positive_rate_min",
+            "user_genre__all__rating_mean",
+            "user_genre__all__gap_days_min"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.2211057569883802,
+          "logloss": 0.5415654035253497,
+          "auc": 0.7932660709426608,
+          "seconds": 4.025209041952621,
+          "iterations": 336,
+          "accepted": false,
+          "starting_logloss": 0.5721008264247692,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "item__180d__log_count",
+            "item__180d__positive_rate",
+            "item__180d__rating_mean",
+            "item__180d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.22107862628118916,
+          "logloss": 0.5407401339637289,
+          "auc": 0.7938879063353492,
+          "seconds": 4.918466625036672,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.5721008264247692,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.21862186965224278,
+          "logloss": 0.5407712825093794,
+          "auc": 0.7938542247503998,
+          "seconds": 5.004673374991398,
+          "iterations": 494,
+          "accepted": false,
+          "starting_logloss": 0.5721008264247692,
+          "starting_packs": [
+            "user_genre__1d"
+          ],
+          "added_columns": [
+            "item__120d__log_count",
+            "item__120d__positive_rate",
+            "item__120d__rating_mean",
+            "item__120d__gap_days",
+            "item__all__log_count",
+            "item__all__positive_rate",
+            "item__all__rating_mean",
+            "item__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04466685640270115,
+          "logloss": 0.5395078274453784,
+          "auc": 0.7949538777242688,
+          "seconds": 4.891240875003859,
+          "iterations": 398,
+          "accepted": false,
+          "starting_logloss": 0.5407401339637289,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all"
+          ],
+          "added_columns": [
+            "user__1d__log_count",
+            "user__1d__positive_rate",
+            "user__1d__rating_mean",
+            "user__1d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.04351426139435452,
+          "logloss": 0.5392083051985397,
+          "auc": 0.7954270130847575,
+          "seconds": 4.7031963329645805,
+          "iterations": 374,
+          "accepted": true,
+          "starting_logloss": 0.5407401339637289,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all"
+          ],
+          "added_columns": [
+            "user__3d__log_count",
+            "user__3d__positive_rate",
+            "user__3d__rating_mean",
+            "user__3d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.041535790228348635,
+          "logloss": 0.5399101657582948,
+          "auc": 0.7945744719088984,
+          "seconds": 4.994148249970749,
+          "iterations": 426,
+          "accepted": false,
+          "starting_logloss": 0.5407401339637289,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all"
+          ],
+          "added_columns": [
+            "user__7d__log_count",
+            "user__7d__positive_rate",
+            "user__7d__rating_mean",
+            "user__7d__gap_days",
+            "user__all__log_count",
+            "user__all__positive_rate",
+            "user__all__rating_mean",
+            "user__all__gap_days"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.02019879161237298,
+          "logloss": 0.5400157178728808,
+          "auc": 0.7943724857729053,
+          "seconds": 4.251240416953806,
+          "iterations": 331,
+          "accepted": false,
+          "starting_logloss": 0.5392083051985397,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d"
+          ],
+          "added_columns": [
+            "user_genre__7d__log_count_mean",
+            "user_genre__7d__log_count_max",
+            "user_genre__7d__positive_rate_mean",
+            "user_genre__7d__positive_rate_min",
+            "user_genre__7d__rating_mean",
+            "user_genre__7d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__3d",
+          "strategy": "residual",
+          "proxy_score": 0.02013329978797007,
+          "logloss": 0.5404033008375371,
+          "auc": 0.7941496363912067,
+          "seconds": 4.066171874990687,
+          "iterations": 300,
+          "accepted": false,
+          "starting_logloss": 0.5392083051985397,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d"
+          ],
+          "added_columns": [
+            "user_genre__3d__log_count_mean",
+            "user_genre__3d__log_count_max",
+            "user_genre__3d__positive_rate_mean",
+            "user_genre__3d__positive_rate_min",
+            "user_genre__3d__rating_mean",
+            "user_genre__3d__gap_days_min"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.019857492439835134,
+          "logloss": 0.5388069548654975,
+          "auc": 0.7955123693598858,
+          "seconds": 5.593866207986139,
+          "iterations": 488,
+          "accepted": true,
+          "starting_logloss": 0.5392083051985397,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d"
+          ],
+          "added_columns": [
+            "user_genre__90d__log_count_mean",
+            "user_genre__90d__log_count_max",
+            "user_genre__90d__positive_rate_mean",
+            "user_genre__90d__positive_rate_min",
+            "user_genre__90d__rating_mean",
+            "user_genre__90d__gap_days_min"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__180d",
+          "strategy": "residual",
+          "proxy_score": 0.01964011619731318,
+          "logloss": 0.5398186675064874,
+          "auc": 0.794559160439156,
+          "seconds": 3.905049749999307,
+          "iterations": 291,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__180d__log_count",
+            "user__180d__positive_rate",
+            "user__180d__rating_mean",
+            "user__180d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.01948563632043543,
+          "logloss": 0.5399417199621234,
+          "auc": 0.794349992871167,
+          "seconds": 3.744112916989252,
+          "iterations": 275,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__120d__log_count",
+            "user__120d__positive_rate",
+            "user__120d__rating_mean",
+            "user__120d__gap_days"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.017865534388054723,
+          "logloss": 0.5394530608664855,
+          "auc": 0.7948615954110005,
+          "seconds": 4.571112584031653,
+          "iterations": 349,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__90d__log_count",
+            "user__90d__positive_rate",
+            "user__90d__rating_mean",
+            "user__90d__gap_days"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.017499455576917084,
+          "logloss": 0.5396725093403426,
+          "auc": 0.7949818859171335,
+          "seconds": 4.9181217920267954,
+          "iterations": 378,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user_genre__180d__log_count_mean",
+            "user_genre__180d__log_count_max",
+            "user_genre__180d__positive_rate_mean",
+            "user_genre__180d__positive_rate_min",
+            "user_genre__180d__rating_mean",
+            "user_genre__180d__gap_days_min"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.01733467289622669,
+          "logloss": 0.5396752544160608,
+          "auc": 0.7947976010076772,
+          "seconds": 5.825863584002946,
+          "iterations": 468,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user_genre__120d__log_count_mean",
+            "user_genre__120d__log_count_max",
+            "user_genre__120d__positive_rate_mean",
+            "user_genre__120d__positive_rate_min",
+            "user_genre__120d__rating_mean",
+            "user_genre__120d__gap_days_min"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.01715043030820438,
+          "logloss": 0.539766464032478,
+          "auc": 0.7947409218140837,
+          "seconds": 4.4086567920167,
+          "iterations": 336,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__60d__log_count",
+            "user__60d__positive_rate",
+            "user__60d__rating_mean",
+            "user__60d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.016620151145243237,
+          "logloss": 0.5398496170746278,
+          "auc": 0.79450989374819,
+          "seconds": 5.7064672079868615,
+          "iterations": 450,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__45d__log_count",
+            "user__45d__positive_rate",
+            "user__45d__rating_mean",
+            "user__45d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__30d",
+          "strategy": "residual",
+          "proxy_score": 0.016439789251376676,
+          "logloss": 0.5394897081668906,
+          "auc": 0.7948691781761985,
+          "seconds": 5.636762875015847,
+          "iterations": 445,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__30d__log_count",
+            "user__30d__positive_rate",
+            "user__30d__rating_mean",
+            "user__30d__gap_days"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.0164139634391235,
+          "logloss": 0.539229570140395,
+          "auc": 0.7950795558246002,
+          "seconds": 4.782504874980077,
+          "iterations": 366,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__21d__log_count",
+            "user__21d__positive_rate",
+            "user__21d__rating_mean",
+            "user__21d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.016019394354436074,
+          "logloss": 0.5392335608225185,
+          "auc": 0.795277078648921,
+          "seconds": 5.855801000026986,
+          "iterations": 473,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user_genre__60d__log_count_mean",
+            "user_genre__60d__log_count_max",
+            "user_genre__60d__positive_rate_mean",
+            "user_genre__60d__positive_rate_min",
+            "user_genre__60d__rating_mean",
+            "user_genre__60d__gap_days_min"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.015977010453983552,
+          "logloss": 0.5398126390795882,
+          "auc": 0.7944806389900765,
+          "seconds": 4.684781417017803,
+          "iterations": 358,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "user__14d__log_count",
+            "user__14d__positive_rate",
+            "user__14d__rating_mean",
+            "user__14d__gap_days"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__1d",
+          "strategy": "residual",
+          "proxy_score": 0.01594183419421561,
+          "logloss": 0.5399503923784735,
+          "auc": 0.7946274539723872,
+          "seconds": 4.692633707949426,
+          "iterations": 358,
+          "accepted": false,
+          "starting_logloss": 0.5388069548654975,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__all",
+            "user__3d",
+            "user_genre__90d"
+          ],
+          "added_columns": [
+            "item__1d__log_count",
+            "item__1d__positive_rate",
+            "item__1d__rating_mean",
+            "item__1d__gap_days"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "available_packs": 52,
+      "feature_budget": 64,
+      "search_fit_seconds": 114.72049312683521,
+      "search_scoring_seconds": 0.07067758491029963,
+      "refit_seconds": 6.24487841600785,
+      "iterations": 488,
+      "validation_logloss": 0.5388069548654975,
+      "test": {
+        "logloss": 0.5364263139329345,
+        "auc": 0.7884491518236786,
+        "brier": 0.1795849253420111,
+        "ndcg@10": 0.8488343272605964,
+        "recall@10": 0.33614167418134927,
+        "ranking_users": 292,
+        "rows": 34425
+      },
+      "vs_manual": {
+        "logloss_delta": -0.003690198281548694,
+        "logloss_ci95": [
+          -0.005475754884456404,
+          -0.0019610265748499843
+        ],
+        "users": 305,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.00108930562759257,
+        "ndcg@10_ci95": [
+          -0.006076272929707939,
+          0.008363164826599018
+        ],
+        "recall@10_delta": -0.001066466333161012,
+        "recall@10_ci95": [
+          -0.005121958734937546,
+          0.002321582146906361
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 635.8761473339982,
+  "provenance": {
+    "python": "3.13.14 (v3.13.14:fd17997c386, Jun 10 2026, 08:55:00) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "catboost": "1.2.8",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.18.1"
+    },
+    "git_revision": "beab5c81dce0d83ab7b54f6a7de3c1bb5c203cee",
+    "config_sha256": "86920f29c23b12b4a5c9ec8b254941ea7541401d63aa9690eff1e8f9e0c3f861",
+    "source_sha256": {
+      "__init__.py": "17d0fc3d8a4859c06944e5f5c57c016d38d26876ed61dd5e36a2f99ccae0ff30",
+      "adaptive.py": "604bfcc1c55c924c6da9dc350a5e2b0e5afd239667b25aff52f6df8e93b08e5f",
+      "artifacts.py": "f9e873545862e45a3d07e1ade6099b746379f28e8554419dc51aab9094c4f792",
+      "audit.py": "eee9fab540b2eedf9ce79accd0ac2e6fe7f082b65b9a46c9c37efedb93d52c6e",
+      "catalogue.py": "e940493b599d72877f5eb1f139bb7e1c7b59f6155e48aa703b2462f18caf897e",
+      "cli.py": "53289e824c7dbce57ce43d509fc4eb608335db3bcb95f0edbda861c991d8036a",
+      "config.py": "75c755e62334f6603b835de15ba774d82c3c22424bac9fa39ef45c254cd9b243",
+      "data.py": "3426ad6f07180a45f47594f6d3f58a546fd7692ad9a01b13c6da33b24b2324f3",
+      "diagnostics.py": "c1342e0f53c875d945a08a145929241ac5f840b11977cb020e91833ab0d991f6",
+      "experiment.py": "68a403477d3a4e0fbf1d4e2ea5c8548ea263f565b26f11a465503a6ae34d92a7",
+      "features.py": "7280fe47c9b105dd0343a2ec81d7a3f07769ff410cca7d6195f04f27ae9cc4d3",
+      "from_static.py": "2b3876f1d5e1e601787e78ef7c82e7fd29b534c173c261a9534c96aea4c3e791",
+      "grammar.py": "8af695c81cd0ac3e1d40e8c16a05602cf940d69049a4c57230fcd8438eb6c37c",
+      "metrics.py": "ca95a80e3fadfe82e5dcd2f10521520563e359ce9e1ceb3966163c7a01d5d662",
+      "model.py": "26be7c36d768de6682da24d6f9b567c1c683362830196460f32ed2eed75c19aa",
+      "persistence.py": "21cf8d7c72c65213b2a74cc6ad4f7e5d4de8b6f89edb8f466dc2beb4b568d773",
+      "report.py": "5aa1485ff4ede61fde2482d95a20866b6c679409a4bf8132188e9bbd02438b62",
+      "search.py": "e41e39e873ae2063637c669e434ca43da6ab524e8ede0c9a29f2d35dde6afe6a",
+      "snapshot.py": "e9dea84463f882c78d5b52721065624d7b962796156df890deeb36a41c14e8ea",
+      "split.py": "5fe7d66e903ecbfa9db81003dc563c8e057214b74f8a37cdd497079d8aaa5691",
+      "statistics.py": "6db18baae9d5caf759e0e1b1fcf727d6521aef1d7e4a84d82858b9d789ae7940",
+      "stress.py": "73398e9f7abc4ec218075fb2f9e86eea9f841da4d9cad4fc68708eaefc14e46b"
+    },
+    "dataset": {
+      "url": "https://files.grouplens.org/datasets/movielens/ml-1m.zip",
+      "sha256": "a6898adb50b9ca05aa231689da44c217cb524e7ebd39d264c56e2832f2c54e20",
+      "bytes": 5917549
+    },
+    "artifact_layout": "run-local-v2",
+    "started_utc": "2026-10-14 15:04:26.618199+00:00"
+  }
+}
