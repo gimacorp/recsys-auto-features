@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 from .artifacts import artifact_path
+from .config import validate_config
 from .data import describe, download, load_for_config
 from .features import STATIC_COLUMNS, build_features
 from .grammar import packs
@@ -85,10 +86,11 @@ def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
 
 def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) -> dict:
     config = json.loads(config_path.read_text())
-    if (output / "results.json").exists() and not resume:
-        raise ValueError(
-            "Каталог содержит завершённый запуск. Выберите новый --output или --resume"
-        )
+    validate_config(config)
+    if (output / "provenance.json").exists() and not resume:
+        raise ValueError("Каталог уже содержит запуск. Выберите новый --output или --resume")
+    if resume and not (output / "provenance.json").exists():
+        raise ValueError("Для --resume нужен каталог существующего запуска с provenance.json")
     started = time.perf_counter()
     events, features, manifest, feature_stats = prepare(data_root, config, Path("artifacts/cache"))
     provenance_record = provenance(config_path, manifest)
