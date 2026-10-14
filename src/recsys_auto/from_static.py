@@ -72,6 +72,13 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                     "feature_count": len(found.fitted.columns),
                     "columns": found.fitted.columns,
                     "selected_packs": found.selected_packs,
+                    "materialized_packs": sorted(
+                        {
+                            column.rsplit("__", 1)[0]
+                            for column in found.fitted.columns
+                            if "__" in column
+                        }
+                    ),
                     "trials": found.trials,
                     "search_evaluations": len(found.trials),
                     "available_packs": found.available_packs,

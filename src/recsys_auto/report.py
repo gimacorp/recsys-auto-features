@@ -107,7 +107,8 @@ def generate(experiment: Path, output: Path) -> None:
                         "fold": row["fold"],
                         "seed": row["seed"],
                         "method": row["method"],
-                        "selected": ", ".join(row["selected_packs"]) or "∅",
+                        "selected": ", ".join(row.get("materialized_packs", row["selected_packs"]))
+                        or "∅",
                     }
                 )
     sections += [
