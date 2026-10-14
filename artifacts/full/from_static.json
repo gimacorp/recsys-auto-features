@@ -1,0 +1,6248 @@
+{
+  "config": {
+    "dataset": "ml-100k",
+    "seeds": [
+      17,
+      42,
+      73
+    ],
+    "folds": [
+      [
+        0.5,
+        0.65,
+        0.8
+      ],
+      [
+        0.65,
+        0.8,
+        1.0
+      ]
+    ],
+    "manual_days": [
+      7,
+      30,
+      90,
+      null
+    ],
+    "candidate_days": [
+      1,
+      3,
+      10,
+      14,
+      21,
+      45,
+      60,
+      120,
+      180
+    ],
+    "search_rounds": 8,
+    "proposals_per_round": 3,
+    "min_improvement": 0.0001,
+    "max_iterations": 500,
+    "early_stopping_rounds": 40,
+    "thread_count": 4,
+    "bootstrap_samples": 1000,
+    "tuning_grid": [
+      {
+        "depth": 4,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 4,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      },
+      {
+        "depth": 6,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 6,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      },
+      {
+        "depth": 8,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 3
+      },
+      {
+        "depth": 8,
+        "learning_rate": 0.1,
+        "l2_leaf_reg": 10
+      }
+    ],
+    "scope": "exploratory: formulated after primary experiment"
+  },
+  "records": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_random",
+      "feature_count": 58,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__1d__log_count_mean",
+        "user_genre__1d__log_count_max",
+        "user_genre__1d__positive_rate_mean",
+        "user_genre__1d__positive_rate_min",
+        "user_genre__1d__rating_mean",
+        "user_genre__1d__gap_days_min",
+        "item__30d__log_count",
+        "item__30d__positive_rate",
+        "item__30d__rating_mean",
+        "item__30d__gap_days",
+        "item__60d__log_count",
+        "item__60d__positive_rate",
+        "item__60d__rating_mean",
+        "item__60d__gap_days",
+        "user__1d__log_count",
+        "user__1d__positive_rate",
+        "user__1d__rating_mean",
+        "user__1d__gap_days",
+        "genre__90d__log_count_mean",
+        "genre__90d__log_count_max",
+        "genre__90d__positive_rate_mean",
+        "genre__90d__positive_rate_min",
+        "genre__90d__rating_mean",
+        "genre__90d__gap_days_min",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__1d",
+        "item__30d",
+        "item__60d",
+        "user__1d",
+        "genre__90d",
+        "user_genre__all"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6098160358769914,
+          "auc": 0.7269525589772132,
+          "seconds": 0.9610974999959581,
+          "iterations": 171,
+          "accepted": true,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6464846243515803,
+          "auc": 0.6752940894907109,
+          "seconds": 1.9615285829640925,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6170033822643,
+          "auc": 0.7180601872946013,
+          "seconds": 0.8623314999858849,
+          "iterations": 183,
+          "accepted": false,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6124259273034593,
+          "auc": 0.7230958610311011,
+          "seconds": 0.6869308340246789,
+          "iterations": 129,
+          "accepted": false,
+          "starting_logloss": 0.6098160358769914,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5894492057378704,
+          "auc": 0.7492715881491856,
+          "seconds": 1.067361790977884,
+          "iterations": 229,
+          "accepted": true,
+          "starting_logloss": 0.6098160358769914,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6124005938715354,
+          "auc": 0.7231551141052042,
+          "seconds": 0.784109250002075,
+          "iterations": 129,
+          "accepted": false,
+          "starting_logloss": 0.6098160358769914,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5857370510196379,
+          "auc": 0.7538223489836058,
+          "seconds": 0.8141714580124244,
+          "iterations": 120,
+          "accepted": true,
+          "starting_logloss": 0.5894492057378704,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5886108172313017,
+          "auc": 0.7505406018814997,
+          "seconds": 0.7521707499981858,
+          "iterations": 127,
+          "accepted": false,
+          "starting_logloss": 0.5894492057378704,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5900227412863291,
+          "auc": 0.7481138098119241,
+          "seconds": 0.7933065409888513,
+          "iterations": 143,
+          "accepted": false,
+          "starting_logloss": 0.5894492057378704,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5857019447653123,
+          "auc": 0.754787737489885,
+          "seconds": 1.1985783749842085,
+          "iterations": 223,
+          "accepted": false,
+          "starting_logloss": 0.5857370510196379,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5850485509380053,
+          "auc": 0.7540866266043416,
+          "seconds": 0.7268915829481557,
+          "iterations": 107,
+          "accepted": false,
+          "starting_logloss": 0.5857370510196379,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5838994913811523,
+          "auc": 0.7552206858914885,
+          "seconds": 0.8877402920043096,
+          "iterations": 108,
+          "accepted": true,
+          "starting_logloss": 0.5857370510196379,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5846515820150776,
+          "auc": 0.7551128452966211,
+          "seconds": 0.6671068749856204,
+          "iterations": 95,
+          "accepted": false,
+          "starting_logloss": 0.5838994913811523,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5846102485697975,
+          "auc": 0.7557997443546166,
+          "seconds": 1.0673303750227205,
+          "iterations": 181,
+          "accepted": false,
+          "starting_logloss": 0.5838994913811523,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5837604678892996,
+          "auc": 0.7557887847634668,
+          "seconds": 1.0168256249744445,
+          "iterations": 163,
+          "accepted": true,
+          "starting_logloss": 0.5838994913811523,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5840791248611412,
+          "auc": 0.7552231451168196,
+          "seconds": 0.7018974160309881,
+          "iterations": 88,
+          "accepted": false,
+          "starting_logloss": 0.5837604678892996,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5829262333470998,
+          "auc": 0.7564834268171607,
+          "seconds": 0.9103954170132056,
+          "iterations": 128,
+          "accepted": false,
+          "starting_logloss": 0.5837604678892996,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5812546604439155,
+          "auc": 0.7583288794030113,
+          "seconds": 1.1707209589658305,
+          "iterations": 145,
+          "accepted": true,
+          "starting_logloss": 0.5837604678892996,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5825306053493915,
+          "auc": 0.7570036777180214,
+          "seconds": 0.804696207982488,
+          "iterations": 104,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5817596400940955,
+          "auc": 0.7576025347271129,
+          "seconds": 0.818786124989856,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.583522309620712,
+          "auc": 0.7563897624088947,
+          "seconds": 0.9084462500177324,
+          "iterations": 116,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5824445384975452,
+          "auc": 0.7574089509244121,
+          "seconds": 0.7190567500074394,
+          "iterations": 86,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5820923201337936,
+          "auc": 0.7572485666636822,
+          "seconds": 0.9567489170003682,
+          "iterations": 129,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5827830969053943,
+          "auc": 0.7568597417542531,
+          "seconds": 0.9091652920469642,
+          "iterations": 116,
+          "accepted": false,
+          "starting_logloss": 0.5812546604439155,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__1d",
+            "genre__90d",
+            "user_genre__all"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 22.147394665924367,
+      "search_scoring_seconds": 0.0002984569873660803,
+      "refit_seconds": 1.110372708993964,
+      "iterations": 145,
+      "validation_logloss": 0.5812546604439155,
+      "test": {
+        "logloss": 0.5710206551029767,
+        "auc": 0.7723912598947046,
+        "brier": 0.19430609921256906,
+        "ndcg@10": 0.7736376108231412,
+        "recall@10": 0.4474332746095734,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.006174577278841289,
+        "logloss_ci95": [
+          0.003954668713212389,
+          0.008406636267713052
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.0027985677130953355,
+        "ndcg@10_ci95": [
+          -0.012450986186843416,
+          0.006236444765867253
+        ],
+        "recall@10_delta": 0.0010253970331646773,
+        "recall@10_ci95": [
+          -0.005449765207766282,
+          0.00817696303781064
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_residual",
+      "feature_count": 48,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__180d__log_count_mean",
+        "user_genre__180d__log_count_max",
+        "user_genre__180d__positive_rate_mean",
+        "user_genre__180d__positive_rate_min",
+        "user_genre__180d__rating_mean",
+        "user_genre__180d__gap_days_min",
+        "item__90d__log_count",
+        "item__90d__positive_rate",
+        "item__90d__rating_mean",
+        "item__90d__gap_days",
+        "user__1d__log_count",
+        "user__1d__positive_rate",
+        "user__1d__rating_mean",
+        "user__1d__gap_days",
+        "user_genre__10d__log_count_mean",
+        "user_genre__10d__log_count_max",
+        "user_genre__10d__positive_rate_mean",
+        "user_genre__10d__positive_rate_min",
+        "user_genre__10d__rating_mean",
+        "user_genre__10d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__180d",
+        "item__90d",
+        "user__1d",
+        "user_genre__10d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.249306803229191,
+          "logloss": 0.6064497131510166,
+          "auc": 0.7346080739717871,
+          "seconds": 1.9522541250335053,
+          "iterations": 498,
+          "accepted": true,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.249306803229191,
+          "logloss": 0.6064497131510166,
+          "auc": 0.7346080739717871,
+          "seconds": 1.9101597919943742,
+          "iterations": 498,
+          "accepted": false,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.24887109526798845,
+          "logloss": 0.6087240006081971,
+          "auc": 0.7328826600948564,
+          "seconds": 2.239298124972265,
+          "iterations": 489,
+          "accepted": false,
+          "starting_logloss": 0.647275041564077,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__60d",
+          "strategy": "residual",
+          "proxy_score": 0.1317802278087196,
+          "logloss": 0.5854710054027439,
+          "auc": 0.7550159999338504,
+          "seconds": 0.9420372500317171,
+          "iterations": 152,
+          "accepted": false,
+          "starting_logloss": 0.6064497131510166,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__90d",
+          "strategy": "residual",
+          "proxy_score": 0.1302241358294133,
+          "logloss": 0.5851622486468578,
+          "auc": 0.755071154299068,
+          "seconds": 1.021519707981497,
+          "iterations": 192,
+          "accepted": true,
+          "starting_logloss": 0.6064497131510166,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__45d",
+          "strategy": "residual",
+          "proxy_score": 0.13018598576646162,
+          "logloss": 0.587595379646652,
+          "auc": 0.7525412797010266,
+          "seconds": 0.9759090419975109,
+          "iterations": 152,
+          "accepted": false,
+          "starting_logloss": 0.6064497131510166,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04719540970100694,
+          "logloss": 0.5820086799526106,
+          "auc": 0.7580010183331327,
+          "seconds": 0.8195342919789255,
+          "iterations": 115,
+          "accepted": true,
+          "starting_logloss": 0.5851622486468578,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.04524403272356563,
+          "logloss": 0.5832037582716707,
+          "auc": 0.7571432387555664,
+          "seconds": 0.6136740419897251,
+          "iterations": 83,
+          "accepted": false,
+          "starting_logloss": 0.5851622486468578,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.0428574178260952,
+          "logloss": 0.5830136563050655,
+          "auc": 0.7568422242288866,
+          "seconds": 0.6579797089798376,
+          "iterations": 93,
+          "accepted": false,
+          "starting_logloss": 0.5851622486468578,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.033621370601834656,
+          "logloss": 0.583388227465515,
+          "auc": 0.7563141144992505,
+          "seconds": 0.7499839579686522,
+          "iterations": 106,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.031531815446592906,
+          "logloss": 0.5829961313791913,
+          "auc": 0.756688166236219,
+          "seconds": 0.6573141670087352,
+          "iterations": 89,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.030646793163158288,
+          "logloss": 0.5822355206826245,
+          "auc": 0.7573969577458042,
+          "seconds": 0.8281249169958755,
+          "iterations": 89,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.030317429595694466,
+          "logloss": 0.5823370458207356,
+          "auc": 0.7572898388801101,
+          "seconds": 0.8455687089590356,
+          "iterations": 108,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__3d",
+          "strategy": "residual",
+          "proxy_score": 0.03009564004435631,
+          "logloss": 0.5839892394088502,
+          "auc": 0.7558670255519927,
+          "seconds": 0.5752474580076523,
+          "iterations": 66,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__30d",
+          "strategy": "residual",
+          "proxy_score": 0.03006013334468117,
+          "logloss": 0.5834784053032722,
+          "auc": 0.7566615246284645,
+          "seconds": 0.7899030420230702,
+          "iterations": 92,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.029428119343412936,
+          "logloss": 0.5824332417025907,
+          "auc": 0.7577043252712561,
+          "seconds": 0.7728445829707198,
+          "iterations": 98,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.029428119343412936,
+          "logloss": 0.5824332417025907,
+          "auc": 0.7577043252712561,
+          "seconds": 0.7779851249651983,
+          "iterations": 98,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.029373310311086732,
+          "logloss": 0.5823561143314829,
+          "auc": 0.7577961541707607,
+          "seconds": 0.8610900829662569,
+          "iterations": 98,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.027923336061843638,
+          "logloss": 0.5822622886174614,
+          "auc": 0.7575444578042554,
+          "seconds": 0.7502969159977511,
+          "iterations": 106,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.027137927815527953,
+          "logloss": 0.5816293081888487,
+          "auc": 0.7581496767223559,
+          "seconds": 0.7978232500026934,
+          "iterations": 107,
+          "accepted": true,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.025539425237505867,
+          "logloss": 0.5817525412777236,
+          "auc": 0.7580107572218537,
+          "seconds": 0.7542595410486683,
+          "iterations": 107,
+          "accepted": false,
+          "starting_logloss": 0.5820086799526106,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.026335802563092786,
+          "logloss": 0.5834039256436889,
+          "auc": 0.7568329932236579,
+          "seconds": 0.7989863329567015,
+          "iterations": 109,
+          "accepted": false,
+          "starting_logloss": 0.5816293081888487,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__10d",
+          "strategy": "residual",
+          "proxy_score": 0.02579272993034082,
+          "logloss": 0.5822666520052131,
+          "auc": 0.7575466675429587,
+          "seconds": 0.8418485419824719,
+          "iterations": 117,
+          "accepted": false,
+          "starting_logloss": 0.5816293081888487,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__21d",
+          "strategy": "residual",
+          "proxy_score": 0.025582023658835915,
+          "logloss": 0.5831296019598511,
+          "auc": 0.7570830322861358,
+          "seconds": 0.8009988749981858,
+          "iterations": 101,
+          "accepted": false,
+          "starting_logloss": 0.5816293081888487,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__1d",
+            "user_genre__10d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 22.734641583811026,
+      "search_scoring_seconds": 0.07017729099607095,
+      "refit_seconds": 0.6720492499880493,
+      "iterations": 107,
+      "validation_logloss": 0.5816293081888487,
+      "test": {
+        "logloss": 0.5665257463420419,
+        "auc": 0.7755190673917545,
+        "brier": 0.19252837011074647,
+        "ndcg@10": 0.7737052503165287,
+        "recall@10": 0.44852716545668464,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.001679668517906442,
+        "logloss_ci95": [
+          4.623729028939772e-05,
+          0.0034017675904533416
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.0027309282197077716,
+        "ndcg@10_ci95": [
+          -0.009963526557151395,
+          0.004492719340921046
+        ],
+        "recall@10_delta": 0.0021192878802758523,
+        "recall@10_ci95": [
+          -0.002967125501300645,
+          0.00802813114629193
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_random",
+      "feature_count": 62,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user__45d__log_count",
+        "user__45d__positive_rate",
+        "user__45d__rating_mean",
+        "user__45d__gap_days",
+        "genre__21d__log_count_mean",
+        "genre__21d__log_count_max",
+        "genre__21d__positive_rate_mean",
+        "genre__21d__positive_rate_min",
+        "genre__21d__rating_mean",
+        "genre__21d__gap_days_min",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "item__7d__log_count",
+        "item__7d__positive_rate",
+        "item__7d__rating_mean",
+        "item__7d__gap_days",
+        "item__1d__log_count",
+        "item__1d__positive_rate",
+        "item__1d__rating_mean",
+        "item__1d__gap_days",
+        "user_genre__21d__log_count_mean",
+        "user_genre__21d__log_count_max",
+        "user_genre__21d__positive_rate_mean",
+        "user_genre__21d__positive_rate_min",
+        "user_genre__21d__rating_mean",
+        "user_genre__21d__gap_days_min",
+        "genre__180d__log_count_mean",
+        "genre__180d__log_count_max",
+        "genre__180d__positive_rate_mean",
+        "genre__180d__positive_rate_min",
+        "genre__180d__rating_mean",
+        "genre__180d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user__45d",
+        "genre__21d",
+        "item__all",
+        "item__7d",
+        "item__1d",
+        "user_genre__21d",
+        "genre__180d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6115436724676028,
+          "auc": 0.7279533300334569,
+          "seconds": 1.7026371670071967,
+          "iterations": 398,
+          "accepted": true,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6429953546229028,
+          "auc": 0.6842654949729157,
+          "seconds": 1.9539805419626646,
+          "iterations": 498,
+          "accepted": false,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6117858775908803,
+          "auc": 0.723148600722171,
+          "seconds": 0.8164622499607503,
+          "iterations": 155,
+          "accepted": false,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6088039849757765,
+          "auc": 0.727158287432546,
+          "seconds": 1.8944382080226205,
+          "iterations": 429,
+          "accepted": true,
+          "starting_logloss": 0.6115436724676028,
+          "starting_packs": [
+            "user__45d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6157184524756772,
+          "auc": 0.7163434341677497,
+          "seconds": 0.7729294580058195,
+          "iterations": 117,
+          "accepted": false,
+          "starting_logloss": 0.6115436724676028,
+          "starting_packs": [
+            "user__45d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6105787285697063,
+          "auc": 0.7269514006464413,
+          "seconds": 1.0094781669904478,
+          "iterations": 198,
+          "accepted": false,
+          "starting_logloss": 0.6115436724676028,
+          "starting_packs": [
+            "user__45d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.588605329737736,
+          "auc": 0.7506395322396601,
+          "seconds": 0.7539967079646885,
+          "iterations": 119,
+          "accepted": true,
+          "starting_logloss": 0.6088039849757765,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6077803112324377,
+          "auc": 0.7273478883594386,
+          "seconds": 1.4976762909791432,
+          "iterations": 291,
+          "accepted": false,
+          "starting_logloss": 0.6088039849757765,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6142136917184561,
+          "auc": 0.7185787719811976,
+          "seconds": 0.9722761669545434,
+          "iterations": 168,
+          "accepted": false,
+          "starting_logloss": 0.6088039849757765,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "item__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5879734865796895,
+          "auc": 0.7515042974428049,
+          "seconds": 0.6344496249803342,
+          "iterations": 85,
+          "accepted": true,
+          "starting_logloss": 0.588605329737736,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5880695981282644,
+          "auc": 0.7513089494132359,
+          "seconds": 0.6437071670079604,
+          "iterations": 86,
+          "accepted": false,
+          "starting_logloss": 0.588605329737736,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5881714224875756,
+          "auc": 0.7508806432449571,
+          "seconds": 0.9623542920453474,
+          "iterations": 115,
+          "accepted": false,
+          "starting_logloss": 0.588605329737736,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5884592933201327,
+          "auc": 0.7508665918016698,
+          "seconds": 0.9016023749718443,
+          "iterations": 98,
+          "accepted": false,
+          "starting_logloss": 0.5879734865796895,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5876231919289359,
+          "auc": 0.7516213066712438,
+          "seconds": 1.20111058303155,
+          "iterations": 127,
+          "accepted": true,
+          "starting_logloss": 0.5879734865796895,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5876736431455644,
+          "auc": 0.7515572955307392,
+          "seconds": 1.2083726249984466,
+          "iterations": 145,
+          "accepted": false,
+          "starting_logloss": 0.5879734865796895,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5837281774005305,
+          "auc": 0.7559896749602675,
+          "seconds": 0.9394511670107022,
+          "iterations": 111,
+          "accepted": true,
+          "starting_logloss": 0.5876231919289359,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5865035425766392,
+          "auc": 0.7525882188280003,
+          "seconds": 1.0759534999961033,
+          "iterations": 129,
+          "accepted": false,
+          "starting_logloss": 0.5876231919289359,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5872111738990294,
+          "auc": 0.75178235028949,
+          "seconds": 0.7544292089878581,
+          "iterations": 94,
+          "accepted": false,
+          "starting_logloss": 0.5876231919289359,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5837290870595871,
+          "auc": 0.7566933074427992,
+          "seconds": 1.0440613750251941,
+          "iterations": 139,
+          "accepted": false,
+          "starting_logloss": 0.5837281774005305,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5833353685316642,
+          "auc": 0.7563566163283437,
+          "seconds": 0.9561250419938006,
+          "iterations": 121,
+          "accepted": true,
+          "starting_logloss": 0.5837281774005305,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5838894923184129,
+          "auc": 0.7567040977394515,
+          "seconds": 1.1165619170060381,
+          "iterations": 152,
+          "accepted": false,
+          "starting_logloss": 0.5837281774005305,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5833165292152929,
+          "auc": 0.7564455761316287,
+          "seconds": 0.9700399590074085,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5833353685316642,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d",
+            "genre__180d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5834728904496608,
+          "auc": 0.756364403875226,
+          "seconds": 1.0305970420013182,
+          "iterations": 121,
+          "accepted": false,
+          "starting_logloss": 0.5833353685316642,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d",
+            "genre__180d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5841266383780871,
+          "auc": 0.7557903618753639,
+          "seconds": 0.9438092919881456,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5833353685316642,
+          "starting_packs": [
+            "user__45d",
+            "genre__21d",
+            "item__all",
+            "item__7d",
+            "item__1d",
+            "user_genre__21d",
+            "genre__180d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 25.756500127899926,
+      "search_scoring_seconds": 0.00033333199098706245,
+      "refit_seconds": 0.8629979160032235,
+      "iterations": 121,
+      "validation_logloss": 0.5833353685316642,
+      "test": {
+        "logloss": 0.5648469223707022,
+        "auc": 0.7776251120327451,
+        "brier": 0.19156611815579694,
+        "ndcg@10": 0.7647642144975372,
+        "recall@10": 0.4421021684555794,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.0005707337684055396,
+        "logloss_ci95": [
+          -0.0011778453402680727,
+          0.0025634031565197604
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.010868339764025322,
+        "ndcg@10_ci95": [
+          -0.01859877851659379,
+          -0.002893472382958805
+        ],
+        "recall@10_delta": -0.0031335109167558383,
+        "recall@10_ci95": [
+          -0.008820303652379631,
+          0.0028692022119495477
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_residual",
+      "feature_count": 52,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__180d__log_count_mean",
+        "user_genre__180d__log_count_max",
+        "user_genre__180d__positive_rate_mean",
+        "user_genre__180d__positive_rate_min",
+        "user_genre__180d__rating_mean",
+        "user_genre__180d__gap_days_min",
+        "item__90d__log_count",
+        "item__90d__positive_rate",
+        "item__90d__rating_mean",
+        "item__90d__gap_days",
+        "user__3d__log_count",
+        "user__3d__positive_rate",
+        "user__3d__rating_mean",
+        "user__3d__gap_days",
+        "user_genre__3d__log_count_mean",
+        "user_genre__3d__log_count_max",
+        "user_genre__3d__positive_rate_mean",
+        "user_genre__3d__positive_rate_min",
+        "user_genre__3d__rating_mean",
+        "user_genre__3d__gap_days_min",
+        "user__30d__log_count",
+        "user__30d__positive_rate",
+        "user__30d__rating_mean",
+        "user__30d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__180d",
+        "item__90d",
+        "user__3d",
+        "user_genre__3d",
+        "user__30d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.24431982650718256,
+          "logloss": 0.6064137185526388,
+          "auc": 0.7321133324370823,
+          "seconds": 1.707670958014205,
+          "iterations": 345,
+          "accepted": true,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.24431982650718256,
+          "logloss": 0.6064137185526388,
+          "auc": 0.7321133324370823,
+          "seconds": 1.6043122080154717,
+          "iterations": 345,
+          "accepted": false,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.24422723350652897,
+          "logloss": 0.6101119675583867,
+          "auc": 0.7259650998146101,
+          "seconds": 0.8936405410058796,
+          "iterations": 169,
+          "accepted": false,
+          "starting_logloss": 0.6460213892931398,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__60d",
+          "strategy": "residual",
+          "proxy_score": 0.13924150619509348,
+          "logloss": 0.5866238973857879,
+          "auc": 0.7533625273080935,
+          "seconds": 0.5614475829643197,
+          "iterations": 87,
+          "accepted": false,
+          "starting_logloss": 0.6064137185526388,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__90d",
+          "strategy": "residual",
+          "proxy_score": 0.1378040682500997,
+          "logloss": 0.5855395835358793,
+          "auc": 0.7545697663693166,
+          "seconds": 0.6007642080076039,
+          "iterations": 94,
+          "accepted": true,
+          "starting_logloss": 0.6064137185526388,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__45d",
+          "strategy": "residual",
+          "proxy_score": 0.1374923484046848,
+          "logloss": 0.587663368114482,
+          "auc": 0.7521889956723338,
+          "seconds": 0.9388395840069279,
+          "iterations": 179,
+          "accepted": false,
+          "starting_logloss": 0.6064137185526388,
+          "starting_packs": [
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.0533682891442793,
+          "logloss": 0.583128459042175,
+          "auc": 0.7570280739461257,
+          "seconds": 0.7925767919514328,
+          "iterations": 125,
+          "accepted": false,
+          "starting_logloss": 0.5855395835358793,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.05160522065056842,
+          "logloss": 0.5823602462825261,
+          "auc": 0.7577715440969753,
+          "seconds": 0.7309725839877501,
+          "iterations": 111,
+          "accepted": true,
+          "starting_logloss": 0.5855395835358793,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.04938841316718239,
+          "logloss": 0.5837560782777976,
+          "auc": 0.7561992348173844,
+          "seconds": 0.7089085420011543,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5855395835358793,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.02953233348867551,
+          "logloss": 0.5836054138930842,
+          "auc": 0.7563890050387746,
+          "seconds": 0.575066625024192,
+          "iterations": 69,
+          "accepted": false,
+          "starting_logloss": 0.5823602462825261,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__3d",
+          "strategy": "residual",
+          "proxy_score": 0.02764412457043091,
+          "logloss": 0.5822188633256935,
+          "auc": 0.7574922972785713,
+          "seconds": 0.650045707996469,
+          "iterations": 83,
+          "accepted": true,
+          "starting_logloss": 0.5823602462825261,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.02751673873884384,
+          "logloss": 0.582958007448197,
+          "auc": 0.7571538062963012,
+          "seconds": 0.7520978749962524,
+          "iterations": 107,
+          "accepted": false,
+          "starting_logloss": 0.5823602462825261,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.0343634779590541,
+          "logloss": 0.5823637622186393,
+          "auc": 0.7575773276674682,
+          "seconds": 0.8024979999754578,
+          "iterations": 106,
+          "accepted": false,
+          "starting_logloss": 0.5822188633256935,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__30d",
+          "strategy": "residual",
+          "proxy_score": 0.033701530376244425,
+          "logloss": 0.581450353339639,
+          "auc": 0.7584059262198185,
+          "seconds": 0.9932739159557968,
+          "iterations": 120,
+          "accepted": true,
+          "starting_logloss": 0.5822188633256935,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.032978178394777236,
+          "logloss": 0.5830164601040717,
+          "auc": 0.7570926375213063,
+          "seconds": 0.8110167080303654,
+          "iterations": 106,
+          "accepted": false,
+          "starting_logloss": 0.5822188633256935,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__10d",
+          "strategy": "residual",
+          "proxy_score": 0.024135765106705998,
+          "logloss": 0.5823249784664667,
+          "auc": 0.7574854542167802,
+          "seconds": 0.8929427920375019,
+          "iterations": 116,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.02258455931206492,
+          "logloss": 0.5825933213912998,
+          "auc": 0.7573874594334742,
+          "seconds": 0.8047177499975078,
+          "iterations": 98,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__14d",
+          "strategy": "residual",
+          "proxy_score": 0.02215522818492906,
+          "logloss": 0.5818332991948941,
+          "auc": 0.7585218216686691,
+          "seconds": 0.8892442079959437,
+          "iterations": 116,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.02093207282492941,
+          "logloss": 0.5827087285216435,
+          "auc": 0.757045992432144,
+          "seconds": 0.8163903750246391,
+          "iterations": 102,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__30d",
+          "strategy": "residual",
+          "proxy_score": 0.020273349368858624,
+          "logloss": 0.5817124853060661,
+          "auc": 0.7581019534945521,
+          "seconds": 0.8196947909891605,
+          "iterations": 103,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__7d",
+          "strategy": "residual",
+          "proxy_score": 0.01993714867637783,
+          "logloss": 0.5823154115483026,
+          "auc": 0.7577407324984418,
+          "seconds": 0.8385845000157133,
+          "iterations": 104,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.019452522198052952,
+          "logloss": 0.5825744226201833,
+          "auc": 0.7575028559090693,
+          "seconds": 0.8523297499632463,
+          "iterations": 104,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__21d",
+          "strategy": "residual",
+          "proxy_score": 0.019184808752831087,
+          "logloss": 0.5826007012337231,
+          "auc": 0.7576011447301866,
+          "seconds": 0.7777731249807402,
+          "iterations": 93,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.01855061897663222,
+          "logloss": 0.5830109304786428,
+          "auc": 0.7570566223445355,
+          "seconds": 0.8368736670236103,
+          "iterations": 104,
+          "accepted": false,
+          "starting_logloss": 0.581450353339639,
+          "starting_packs": [
+            "user_genre__180d",
+            "item__90d",
+            "user__3d",
+            "user_genre__3d",
+            "user__30d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 20.65168278996134,
+      "search_scoring_seconds": 0.05386287492001429,
+      "refit_seconds": 0.7695057500386611,
+      "iterations": 120,
+      "validation_logloss": 0.581450353339639,
+      "test": {
+        "logloss": 0.5664479117222443,
+        "auc": 0.7757211119005303,
+        "brier": 0.19248153702029389,
+        "ndcg@10": 0.7744269139513837,
+        "recall@10": 0.4487450057020436,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.0021717231199476546,
+        "logloss_ci95": [
+          0.00045093520662883255,
+          0.004024487853160359
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.0012056403101789028,
+        "ndcg@10_ci95": [
+          -0.00913276830568477,
+          0.007664905251299707
+        ],
+        "recall@10_delta": 0.003509326329708351,
+        "recall@10_ci95": [
+          -0.00231263093310467,
+          0.00866597472216125
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_random",
+      "feature_count": 56,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "user_genre__60d__log_count_mean",
+        "user_genre__60d__log_count_max",
+        "user_genre__60d__positive_rate_mean",
+        "user_genre__60d__positive_rate_min",
+        "user_genre__60d__rating_mean",
+        "user_genre__60d__gap_days_min",
+        "item__7d__log_count",
+        "item__7d__positive_rate",
+        "item__7d__rating_mean",
+        "item__7d__gap_days",
+        "item__60d__log_count",
+        "item__60d__positive_rate",
+        "item__60d__rating_mean",
+        "item__60d__gap_days",
+        "user__60d__log_count",
+        "user__60d__positive_rate",
+        "user__60d__rating_mean",
+        "user__60d__gap_days",
+        "item__1d__log_count",
+        "item__1d__positive_rate",
+        "item__1d__rating_mean",
+        "item__1d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__all",
+        "user_genre__60d",
+        "item__7d",
+        "item__60d",
+        "user__60d",
+        "item__1d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "item__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6241081009563201,
+          "auc": 0.714316399868043,
+          "seconds": 1.4885307080112398,
+          "iterations": 308,
+          "accepted": false,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6116031030782287,
+          "auc": 0.7240780007823902,
+          "seconds": 1.213224250008352,
+          "iterations": 189,
+          "accepted": true,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6116774806226255,
+          "auc": 0.7239918387934312,
+          "seconds": 1.083175250038039,
+          "iterations": 189,
+          "accepted": false,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6062140971428477,
+          "auc": 0.7343670431586204,
+          "seconds": 1.6086789999972098,
+          "iterations": 347,
+          "accepted": true,
+          "starting_logloss": 0.6116031030782287,
+          "starting_packs": [
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6120388335276611,
+          "auc": 0.7247973331019999,
+          "seconds": 1.1451105000451207,
+          "iterations": 193,
+          "accepted": false,
+          "starting_logloss": 0.6116031030782287,
+          "starting_packs": [
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.610396290656886,
+          "auc": 0.7253747253508638,
+          "seconds": 0.9147212500101887,
+          "iterations": 166,
+          "accepted": false,
+          "starting_logloss": 0.6116031030782287,
+          "starting_packs": [
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5974824247556503,
+          "auc": 0.7408596207888796,
+          "seconds": 2.20911941700615,
+          "iterations": 439,
+          "accepted": true,
+          "starting_logloss": 0.6062140971428477,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6110829998511108,
+          "auc": 0.7236089302811757,
+          "seconds": 0.9061942499829456,
+          "iterations": 138,
+          "accepted": false,
+          "starting_logloss": 0.6062140971428477,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6028617404609914,
+          "auc": 0.7362435479193956,
+          "seconds": 2.267875542049296,
+          "iterations": 494,
+          "accepted": false,
+          "starting_logloss": 0.6062140971428477,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5995807934304105,
+          "auc": 0.7374312468315198,
+          "seconds": 1.2285119580337778,
+          "iterations": 205,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5978350124491904,
+          "auc": 0.739516821386393,
+          "seconds": 1.5420486670336686,
+          "iterations": 274,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5995789626014624,
+          "auc": 0.7367078781746816,
+          "seconds": 0.9140260419808328,
+          "iterations": 137,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5975499526453775,
+          "auc": 0.740258660963925,
+          "seconds": 2.378358875052072,
+          "iterations": 455,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5993804099127398,
+          "auc": 0.7364195607353099,
+          "seconds": 0.9835102909710258,
+          "iterations": 143,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.598945298216469,
+          "auc": 0.7377203483717218,
+          "seconds": 1.6754291669931263,
+          "iterations": 297,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.597466056853403,
+          "auc": 0.7390801039546624,
+          "seconds": 1.3407337079988793,
+          "iterations": 231,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5843699730965536,
+          "auc": 0.7564197631758878,
+          "seconds": 1.006879708962515,
+          "iterations": 162,
+          "accepted": true,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.584536746456666,
+          "auc": 0.755913242949793,
+          "seconds": 0.9005657499656081,
+          "iterations": 127,
+          "accepted": false,
+          "starting_logloss": 0.5974824247556503,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5846612452467379,
+          "auc": 0.7554529935829188,
+          "seconds": 1.002065583015792,
+          "iterations": 150,
+          "accepted": false,
+          "starting_logloss": 0.5843699730965536,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5842217129010697,
+          "auc": 0.7557828594560563,
+          "seconds": 0.9471675420063548,
+          "iterations": 123,
+          "accepted": false,
+          "starting_logloss": 0.5843699730965536,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5833693392360697,
+          "auc": 0.7562947881958326,
+          "seconds": 0.7142812920501456,
+          "iterations": 89,
+          "accepted": true,
+          "starting_logloss": 0.5843699730965536,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5832750448203192,
+          "auc": 0.75622903955917,
+          "seconds": 0.7822096660383977,
+          "iterations": 92,
+          "accepted": false,
+          "starting_logloss": 0.5833693392360697,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5830844602754972,
+          "auc": 0.7566614889875177,
+          "seconds": 1.0667445409926586,
+          "iterations": 153,
+          "accepted": true,
+          "starting_logloss": 0.5833693392360697,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5837425565594248,
+          "auc": 0.7561134737890775,
+          "seconds": 0.7753544579609297,
+          "iterations": 94,
+          "accepted": false,
+          "starting_logloss": 0.5833693392360697,
+          "starting_packs": [
+            "user_genre__all",
+            "user_genre__60d",
+            "item__7d",
+            "item__60d",
+            "user__60d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 30.094517416204326,
+      "search_scoring_seconds": 0.00028449902310967445,
+      "refit_seconds": 0.986306082981173,
+      "iterations": 153,
+      "validation_logloss": 0.5830844602754972,
+      "test": {
+        "logloss": 0.5695333802661918,
+        "auc": 0.7739682043740845,
+        "brier": 0.19352279735907835,
+        "ndcg@10": 0.7747653512276835,
+        "recall@10": 0.4473297297460099,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.00582196547841605,
+        "logloss_ci95": [
+          0.003533701384471788,
+          0.007744518868315337
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.0012262344735441207,
+        "ndcg@10_ci95": [
+          -0.007977021377012727,
+          0.011453010529005506
+        ],
+        "recall@10_delta": 0.0035951628230578253,
+        "recall@10_ci95": [
+          -0.0024367373870870165,
+          0.009260694351595227
+        ]
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_residual",
+      "feature_count": 52,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__3d__log_count_mean",
+        "user_genre__3d__log_count_max",
+        "user_genre__3d__positive_rate_mean",
+        "user_genre__3d__positive_rate_min",
+        "user_genre__3d__rating_mean",
+        "user_genre__3d__gap_days_min",
+        "item__60d__log_count",
+        "item__60d__positive_rate",
+        "item__60d__rating_mean",
+        "item__60d__gap_days",
+        "user__60d__log_count",
+        "user__60d__positive_rate",
+        "user__60d__rating_mean",
+        "user__60d__gap_days",
+        "user__3d__log_count",
+        "user__3d__positive_rate",
+        "user__3d__rating_mean",
+        "user__3d__gap_days",
+        "user_genre__120d__log_count_mean",
+        "user_genre__120d__log_count_max",
+        "user_genre__120d__positive_rate_mean",
+        "user_genre__120d__positive_rate_min",
+        "user_genre__120d__rating_mean",
+        "user_genre__120d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__3d",
+        "item__60d",
+        "user__60d",
+        "user__3d",
+        "user_genre__120d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__3d",
+          "strategy": "residual",
+          "proxy_score": 0.24495236177665095,
+          "logloss": 0.606729683050878,
+          "auc": 0.7316753497517394,
+          "seconds": 1.186080499959644,
+          "iterations": 240,
+          "accepted": true,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.24489622426613208,
+          "logloss": 0.6139474236821809,
+          "auc": 0.7210032206585193,
+          "seconds": 0.6883238750160672,
+          "iterations": 115,
+          "accepted": false,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__45d",
+          "strategy": "residual",
+          "proxy_score": 0.2448738133486453,
+          "logloss": 0.6074626179599782,
+          "auc": 0.736058749610088,
+          "seconds": 2.1030333340168,
+          "iterations": 452,
+          "accepted": false,
+          "starting_logloss": 0.6460421307014972,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__60d",
+          "strategy": "residual",
+          "proxy_score": 0.1598933700522648,
+          "logloss": 0.5861979880708005,
+          "auc": 0.7535847664320446,
+          "seconds": 0.7669510410050862,
+          "iterations": 130,
+          "accepted": true,
+          "starting_logloss": 0.606729683050878,
+          "starting_packs": [
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__90d",
+          "strategy": "residual",
+          "proxy_score": 0.1586126027749427,
+          "logloss": 0.586224642252857,
+          "auc": 0.7533613778875582,
+          "seconds": 0.6270322910277173,
+          "iterations": 100,
+          "accepted": false,
+          "starting_logloss": 0.606729683050878,
+          "starting_packs": [
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.15824413765486373,
+          "logloss": 0.5872895741531442,
+          "auc": 0.7527876031947975,
+          "seconds": 0.6054087919765152,
+          "iterations": 94,
+          "accepted": false,
+          "starting_logloss": 0.606729683050878,
+          "starting_packs": [
+            "user_genre__3d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.05673181754788732,
+          "logloss": 0.5832994292056144,
+          "auc": 0.7565405147037438,
+          "seconds": 0.7750329169793986,
+          "iterations": 117,
+          "accepted": true,
+          "starting_logloss": 0.5861979880708005,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.05482234120293491,
+          "logloss": 0.5836644520776233,
+          "auc": 0.7560223309777995,
+          "seconds": 0.8186159169999883,
+          "iterations": 118,
+          "accepted": false,
+          "starting_logloss": 0.5861979880708005,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.05475863920793745,
+          "logloss": 0.5838739236466096,
+          "auc": 0.7558855677545804,
+          "seconds": 0.7582034160150215,
+          "iterations": 118,
+          "accepted": false,
+          "starting_logloss": 0.5861979880708005,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.03116703445708951,
+          "logloss": 0.5822679635687433,
+          "auc": 0.7571108500451356,
+          "seconds": 0.9591072500334121,
+          "iterations": 129,
+          "accepted": true,
+          "starting_logloss": 0.5832994292056144,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.030134805487992536,
+          "logloss": 0.5833054179269221,
+          "auc": 0.7565880953677603,
+          "seconds": 0.793897541007027,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5832994292056144,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.030134805487992536,
+          "logloss": 0.5833054179269221,
+          "auc": 0.7565880953677603,
+          "seconds": 0.7973856250173412,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5832994292056144,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.02756291782052941,
+          "logloss": 0.5816921329506866,
+          "auc": 0.7582415412628072,
+          "seconds": 1.020942292001564,
+          "iterations": 146,
+          "accepted": true,
+          "starting_logloss": 0.5822679635687433,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.024731690546631095,
+          "logloss": 0.5825148975073724,
+          "auc": 0.7575707430025416,
+          "seconds": 1.0822971669840626,
+          "iterations": 162,
+          "accepted": false,
+          "starting_logloss": 0.5822679635687433,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__10d",
+          "strategy": "residual",
+          "proxy_score": 0.022018685269156662,
+          "logloss": 0.5833361048004937,
+          "auc": 0.7562666942194947,
+          "seconds": 0.8034013339783996,
+          "iterations": 112,
+          "accepted": false,
+          "starting_logloss": 0.5822679635687433,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__45d",
+          "strategy": "residual",
+          "proxy_score": 0.02548151016763369,
+          "logloss": 0.5821289898998615,
+          "auc": 0.7582946462735822,
+          "seconds": 1.2157708330196328,
+          "iterations": 180,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__21d",
+          "strategy": "residual",
+          "proxy_score": 0.02268450787797264,
+          "logloss": 0.5821120552478538,
+          "auc": 0.7574105904079663,
+          "seconds": 0.8091282499954104,
+          "iterations": 103,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__30d",
+          "strategy": "residual",
+          "proxy_score": 0.021256662450268738,
+          "logloss": 0.5821286240674362,
+          "auc": 0.7574793239739257,
+          "seconds": 0.9563743749749847,
+          "iterations": 123,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__14d",
+          "strategy": "residual",
+          "proxy_score": 0.01847038271209121,
+          "logloss": 0.5819226014122507,
+          "auc": 0.7577751349223684,
+          "seconds": 0.9546160839963704,
+          "iterations": 127,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.017625823966063426,
+          "logloss": 0.5819233949084319,
+          "auc": 0.7579764171695842,
+          "seconds": 0.9660086670191959,
+          "iterations": 127,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.017525740762207434,
+          "logloss": 0.5829186723530511,
+          "auc": 0.7567375200373404,
+          "seconds": 0.872743709012866,
+          "iterations": 90,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.017410803340874532,
+          "logloss": 0.5827153842533569,
+          "auc": 0.7570580925335924,
+          "seconds": 0.8664078330039047,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.017410803340874532,
+          "logloss": 0.5827153842533569,
+          "auc": 0.7570580925335924,
+          "seconds": 0.8532883339794353,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.017371781634193135,
+          "logloss": 0.5827092623023536,
+          "auc": 0.7570657553371606,
+          "seconds": 0.8741642499808222,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5816921329506866,
+          "starting_packs": [
+            "user_genre__3d",
+            "item__60d",
+            "user__60d",
+            "user__3d",
+            "user_genre__120d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 22.154215627000667,
+      "search_scoring_seconds": 0.06318391702370718,
+      "refit_seconds": 0.9864907919545658,
+      "iterations": 146,
+      "validation_logloss": 0.5816921329506866,
+      "test": {
+        "logloss": 0.5694411040738802,
+        "auc": 0.7735305807765398,
+        "brier": 0.19367317239281476,
+        "ndcg@10": 0.7760084338240052,
+        "recall@10": 0.4470947986760579,
+        "ranking_users": 197,
+        "rows": 14999
+      },
+      "vs_manual": {
+        "logloss_delta": 0.005729689286104428,
+        "logloss_ci95": [
+          0.0030619013895001614,
+          0.008145776620115999
+        ],
+        "users": 216,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.0024693170698657087,
+        "ndcg@10_ci95": [
+          -0.0063177924099698185,
+          0.011253089596840184
+        ],
+        "recall@10_delta": 0.003360231753105837,
+        "recall@10_ci95": [
+          -0.002879740553633893,
+          0.009286518675689772
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "method": "auto_random",
+      "feature_count": 64,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__1d__log_count_mean",
+        "user_genre__1d__log_count_max",
+        "user_genre__1d__positive_rate_mean",
+        "user_genre__1d__positive_rate_min",
+        "user_genre__1d__rating_mean",
+        "user_genre__1d__gap_days_min",
+        "item__30d__log_count",
+        "item__30d__positive_rate",
+        "item__30d__rating_mean",
+        "item__30d__gap_days",
+        "item__60d__log_count",
+        "item__60d__positive_rate",
+        "item__60d__rating_mean",
+        "item__60d__gap_days",
+        "user__7d__log_count",
+        "user__7d__positive_rate",
+        "user__7d__rating_mean",
+        "user__7d__gap_days",
+        "item__180d__log_count",
+        "item__180d__positive_rate",
+        "item__180d__rating_mean",
+        "item__180d__gap_days",
+        "user_genre__all__log_count_mean",
+        "user_genre__all__log_count_max",
+        "user_genre__all__positive_rate_mean",
+        "user_genre__all__positive_rate_min",
+        "user_genre__all__rating_mean",
+        "user_genre__all__gap_days_min",
+        "item__3d__log_count",
+        "item__3d__positive_rate",
+        "item__3d__rating_mean",
+        "item__3d__gap_days",
+        "item__90d__log_count",
+        "item__90d__positive_rate",
+        "item__90d__rating_mean",
+        "item__90d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__1d",
+        "item__30d",
+        "item__60d",
+        "user__7d",
+        "item__180d",
+        "user_genre__all",
+        "item__3d",
+        "item__90d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5914230873066457,
+          "auc": 0.7504902050353731,
+          "seconds": 1.951742083998397,
+          "iterations": 498,
+          "accepted": true,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6555628696375309,
+          "auc": 0.6594682811848354,
+          "seconds": 1.9740191660239361,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5919717656905179,
+          "auc": 0.7501417428158084,
+          "seconds": 1.7452602919656783,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.58688094459017,
+          "auc": 0.7549189244984693,
+          "seconds": 1.8338608749909326,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5914230873066457,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5816245580392764,
+          "auc": 0.7616803453203339,
+          "seconds": 0.7458829579991288,
+          "iterations": 148,
+          "accepted": true,
+          "starting_logloss": 0.5914230873066457,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.58631716531388,
+          "auc": 0.7556473710866097,
+          "seconds": 1.8308864170103334,
+          "iterations": 467,
+          "accepted": false,
+          "starting_logloss": 0.5914230873066457,
+          "starting_packs": [
+            "user_genre__1d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5755015033774352,
+          "auc": 0.7680383894895966,
+          "seconds": 0.6791582079604268,
+          "iterations": 126,
+          "accepted": true,
+          "starting_logloss": 0.5816245580392764,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5787407544372657,
+          "auc": 0.7652799343142528,
+          "seconds": 0.7177439170191064,
+          "iterations": 128,
+          "accepted": false,
+          "starting_logloss": 0.5816245580392764,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5813325960685423,
+          "auc": 0.7629785681086965,
+          "seconds": 0.7931490840273909,
+          "iterations": 155,
+          "accepted": false,
+          "starting_logloss": 0.5816245580392764,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5757174695722437,
+          "auc": 0.7678747236424701,
+          "seconds": 0.6183755840174854,
+          "iterations": 100,
+          "accepted": false,
+          "starting_logloss": 0.5755015033774352,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5714884731862452,
+          "auc": 0.7713621507751047,
+          "seconds": 0.730791500012856,
+          "iterations": 127,
+          "accepted": true,
+          "starting_logloss": 0.5755015033774352,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5718744124087675,
+          "auc": 0.7708231843589447,
+          "seconds": 1.1828174170223065,
+          "iterations": 229,
+          "accepted": false,
+          "starting_logloss": 0.5755015033774352,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5660360094633315,
+          "auc": 0.7765235643023525,
+          "seconds": 1.135590958991088,
+          "iterations": 217,
+          "accepted": true,
+          "starting_logloss": 0.5714884731862452,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5712222533385439,
+          "auc": 0.7715939810433275,
+          "seconds": 0.9181835839990526,
+          "iterations": 164,
+          "accepted": false,
+          "starting_logloss": 0.5714884731862452,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5706658944931474,
+          "auc": 0.7727257330475753,
+          "seconds": 1.0799764590337873,
+          "iterations": 199,
+          "accepted": false,
+          "starting_logloss": 0.5714884731862452,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5660981355559733,
+          "auc": 0.7763257049376544,
+          "seconds": 0.9813941669999622,
+          "iterations": 155,
+          "accepted": false,
+          "starting_logloss": 0.5660360094633315,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5638975717475636,
+          "auc": 0.7781140259066474,
+          "seconds": 2.2184218330075964,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5660360094633315,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.563699280597868,
+          "auc": 0.7783087330564442,
+          "seconds": 1.071417749975808,
+          "iterations": 168,
+          "accepted": true,
+          "starting_logloss": 0.5660360094633315,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.562744344783209,
+          "auc": 0.7791346667879111,
+          "seconds": 1.222656083991751,
+          "iterations": 210,
+          "accepted": true,
+          "starting_logloss": 0.563699280597868,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5634223211579943,
+          "auc": 0.7783495515680454,
+          "seconds": 1.741477917006705,
+          "iterations": 324,
+          "accepted": false,
+          "starting_logloss": 0.563699280597868,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5644764135705447,
+          "auc": 0.778121247506322,
+          "seconds": 0.8610615420038812,
+          "iterations": 122,
+          "accepted": false,
+          "starting_logloss": 0.563699280597868,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.562564772086682,
+          "auc": 0.7792639254079812,
+          "seconds": 1.3096177089610137,
+          "iterations": 232,
+          "accepted": true,
+          "starting_logloss": 0.562744344783209,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all",
+            "item__3d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5628243452424553,
+          "auc": 0.7787941919603418,
+          "seconds": 1.2141026249737479,
+          "iterations": 193,
+          "accepted": false,
+          "starting_logloss": 0.562744344783209,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all",
+            "item__3d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5649535030613275,
+          "auc": 0.7780949790488125,
+          "seconds": 0.7902580830268562,
+          "iterations": 97,
+          "accepted": false,
+          "starting_logloss": 0.562744344783209,
+          "starting_packs": [
+            "user_genre__1d",
+            "item__30d",
+            "item__60d",
+            "user__7d",
+            "item__180d",
+            "user_genre__all",
+            "item__3d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 29.347846214019228,
+      "search_scoring_seconds": 0.0003081670147366822,
+      "refit_seconds": 1.3501492500072345,
+      "iterations": 232,
+      "validation_logloss": 0.562564772086682,
+      "test": {
+        "logloss": 0.5833261165568021,
+        "auc": 0.7498722199823353,
+        "brier": 0.19955314275974895,
+        "ndcg@10": 0.7905855856894342,
+        "recall@10": 0.4138953575668966,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0014454827346557426,
+        "logloss_ci95": [
+          -0.0043673880406447365,
+          0.0004263355449411633
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.004199010563084539,
+        "ndcg@10_ci95": [
+          4.240322400965005e-05,
+          0.009356387357711063
+        ],
+        "recall@10_delta": 0.0008883885378853886,
+        "recall@10_ci95": [
+          -0.0028836415823705426,
+          0.004727591175997902
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "method": "auto_residual",
+      "feature_count": 52,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__60d__log_count_mean",
+        "user_genre__60d__log_count_max",
+        "user_genre__60d__positive_rate_mean",
+        "user_genre__60d__positive_rate_min",
+        "user_genre__60d__rating_mean",
+        "user_genre__60d__gap_days_min",
+        "item__180d__log_count",
+        "item__180d__positive_rate",
+        "item__180d__rating_mean",
+        "item__180d__gap_days",
+        "user__120d__log_count",
+        "user__120d__positive_rate",
+        "user__120d__rating_mean",
+        "user__120d__gap_days",
+        "user_genre__120d__log_count_mean",
+        "user_genre__120d__log_count_max",
+        "user_genre__120d__positive_rate_mean",
+        "user_genre__120d__positive_rate_min",
+        "user_genre__120d__rating_mean",
+        "user_genre__120d__gap_days_min",
+        "user__90d__log_count",
+        "user__90d__positive_rate",
+        "user__90d__rating_mean",
+        "user__90d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__60d",
+        "item__180d",
+        "user__120d",
+        "user_genre__120d",
+        "user__90d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.3341298582967783,
+          "logloss": 0.5877150793769306,
+          "auc": 0.7554529221691071,
+          "seconds": 1.9062994580017403,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__45d",
+          "strategy": "residual",
+          "proxy_score": 0.33295614255752193,
+          "logloss": 0.58840155509342,
+          "auc": 0.7545586726389919,
+          "seconds": 1.830236290988978,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.33280933559678044,
+          "logloss": 0.5947366615945735,
+          "auc": 0.7471348503643587,
+          "seconds": 1.779063625028357,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6490230831499604,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.17926299453436892,
+          "logloss": 0.564357830793564,
+          "auc": 0.7780990840518335,
+          "seconds": 0.7879570420482196,
+          "iterations": 156,
+          "accepted": true,
+          "starting_logloss": 0.5877150793769306,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.17926299453436892,
+          "logloss": 0.564357830793564,
+          "auc": 0.7780990840518335,
+          "seconds": 0.7760990000097081,
+          "iterations": 156,
+          "accepted": false,
+          "starting_logloss": 0.5877150793769306,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.17882906314366454,
+          "logloss": 0.5649527750480404,
+          "auc": 0.7776521106643277,
+          "seconds": 0.6857338749687187,
+          "iterations": 118,
+          "accepted": false,
+          "starting_logloss": 0.5877150793769306,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.0798036032553576,
+          "logloss": 0.5630026084466218,
+          "auc": 0.7796279438971285,
+          "seconds": 0.62549637502525,
+          "iterations": 101,
+          "accepted": false,
+          "starting_logloss": 0.564357830793564,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.07827068290144958,
+          "logloss": 0.5615739829264002,
+          "auc": 0.7801026817085375,
+          "seconds": 2.003177917038556,
+          "iterations": 418,
+          "accepted": true,
+          "starting_logloss": 0.564357830793564,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.0782415911843996,
+          "logloss": 0.5632829787164358,
+          "auc": 0.7788125887851602,
+          "seconds": 1.221146875002887,
+          "iterations": 253,
+          "accepted": false,
+          "starting_logloss": 0.564357830793564,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.05384088307638386,
+          "logloss": 0.5617465470953399,
+          "auc": 0.7802866677658458,
+          "seconds": 0.7550014999578707,
+          "iterations": 126,
+          "accepted": false,
+          "starting_logloss": 0.5615739829264002,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.05384088307638386,
+          "logloss": 0.5617465470953399,
+          "auc": 0.7802866677658458,
+          "seconds": 0.751576374983415,
+          "iterations": 126,
+          "accepted": false,
+          "starting_logloss": 0.5615739829264002,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.05119680158233375,
+          "logloss": 0.5607284242716903,
+          "auc": 0.7813590441515603,
+          "seconds": 1.7432622499763966,
+          "iterations": 347,
+          "accepted": true,
+          "starting_logloss": 0.5615739829264002,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.04550996452735433,
+          "logloss": 0.5613248681587755,
+          "auc": 0.7804923987632346,
+          "seconds": 1.924016458040569,
+          "iterations": 370,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__21d",
+          "strategy": "residual",
+          "proxy_score": 0.04424794624278952,
+          "logloss": 0.5616208628031785,
+          "auc": 0.7799228451770596,
+          "seconds": 1.1842116659972817,
+          "iterations": 199,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.04395820373251379,
+          "logloss": 0.5619199160994744,
+          "auc": 0.7799203162814892,
+          "seconds": 1.6187998339883052,
+          "iterations": 312,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.04391335954647294,
+          "logloss": 0.5608774342778994,
+          "auc": 0.7806996257270175,
+          "seconds": 2.2640079160337336,
+          "iterations": 448,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.042964331465231896,
+          "logloss": 0.5620388037279945,
+          "auc": 0.7804590155607931,
+          "seconds": 0.74229987495346,
+          "iterations": 102,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04250248517961172,
+          "logloss": 0.5623465995139341,
+          "auc": 0.779238244651555,
+          "seconds": 1.021288707968779,
+          "iterations": 132,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.041230729677771735,
+          "logloss": 0.5616922645047968,
+          "auc": 0.779748760992548,
+          "seconds": 1.000064583029598,
+          "iterations": 149,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__30d",
+          "strategy": "residual",
+          "proxy_score": 0.040997244173891605,
+          "logloss": 0.5626256603961719,
+          "auc": 0.7794489087762186,
+          "seconds": 0.8129141660174355,
+          "iterations": 125,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__180d",
+          "strategy": "residual",
+          "proxy_score": 0.040392161113748624,
+          "logloss": 0.5611506751851874,
+          "auc": 0.7803399526640615,
+          "seconds": 1.4597024159738794,
+          "iterations": 282,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__all",
+          "strategy": "residual",
+          "proxy_score": 0.040392161113748624,
+          "logloss": 0.5611506751851874,
+          "auc": 0.7803399526640615,
+          "seconds": 1.5596843750099652,
+          "iterations": 282,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.04027141981238019,
+          "logloss": 0.5611820367539193,
+          "auc": 0.7805540806632916,
+          "seconds": 0.9416261669830419,
+          "iterations": 153,
+          "accepted": false,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.04006905947550176,
+          "logloss": 0.5605041985846074,
+          "auc": 0.7812684313299958,
+          "seconds": 2.318611083959695,
+          "iterations": 475,
+          "accepted": true,
+          "starting_logloss": 0.5607284242716903,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__120d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 31.71227783098584,
+      "search_scoring_seconds": 0.0625686650746502,
+      "refit_seconds": 2.4852227920200676,
+      "iterations": 475,
+      "validation_logloss": 0.5605041985846074,
+      "test": {
+        "logloss": 0.5832684581918067,
+        "auc": 0.7490965380601771,
+        "brier": 0.19971851722955464,
+        "ndcg@10": 0.7972970722840168,
+        "recall@10": 0.4188802135195094,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0015031410996511878,
+        "logloss_ci95": [
+          -0.0032047395852400724,
+          0.0003344854540140454
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.010910497157667173,
+        "ndcg@10_ci95": [
+          0.005124526802772668,
+          0.01695502912696595
+        ],
+        "recall@10_delta": 0.005873244490498171,
+        "recall@10_ci95": [
+          0.0017966958288335342,
+          0.010388409118511051
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "method": "auto_random",
+      "feature_count": 52,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__10d__log_count_mean",
+        "user_genre__10d__log_count_max",
+        "user_genre__10d__positive_rate_mean",
+        "user_genre__10d__positive_rate_min",
+        "user_genre__10d__rating_mean",
+        "user_genre__10d__gap_days_min",
+        "item__all__log_count",
+        "item__all__positive_rate",
+        "item__all__rating_mean",
+        "item__all__gap_days",
+        "user__all__log_count",
+        "user__all__positive_rate",
+        "user__all__rating_mean",
+        "user__all__gap_days",
+        "genre__7d__log_count_mean",
+        "genre__7d__log_count_max",
+        "genre__7d__positive_rate_mean",
+        "genre__7d__positive_rate_min",
+        "genre__7d__rating_mean",
+        "genre__7d__gap_days_min",
+        "item__3d__log_count",
+        "item__3d__positive_rate",
+        "item__3d__rating_mean",
+        "item__3d__gap_days"
+      ],
+      "selected_packs": [
+        "user_genre__10d",
+        "item__all",
+        "user__all",
+        "genre__7d",
+        "item__3d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5922735931493014,
+          "auc": 0.7497187137951644,
+          "seconds": 1.9487736250157468,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6518151463587739,
+          "auc": 0.669633639967264,
+          "seconds": 1.1309040419873782,
+          "iterations": 194,
+          "accepted": false,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5880413311982783,
+          "auc": 0.7541414761063714,
+          "seconds": 1.982835792005062,
+          "iterations": 499,
+          "accepted": true,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5899510327359945,
+          "auc": 0.7529344538406569,
+          "seconds": 2.1920151660451666,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.588477365679766,
+          "auc": 0.7533968588338792,
+          "seconds": 1.9793165830196813,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5898152530065915,
+          "auc": 0.7520769623419311,
+          "seconds": 2.29547300003469,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.566168655759451,
+          "auc": 0.7762266060686298,
+          "seconds": 0.9836523749982007,
+          "iterations": 181,
+          "accepted": true,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user_genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.58808042901263,
+          "auc": 0.7538080982146105,
+          "seconds": 1.9763880830141716,
+          "iterations": 489,
+          "accepted": false,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5866543194743663,
+          "auc": 0.7558194962675103,
+          "seconds": 2.1199698749696836,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5880413311982783,
+          "starting_packs": [
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "item__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.565882929489337,
+          "auc": 0.7767249142553024,
+          "seconds": 1.0194228750187904,
+          "iterations": 182,
+          "accepted": false,
+          "starting_logloss": 0.566168655759451,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5624902524611654,
+          "auc": 0.7790415428798998,
+          "seconds": 1.1303264999878593,
+          "iterations": 184,
+          "accepted": true,
+          "starting_logloss": 0.566168655759451,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5664473027195698,
+          "auc": 0.7759983198160303,
+          "seconds": 0.8432840419700369,
+          "iterations": 116,
+          "accepted": false,
+          "starting_logloss": 0.566168655759451,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5654883115470617,
+          "auc": 0.7781542834308508,
+          "seconds": 0.6609229170135222,
+          "iterations": 91,
+          "accepted": false,
+          "starting_logloss": 0.5624902524611654,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5614897103455976,
+          "auc": 0.7801630724471235,
+          "seconds": 2.1288272090023383,
+          "iterations": 414,
+          "accepted": false,
+          "starting_logloss": 0.5624902524611654,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5613227581967183,
+          "auc": 0.7799773232865655,
+          "seconds": 2.4966167919919826,
+          "iterations": 414,
+          "accepted": true,
+          "starting_logloss": 0.5624902524611654,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__21d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5641112123800884,
+          "auc": 0.778015995585047,
+          "seconds": 1.014622084039729,
+          "iterations": 142,
+          "accepted": false,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5644434695781694,
+          "auc": 0.7781128950272902,
+          "seconds": 0.7267091670073569,
+          "iterations": 88,
+          "accepted": false,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5640141058883484,
+          "auc": 0.7781149697902053,
+          "seconds": 1.6531637919833884,
+          "iterations": 301,
+          "accepted": false,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5608781054420455,
+          "auc": 0.7803502819558279,
+          "seconds": 2.6067490000277758,
+          "iterations": 475,
+          "accepted": true,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5641878540545102,
+          "auc": 0.7779437528746151,
+          "seconds": 0.8786972090019844,
+          "iterations": 121,
+          "accepted": false,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5613766073515261,
+          "auc": 0.7804770294894512,
+          "seconds": 2.505174416990485,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5613227581967183,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5624503800260602,
+          "auc": 0.778603652145499,
+          "seconds": 1.2646252919803374,
+          "iterations": 185,
+          "accepted": false,
+          "starting_logloss": 0.5608781054420455,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d",
+            "item__3d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__30d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.562154214888155,
+          "auc": 0.779589511808108,
+          "seconds": 1.0139151249895804,
+          "iterations": 138,
+          "accepted": false,
+          "starting_logloss": 0.5608781054420455,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d",
+            "item__3d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5624735749967086,
+          "auc": 0.7793508873591801,
+          "seconds": 2.0528655420057476,
+          "iterations": 357,
+          "accepted": false,
+          "starting_logloss": 0.5608781054420455,
+          "starting_packs": [
+            "user_genre__10d",
+            "item__all",
+            "user__all",
+            "genre__7d",
+            "item__3d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 38.605250504100695,
+      "search_scoring_seconds": 0.00033458502730354667,
+      "refit_seconds": 2.7069427910028026,
+      "iterations": 475,
+      "validation_logloss": 0.5608781054420455,
+      "test": {
+        "logloss": 0.5828184138049967,
+        "auc": 0.7499558504145931,
+        "brier": 0.19940364937018207,
+        "ndcg@10": 0.7955440693183676,
+        "recall@10": 0.4153104181580059,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": -0.0006022548565660085,
+        "logloss_ci95": [
+          -0.0020718009929351026,
+          0.0009685327526555628
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.008099777325007796,
+        "ndcg@10_ci95": [
+          0.001753179843544047,
+          0.01453876897591047
+        ],
+        "recall@10_delta": 0.0016154403932483563,
+        "recall@10_ci95": [
+          -0.0018002312677295718,
+          0.005131469988887722
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "method": "auto_residual",
+      "feature_count": 54,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__60d__log_count_mean",
+        "user_genre__60d__log_count_max",
+        "user_genre__60d__positive_rate_mean",
+        "user_genre__60d__positive_rate_min",
+        "user_genre__60d__rating_mean",
+        "user_genre__60d__gap_days_min",
+        "item__180d__log_count",
+        "item__180d__positive_rate",
+        "item__180d__rating_mean",
+        "item__180d__gap_days",
+        "user__120d__log_count",
+        "user__120d__positive_rate",
+        "user__120d__rating_mean",
+        "user__120d__gap_days",
+        "user_genre__180d__log_count_mean",
+        "user_genre__180d__log_count_max",
+        "user_genre__180d__positive_rate_mean",
+        "user_genre__180d__positive_rate_min",
+        "user_genre__180d__rating_mean",
+        "user_genre__180d__gap_days_min",
+        "user_genre__10d__log_count_mean",
+        "user_genre__10d__log_count_max",
+        "user_genre__10d__positive_rate_mean",
+        "user_genre__10d__positive_rate_min",
+        "user_genre__10d__rating_mean",
+        "user_genre__10d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__60d",
+        "item__180d",
+        "user__120d",
+        "user_genre__180d",
+        "user_genre__10d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.3432484530682582,
+          "logloss": 0.588275226380657,
+          "auc": 0.7545143991573863,
+          "seconds": 2.0797085829544812,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__45d",
+          "strategy": "residual",
+          "proxy_score": 0.3419744379939333,
+          "logloss": 0.5882809499561363,
+          "auc": 0.754857999486171,
+          "seconds": 2.0469357909751125,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.34103652415756397,
+          "logloss": 0.593124031260714,
+          "auc": 0.7488537157507843,
+          "seconds": 1.99770545901265,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.6520683325138563,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.17533060806010098,
+          "logloss": 0.5649634381343027,
+          "auc": 0.7789985249415176,
+          "seconds": 0.6710073330323212,
+          "iterations": 113,
+          "accepted": true,
+          "starting_logloss": 0.588275226380657,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.17533060806010098,
+          "logloss": 0.5649634381343027,
+          "auc": 0.7789985249415176,
+          "seconds": 0.6576730000087991,
+          "iterations": 113,
+          "accepted": false,
+          "starting_logloss": 0.588275226380657,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.17476336144949453,
+          "logloss": 0.5661411746220657,
+          "auc": 0.7766660729104813,
+          "seconds": 0.7221933750552125,
+          "iterations": 126,
+          "accepted": false,
+          "starting_logloss": 0.588275226380657,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.09296751816322625,
+          "logloss": 0.5637091668044643,
+          "auc": 0.7783628995062848,
+          "seconds": 0.7662057499983348,
+          "iterations": 131,
+          "accepted": false,
+          "starting_logloss": 0.5649634381343027,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.09159928012937271,
+          "logloss": 0.5619107516817348,
+          "auc": 0.7802415661599864,
+          "seconds": 0.9367650839849375,
+          "iterations": 169,
+          "accepted": true,
+          "starting_logloss": 0.5649634381343027,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.09142484656920015,
+          "logloss": 0.562594232927233,
+          "auc": 0.7791464564278239,
+          "seconds": 1.371656500035897,
+          "iterations": 269,
+          "accepted": false,
+          "starting_logloss": 0.5649634381343027,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.04820894443760763,
+          "logloss": 0.5603749785268456,
+          "auc": 0.7810214900202835,
+          "seconds": 1.1306294999667443,
+          "iterations": 201,
+          "accepted": true,
+          "starting_logloss": 0.5619107516817348,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.04820894443760763,
+          "logloss": 0.5603749785268456,
+          "auc": 0.7810214900202835,
+          "seconds": 1.199886707996484,
+          "iterations": 201,
+          "accepted": false,
+          "starting_logloss": 0.5619107516817348,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.04515892658433643,
+          "logloss": 0.5619321202285428,
+          "auc": 0.7802735246325292,
+          "seconds": 1.3690774170099758,
+          "iterations": 221,
+          "accepted": false,
+          "starting_logloss": 0.5619107516817348,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.042516174182837596,
+          "logloss": 0.5616609333759602,
+          "auc": 0.7802107118531152,
+          "seconds": 0.8331686249584891,
+          "iterations": 115,
+          "accepted": false,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__21d",
+          "strategy": "residual",
+          "proxy_score": 0.041922857982325326,
+          "logloss": 0.5616167882890101,
+          "auc": 0.7799294879802127,
+          "seconds": 1.0776427920209244,
+          "iterations": 173,
+          "accepted": false,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.04171379897114675,
+          "logloss": 0.5624586357692082,
+          "auc": 0.7800096112278975,
+          "seconds": 0.8276026250096038,
+          "iterations": 101,
+          "accepted": false,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.04153257056515243,
+          "logloss": 0.5597220000210584,
+          "auc": 0.7818501663568057,
+          "seconds": 2.4116913749603555,
+          "iterations": 496,
+          "accepted": true,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.04072358638929276,
+          "logloss": 0.5612667655449933,
+          "auc": 0.780161496339673,
+          "seconds": 1.0599399160128087,
+          "iterations": 173,
+          "accepted": false,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04044935600922465,
+          "logloss": 0.5616780520189293,
+          "auc": 0.7798475036790978,
+          "seconds": 1.0418722920003347,
+          "iterations": 170,
+          "accepted": false,
+          "starting_logloss": 0.5603749785268456,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.040228905554143116,
+          "logloss": 0.561160222792417,
+          "auc": 0.7806544885029106,
+          "seconds": 1.0338075829786249,
+          "iterations": 139,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.039662505243637215,
+          "logloss": 0.561952516510977,
+          "auc": 0.780194514455078,
+          "seconds": 0.82800783298444,
+          "iterations": 105,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.03948225784241355,
+          "logloss": 0.5605038632844098,
+          "auc": 0.780969612042843,
+          "seconds": 1.4580288339639083,
+          "iterations": 227,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.03916994657786434,
+          "logloss": 0.5610033609327264,
+          "auc": 0.7803093743986081,
+          "seconds": 1.5656004999764264,
+          "iterations": 256,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.038921328983856994,
+          "logloss": 0.5609545695258322,
+          "auc": 0.7806008385176582,
+          "seconds": 1.3527441250043921,
+          "iterations": 199,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__3d",
+          "strategy": "residual",
+          "proxy_score": 0.038352289326918004,
+          "logloss": 0.5604012733220192,
+          "auc": 0.7810328166229792,
+          "seconds": 2.505156708008144,
+          "iterations": 443,
+          "accepted": false,
+          "starting_logloss": 0.5597220000210584,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__180d",
+            "user__120d",
+            "user_genre__180d",
+            "user_genre__10d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 30.9447077079094,
+      "search_scoring_seconds": 0.04784900200320408,
+      "refit_seconds": 2.936545207980089,
+      "iterations": 496,
+      "validation_logloss": 0.5597220000210584,
+      "test": {
+        "logloss": 0.583219801482175,
+        "auc": 0.7490264256094896,
+        "brier": 0.19970538312531091,
+        "ndcg@10": 0.799448866080241,
+        "recall@10": 0.41829334559784476,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": -0.00020086717938761793,
+        "logloss_ci95": [
+          -0.002035856856135516,
+          0.0019410355816801344
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.012004574086881126,
+        "ndcg@10_ci95": [
+          0.0063345547493452,
+          0.01709116581643348
+        ],
+        "recall@10_delta": 0.004598367833087257,
+        "recall@10_ci95": [
+          0.0006745192373006826,
+          0.008700613893048619
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 73,
+      "method": "auto_random",
+      "feature_count": 58,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__120d__log_count_mean",
+        "user_genre__120d__log_count_max",
+        "user_genre__120d__positive_rate_mean",
+        "user_genre__120d__positive_rate_min",
+        "user_genre__120d__rating_mean",
+        "user_genre__120d__gap_days_min",
+        "user_genre__60d__log_count_mean",
+        "user_genre__60d__log_count_max",
+        "user_genre__60d__positive_rate_mean",
+        "user_genre__60d__positive_rate_min",
+        "user_genre__60d__rating_mean",
+        "user_genre__60d__gap_days_min",
+        "item__7d__log_count",
+        "item__7d__positive_rate",
+        "item__7d__rating_mean",
+        "item__7d__gap_days",
+        "item__90d__log_count",
+        "item__90d__positive_rate",
+        "item__90d__rating_mean",
+        "item__90d__gap_days",
+        "user__60d__log_count",
+        "user__60d__positive_rate",
+        "user__60d__rating_mean",
+        "user__60d__gap_days",
+        "user_genre__45d__log_count_mean",
+        "user_genre__45d__log_count_max",
+        "user_genre__45d__positive_rate_mean",
+        "user_genre__45d__positive_rate_min",
+        "user_genre__45d__rating_mean",
+        "user_genre__45d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__120d",
+        "user_genre__60d",
+        "item__7d",
+        "item__90d",
+        "user__60d",
+        "user_genre__45d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "item__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.6237484557305364,
+          "auc": 0.7095432273202502,
+          "seconds": 0.4545991250197403,
+          "iterations": 67,
+          "accepted": false,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5872736601883933,
+          "auc": 0.7543524251770147,
+          "seconds": 2.161037417012267,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5870935712816524,
+          "auc": 0.7548835822924167,
+          "seconds": 2.1567588329780847,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5869311983016272,
+          "auc": 0.755728803304889,
+          "seconds": 2.3351000000257045,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.5870935712816524,
+          "starting_packs": [
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "genre__all",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5878396200110418,
+          "auc": 0.7543261121966959,
+          "seconds": 2.4046094579971395,
+          "iterations": 497,
+          "accepted": false,
+          "starting_logloss": 0.5870935712816524,
+          "starting_packs": [
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "user_genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5870014279784947,
+          "auc": 0.7551746011833735,
+          "seconds": 2.446185000007972,
+          "iterations": 467,
+          "accepted": false,
+          "starting_logloss": 0.5870935712816524,
+          "starting_packs": [
+            "user_genre__120d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "item__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5825655225815604,
+          "auc": 0.7592116178744761,
+          "seconds": 2.3125578750041313,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.5869311983016272,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__120d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5880318050653548,
+          "auc": 0.754709720721952,
+          "seconds": 2.273531708982773,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5869311983016272,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5914814080578469,
+          "auc": 0.7539938384706066,
+          "seconds": 2.2954467079835013,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5869311983016272,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5829306135080169,
+          "auc": 0.7586421800476053,
+          "seconds": 2.598637207993306,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__14d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5863548291618979,
+          "auc": 0.7554399126042186,
+          "seconds": 1.4585735410219058,
+          "iterations": 210,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "genre__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.584505615537854,
+          "auc": 0.7582925958532452,
+          "seconds": 2.863678499998059,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5837155387103471,
+          "auc": 0.7585882273072495,
+          "seconds": 3.145148915995378,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5825146262469283,
+          "auc": 0.7590956804789599,
+          "seconds": 3.6662772910203785,
+          "iterations": 489,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "genre__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5827255081019043,
+          "auc": 0.7589468852501525,
+          "seconds": 3.2643076659878716,
+          "iterations": 497,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user__7d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5805083173516131,
+          "auc": 0.7608002095207789,
+          "seconds": 2.3986874590045772,
+          "iterations": 490,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5701361542898763,
+          "auc": 0.7733646887889465,
+          "seconds": 1.0387430840055458,
+          "iterations": 166,
+          "accepted": false,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "item__90d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5650793468638838,
+          "auc": 0.7771471151516927,
+          "seconds": 1.2897741250344552,
+          "iterations": 200,
+          "accepted": true,
+          "starting_logloss": 0.5825655225815604,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "item__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5662086877858431,
+          "auc": 0.7762407465128756,
+          "seconds": 0.9079986669821665,
+          "iterations": 137,
+          "accepted": false,
+          "starting_logloss": 0.5650793468638838,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "genre__3d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5660807971146214,
+          "auc": 0.7766446841528754,
+          "seconds": 1.5989606669754721,
+          "iterations": 277,
+          "accepted": false,
+          "starting_logloss": 0.5650793468638838,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__60d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5643857911408832,
+          "auc": 0.778026280354004,
+          "seconds": 0.8570975830079988,
+          "iterations": 131,
+          "accepted": true,
+          "starting_logloss": 0.5650793468638838,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__10d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5638561287717654,
+          "auc": 0.7781340433617258,
+          "seconds": 1.2091755000292324,
+          "iterations": 178,
+          "accepted": false,
+          "starting_logloss": 0.5643857911408832,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "item__1d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5649013324732114,
+          "auc": 0.7775179456306687,
+          "seconds": 1.071765290980693,
+          "iterations": 146,
+          "accepted": false,
+          "starting_logloss": 0.5643857911408832,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d",
+            "user__60d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user_genre__45d",
+          "strategy": "random",
+          "proxy_score": null,
+          "logloss": 0.5626094534265658,
+          "auc": 0.7793950005586722,
+          "seconds": 2.2718336670077406,
+          "iterations": 380,
+          "accepted": true,
+          "starting_logloss": 0.5643857911408832,
+          "starting_packs": [
+            "user_genre__120d",
+            "user_genre__60d",
+            "item__7d",
+            "item__90d",
+            "user__60d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 48.480485290056095,
+      "search_scoring_seconds": 0.00036229105899110436,
+      "refit_seconds": 2.2932892499957234,
+      "iterations": 380,
+      "validation_logloss": 0.5626094534265658,
+      "test": {
+        "logloss": 0.58669768518123,
+        "auc": 0.7455197248914783,
+        "brier": 0.201113985396892,
+        "ndcg@10": 0.7872461743743979,
+        "recall@10": 0.414016495955703,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": 0.0025600550942288898,
+        "logloss_ci95": [
+          0.0007058414255770683,
+          0.004236837542364571
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": -0.0022808637905384127,
+        "ndcg@10_ci95": [
+          -0.008498225353990191,
+          0.003993045643695864
+        ],
+        "recall@10_delta": 0.00043453710106889206,
+        "recall@10_ci95": [
+          -0.0037942721876930434,
+          0.00483122920363854
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 73,
+      "method": "auto_residual",
+      "feature_count": 54,
+      "columns": [
+        "user",
+        "item",
+        "gender",
+        "occupation",
+        "age",
+        "release_year",
+        "unknown",
+        "Action",
+        "Adventure",
+        "Animation",
+        "Children",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Fantasy",
+        "FilmNoir",
+        "Horror",
+        "Musical",
+        "Mystery",
+        "Romance",
+        "SciFi",
+        "Thriller",
+        "War",
+        "Western",
+        "hour",
+        "weekday",
+        "day",
+        "user_genre__60d__log_count_mean",
+        "user_genre__60d__log_count_max",
+        "user_genre__60d__positive_rate_mean",
+        "user_genre__60d__positive_rate_min",
+        "user_genre__60d__rating_mean",
+        "user_genre__60d__gap_days_min",
+        "item__120d__log_count",
+        "item__120d__positive_rate",
+        "item__120d__rating_mean",
+        "item__120d__gap_days",
+        "user__7d__log_count",
+        "user__7d__positive_rate",
+        "user__7d__rating_mean",
+        "user__7d__gap_days",
+        "user_genre__180d__log_count_mean",
+        "user_genre__180d__log_count_max",
+        "user_genre__180d__positive_rate_mean",
+        "user_genre__180d__positive_rate_min",
+        "user_genre__180d__rating_mean",
+        "user_genre__180d__gap_days_min",
+        "user_genre__7d__log_count_mean",
+        "user_genre__7d__log_count_max",
+        "user_genre__7d__positive_rate_mean",
+        "user_genre__7d__positive_rate_min",
+        "user_genre__7d__rating_mean",
+        "user_genre__7d__gap_days_min"
+      ],
+      "selected_packs": [
+        "user_genre__60d",
+        "item__120d",
+        "user__7d",
+        "user_genre__180d",
+        "user_genre__7d"
+      ],
+      "trials": [
+        {
+          "round": 1,
+          "pack": "user_genre__60d",
+          "strategy": "residual",
+          "proxy_score": 0.3388167404603893,
+          "logloss": 0.587498431945636,
+          "auc": 0.7551356170115171,
+          "seconds": 2.0329398330068216,
+          "iterations": 500,
+          "accepted": true,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user_genre__45d",
+          "strategy": "residual",
+          "proxy_score": 0.33755721834783176,
+          "logloss": 0.5879631019148953,
+          "auc": 0.7550488331515557,
+          "seconds": 2.039508332964033,
+          "iterations": 499,
+          "accepted": false,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 1,
+          "pack": "user__60d",
+          "strategy": "residual",
+          "proxy_score": 0.3369506524902453,
+          "logloss": 0.5918169172000499,
+          "auc": 0.7494240262247183,
+          "seconds": 1.9949343330226839,
+          "iterations": 500,
+          "accepted": false,
+          "starting_logloss": 0.650491054271426,
+          "starting_packs": []
+        },
+        {
+          "round": 2,
+          "pack": "item__180d",
+          "strategy": "residual",
+          "proxy_score": 0.17329853973534182,
+          "logloss": 0.5657741572767007,
+          "auc": 0.7770153365406139,
+          "seconds": 0.7780692499945872,
+          "iterations": 119,
+          "accepted": false,
+          "starting_logloss": 0.587498431945636,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__all",
+          "strategy": "residual",
+          "proxy_score": 0.17329853973534182,
+          "logloss": 0.5657741572767007,
+          "auc": 0.7770153365406139,
+          "seconds": 0.7563161250436679,
+          "iterations": 119,
+          "accepted": false,
+          "starting_logloss": 0.587498431945636,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 2,
+          "pack": "item__120d",
+          "strategy": "residual",
+          "proxy_score": 0.17287988081802752,
+          "logloss": 0.5646509820840873,
+          "auc": 0.7781973191783569,
+          "seconds": 1.2018188750371337,
+          "iterations": 226,
+          "accepted": true,
+          "starting_logloss": 0.587498431945636,
+          "starting_packs": [
+            "user_genre__60d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__7d",
+          "strategy": "residual",
+          "proxy_score": 0.0765429511977954,
+          "logloss": 0.5616206726724744,
+          "auc": 0.7800901975127992,
+          "seconds": 1.4648889580275863,
+          "iterations": 247,
+          "accepted": true,
+          "starting_logloss": 0.5646509820840873,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__10d",
+          "strategy": "residual",
+          "proxy_score": 0.0752060822246955,
+          "logloss": 0.5640049462278275,
+          "auc": 0.778741788613751,
+          "seconds": 0.7121104580000974,
+          "iterations": 95,
+          "accepted": false,
+          "starting_logloss": 0.5646509820840873,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d"
+          ]
+        },
+        {
+          "round": 3,
+          "pack": "user__1d",
+          "strategy": "residual",
+          "proxy_score": 0.0751839206086432,
+          "logloss": 0.5631026555743933,
+          "auc": 0.7793439952282947,
+          "seconds": 1.189360000018496,
+          "iterations": 206,
+          "accepted": false,
+          "starting_logloss": 0.5646509820840873,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__180d",
+          "strategy": "residual",
+          "proxy_score": 0.05469482572344471,
+          "logloss": 0.5608747265852632,
+          "auc": 0.7807073548867185,
+          "seconds": 1.2223640839802101,
+          "iterations": 189,
+          "accepted": true,
+          "starting_logloss": 0.5616206726724744,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__all",
+          "strategy": "residual",
+          "proxy_score": 0.05469482572344471,
+          "logloss": 0.5608747265852632,
+          "auc": 0.7807073548867185,
+          "seconds": 1.2361048329621553,
+          "iterations": 189,
+          "accepted": false,
+          "starting_logloss": 0.5616206726724744,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 4,
+          "pack": "user_genre__120d",
+          "strategy": "residual",
+          "proxy_score": 0.052653111453981695,
+          "logloss": 0.5627689840855871,
+          "auc": 0.7795037341636374,
+          "seconds": 1.0512129999697208,
+          "iterations": 156,
+          "accepted": false,
+          "starting_logloss": 0.5616206726724744,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__90d",
+          "strategy": "residual",
+          "proxy_score": 0.04703713872640329,
+          "logloss": 0.5626620723699879,
+          "auc": 0.7796211408118616,
+          "seconds": 0.9184790419531055,
+          "iterations": 106,
+          "accepted": false,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__21d",
+          "strategy": "residual",
+          "proxy_score": 0.04684247902756402,
+          "logloss": 0.5621988625128629,
+          "auc": 0.7798301843062653,
+          "seconds": 1.3221089580329135,
+          "iterations": 185,
+          "accepted": false,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 5,
+          "pack": "user_genre__14d",
+          "strategy": "residual",
+          "proxy_score": 0.04680670765596046,
+          "logloss": 0.5618725229185817,
+          "auc": 0.7798313775175556,
+          "seconds": 1.4583407919853926,
+          "iterations": 184,
+          "accepted": false,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__10d",
+          "strategy": "residual",
+          "proxy_score": 0.04612635746285735,
+          "logloss": 0.5610966526213572,
+          "auc": 0.7804514555877675,
+          "seconds": 1.5701002080459148,
+          "iterations": 208,
+          "accepted": false,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__1d",
+          "strategy": "residual",
+          "proxy_score": 0.04529615017264002,
+          "logloss": 0.5628426199179296,
+          "auc": 0.7787176483465279,
+          "seconds": 1.12607683299575,
+          "iterations": 137,
+          "accepted": false,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 6,
+          "pack": "user_genre__7d",
+          "strategy": "residual",
+          "proxy_score": 0.04474460413809905,
+          "logloss": 0.5605905318931325,
+          "auc": 0.7805868405464025,
+          "seconds": 1.4112624999834225,
+          "iterations": 212,
+          "accepted": true,
+          "starting_logloss": 0.5608747265852632,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__90d",
+          "strategy": "residual",
+          "proxy_score": 0.04088842884119123,
+          "logloss": 0.5620362356338064,
+          "auc": 0.7792845661823904,
+          "seconds": 1.3973243340151384,
+          "iterations": 202,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user_genre__30d",
+          "strategy": "residual",
+          "proxy_score": 0.04076258228556135,
+          "logloss": 0.5624499212478419,
+          "auc": 0.7796558864122691,
+          "seconds": 1.0404727090499364,
+          "iterations": 124,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        },
+        {
+          "round": 7,
+          "pack": "user__120d",
+          "strategy": "residual",
+          "proxy_score": 0.0401878175153413,
+          "logloss": 0.5612873906991334,
+          "auc": 0.7803644758274447,
+          "seconds": 1.2230219169869088,
+          "iterations": 171,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__45d",
+          "strategy": "residual",
+          "proxy_score": 0.040039628484462735,
+          "logloss": 0.5627606610691412,
+          "auc": 0.779315527344004,
+          "seconds": 0.9317991249845363,
+          "iterations": 115,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__21d",
+          "strategy": "residual",
+          "proxy_score": 0.039116709064201914,
+          "logloss": 0.5631922506451443,
+          "auc": 0.7784645539845654,
+          "seconds": 0.8703922500135377,
+          "iterations": 109,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        },
+        {
+          "round": 8,
+          "pack": "user__14d",
+          "strategy": "residual",
+          "proxy_score": 0.03857405592888863,
+          "logloss": 0.5628742254401978,
+          "auc": 0.7793273704112877,
+          "seconds": 0.824852041027043,
+          "iterations": 101,
+          "accepted": false,
+          "starting_logloss": 0.5605905318931325,
+          "starting_packs": [
+            "user_genre__60d",
+            "item__120d",
+            "user__7d",
+            "user_genre__180d",
+            "user_genre__7d"
+          ]
+        }
+      ],
+      "search_evaluations": 24,
+      "search_fit_seconds": 29.773858791100793,
+      "search_scoring_seconds": 0.07891412498429418,
+      "refit_seconds": 1.3151889590080827,
+      "iterations": 212,
+      "validation_logloss": 0.5605905318931325,
+      "test": {
+        "logloss": 0.5843686530074937,
+        "auc": 0.7487736525771325,
+        "brier": 0.20000760687220137,
+        "ndcg@10": 0.7904150155348434,
+        "recall@10": 0.4137403453132121,
+        "ranking_users": 279,
+        "rows": 20001
+      },
+      "vs_manual": {
+        "logloss_delta": 0.0002310229204926523,
+        "logloss_ci95": [
+          -0.0018707816807803414,
+          0.0018122293698321329
+        ],
+        "users": 301,
+        "bootstrap_samples": 1000,
+        "ndcg@10_delta": 0.0008879773699071256,
+        "ndcg@10_ci95": [
+          -0.0045489950702391445,
+          0.006427139389340835
+        ],
+        "recall@10_delta": 0.0001583864585779478,
+        "recall@10_ci95": [
+          -0.0031100806023774893,
+          0.0036990798813338254
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 385.5274240410072,
+  "provenance": {
+    "python": "3.13.14 (v3.13.14:fd17997c386, Jun 10 2026, 08:55:00) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "catboost": "1.2.8",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.18.1"
+    },
+    "git_revision": "6d8b14b660e9ff01522c19f4438611b50aa40351",
+    "config_sha256": "6d06974be3963eb7b9947bb6b6645902a76fa0858cc375115b894f3397ad5644",
+    "source_sha256": {
+      "__init__.py": "17d0fc3d8a4859c06944e5f5c57c016d38d26876ed61dd5e36a2f99ccae0ff30",
+      "audit.py": "49f4338c237a1831fd498bcdb45be9d73bd2862d26bd5df8fb99f69746b938b6",
+      "catalogue.py": "d48a28e63634472cb6d1c8074d1d0ba73d7b5d3c36fd802a8fb9667a6e71199c",
+      "cli.py": "b6fc7efbf3ca9a7c752b49e39c8ef464537fddffb37bd46fb947faceeeaf9675",
+      "data.py": "05d36ece70d393fd5ea55a0c6f76e8e724327d5b53c3e2b090945aff3c9b50d3",
+      "diagnostics.py": "b265c83133f13a319e02eb4ca43386c8a8c99c0115ce755258562bc09f456282",
+      "experiment.py": "6e310c1c8016e2af1aa1fa1801561ac3879fe50e0334fe4c00d774937ad67653",
+      "features.py": "bf4bc11bd0b484ea96c4e5f81cf9d08b7712d0e64446b2d68aabfd153533f779",
+      "from_static.py": "d1a4d4394ee8be5ba40817e93949ca4ce392ea287e5091c29bc60b287732ae11",
+      "grammar.py": "48a9135e81384ed9e671499d40abcfefd1706295c369d8305dd1028bbccc3607",
+      "metrics.py": "a05d7ce3c70aafa94ee5cf375e4efa2bd7318b8a5773c19a8217bb63325dda29",
+      "model.py": "f9dbe0ac1b0e3bb0959b734e9d03e44c1297478af95088047e06c045d57dfbbd",
+      "report.py": "ea1f25cd7e2f98536c9c4d6869946ca146764b0f065a1785dda3cf0f9b4d6224",
+      "search.py": "31161c1e424576cbd63721414a6a23d0df351aa7912fed18076841b4e395e667",
+      "snapshot.py": "ecade29da4d7774f5088fd0880a765f64519a9101b76c1279e0b4ae3ce134b1b",
+      "split.py": "5fe7d66e903ecbfa9db81003dc563c8e057214b74f8a37cdd497079d8aaa5691"
+    },
+    "dataset": {
+      "url": "https://files.grouplens.org/datasets/movielens/ml-100k.zip",
+      "sha256": "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229",
+      "bytes": 4924029
+    },
+    "started_utc": "2026-10-14 10:34:43.989927+00:00"
+  }
+}
