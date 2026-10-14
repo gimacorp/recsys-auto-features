@@ -232,7 +232,16 @@ def generate(experiment: Path, output: Path) -> None:
     fig.savefig(figures / "feature_quality.png", dpi=180)
     plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), constrained_layout=True)
-    methods = ["item_prior", "static", "manual", "random", "residual", "all_packs"]
+    methods = [
+        "item_prior",
+        "static",
+        "manual",
+        "auto_random",
+        "auto_residual",
+        "random",
+        "residual",
+        "all_packs",
+    ]
     for fold, ax in enumerate(axes):
         group = (
             catalogue[catalogue.fold == fold].groupby("method")["ndcg@10"].mean().reindex(methods)
@@ -240,7 +249,7 @@ def generate(experiment: Path, output: Path) -> None:
         ax.barh(
             [NAMES[name] for name in methods],
             group,
-            color=["#aaa", "#ccc", "#222", "#dd8c31", "#007f89", "#777"],
+            color=["#aaa", "#ccc", "#222", "#dd8c31", "#007f89", "#dd8c31", "#007f89", "#777"],
         )
         ax.set_title(f"Фиксированный каталог: период {fold + 1}")
         ax.set_xlabel("NDCG@10")

@@ -1,0 +1,114 @@
+{
+  "records": [
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 0,
+      "seed": 17,
+      "method": "auto_residual",
+      "status": "passed"
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 0,
+      "seed": 42,
+      "method": "auto_residual",
+      "status": "passed"
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 0,
+      "seed": 73,
+      "method": "auto_residual",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 17,
+      "method": "auto_residual",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 42,
+      "method": "auto_residual",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 73,
+      "method": "auto_random",
+      "status": "passed"
+    },
+    {
+      "fold": 1,
+      "seed": 73,
+      "method": "auto_residual",
+      "status": "passed"
+    }
+  ],
+  "status": "passed",
+  "provenance": {
+    "python": "3.13.14 (v3.13.14:fd17997c386, Jun 10 2026, 08:55:00) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "catboost": "1.2.8",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.18.1"
+    },
+    "git_revision": "3c6ba4113eb6fc63fc0fb0332ae8e465b6c20093",
+    "config_sha256": "3b1a0412b64b950fdfed4f4258fb342a820759be978d4fb8120403ceb71010e6",
+    "source_sha256": {
+      "__init__.py": "17d0fc3d8a4859c06944e5f5c57c016d38d26876ed61dd5e36a2f99ccae0ff30",
+      "audit.py": "49f4338c237a1831fd498bcdb45be9d73bd2862d26bd5df8fb99f69746b938b6",
+      "catalogue.py": "87bd6e69f3cd5187c31d50b3d95178a08288fd765f649b1d0ceb3648a163e8e2",
+      "cli.py": "b6fc7efbf3ca9a7c752b49e39c8ef464537fddffb37bd46fb947faceeeaf9675",
+      "data.py": "05d36ece70d393fd5ea55a0c6f76e8e724327d5b53c3e2b090945aff3c9b50d3",
+      "diagnostics.py": "b265c83133f13a319e02eb4ca43386c8a8c99c0115ce755258562bc09f456282",
+      "experiment.py": "6e310c1c8016e2af1aa1fa1801561ac3879fe50e0334fe4c00d774937ad67653",
+      "features.py": "bf4bc11bd0b484ea96c4e5f81cf9d08b7712d0e64446b2d68aabfd153533f779",
+      "from_static.py": "7beeff5d51dc415ce0db650ff5acff5bb3952089488481902efca341f6e2b76f",
+      "grammar.py": "48a9135e81384ed9e671499d40abcfefd1706295c369d8305dd1028bbccc3607",
+      "metrics.py": "a05d7ce3c70aafa94ee5cf375e4efa2bd7318b8a5773c19a8217bb63325dda29",
+      "model.py": "f9dbe0ac1b0e3bb0959b734e9d03e44c1297478af95088047e06c045d57dfbbd",
+      "report.py": "ea1f25cd7e2f98536c9c4d6869946ca146764b0f065a1785dda3cf0f9b4d6224",
+      "search.py": "31161c1e424576cbd63721414a6a23d0df351aa7912fed18076841b4e395e667",
+      "snapshot.py": "ecade29da4d7774f5088fd0880a765f64519a9101b76c1279e0b4ae3ce134b1b",
+      "split.py": "5fe7d66e903ecbfa9db81003dc563c8e057214b74f8a37cdd497079d8aaa5691"
+    },
+    "dataset": {
+      "url": "https://files.grouplens.org/datasets/movielens/ml-100k.zip",
+      "sha256": "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229",
+      "bytes": 4924029
+    },
+    "started_utc": "2026-10-14 10:37:13.991895+00:00"
+  }
+}
