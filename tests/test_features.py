@@ -7,12 +7,17 @@ from recsys_auto.grammar import ENTITIES, FeaturePack
 
 
 def example():
-    return pd.DataFrame({
-        "event_id": [0, 1, 2, 3, 4], "timestamp": [0, 86400, 86400, 172800, 259200],
-        "user": [1, 1, 1, 2, 1], "item": [1, 2, 3, 1, 1],
-        "rating": [5, 1, 4, 2, 3], "label": [1, 0, 1, 0, 0],
-        "genres": [(0, 1), (0,), (1,), (0, 1), (0, 1)],
-    })
+    return pd.DataFrame(
+        {
+            "event_id": [0, 1, 2, 3, 4],
+            "timestamp": [0, 86400, 86400, 172800, 259200],
+            "user": [1, 1, 1, 2, 1],
+            "item": [1, 2, 3, 1, 1],
+            "rating": [5, 1, 4, 2, 3],
+            "label": [1, 0, 1, 0, 0],
+            "genres": [(0, 1), (0,), (1,), (0, 1), (0, 1)],
+        }
+    )
 
 
 def oracle(events, pack):
@@ -31,15 +36,26 @@ def oracle(events, pack):
             if genre is not None:
                 past = past.loc[past.genres.map(lambda gs: genre in gs).astype(bool)]
             count = len(past)
-            stats.append([
-                np.log1p(count), (past.label.sum() + 2.5) / (count + 5),
-                (past.rating.sum() + 15) / (count + 5),
-                (query.timestamp - past.timestamp.max()) / 86400 if count else 3650,
-            ])
+            stats.append(
+                [
+                    np.log1p(count),
+                    (past.label.sum() + 2.5) / (count + 5),
+                    (past.rating.sum() + 15) / (count + 5),
+                    (query.timestamp - past.timestamp.max()) / 86400 if count else 3650,
+                ]
+            )
         values = np.array(stats)
         if "genre" in pack.entity:
-            rows.append([values[:, 0].mean(), values[:, 0].max(), values[:, 1].mean(),
-                         values[:, 1].min(), values[:, 2].mean(), values[:, 3].min()])
+            rows.append(
+                [
+                    values[:, 0].mean(),
+                    values[:, 0].max(),
+                    values[:, 1].mean(),
+                    values[:, 1].min(),
+                    values[:, 2].mean(),
+                    values[:, 3].min(),
+                ]
+            )
         else:
             rows.append(values[0])
     return np.array(rows)
@@ -72,3 +88,22 @@ def test_window_includes_left_boundary_and_excludes_query():
 def test_all_genres_contribute_to_user_affinity():
     frame = history_pack(example(), FeaturePack("user_genre", None))
     assert frame.iloc[4]["user_genre__all__log_count_mean"] == pytest.approx(np.log(3))
+
+
+@pytest.mark.parametrize("entity", ENTITIES)
+def test_randomized_repeated_interactions_match_oracle(entity):
+    rng = np.random.default_rng(7)
+    ratings = rng.integers(1, 6, 35)
+    events = pd.DataFrame(
+        {
+            "event_id": np.arange(35),
+            "timestamp": np.sort(rng.integers(0, 8, 35)) * 86400,
+            "user": rng.integers(1, 4, 35),
+            "item": rng.integers(1, 5, 35),
+            "rating": ratings,
+            "label": (ratings >= 4).astype(int),
+            "genres": [(0, 1) if index % 2 else (1, 2) for index in range(35)],
+        }
+    )
+    pack = FeaturePack(entity, 2)
+    np.testing.assert_allclose(history_pack(events, pack), oracle(events, pack), rtol=1e-6)

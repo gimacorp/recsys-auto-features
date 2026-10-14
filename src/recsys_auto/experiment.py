@@ -26,20 +26,26 @@ from .split import temporal_fold
 def write_json(path: Path, value: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
-                         encoding="utf-8")
+    temporary.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     temporary.replace(path)
 
 
 def provenance(config_path: Path, manifest: dict) -> dict:
     source = Path(__file__).parent
     return {
-        "python": sys.version, "platform": platform.platform(),
-        "packages": {name: version(name) for name in ["numpy", "pandas", "catboost", "scikit-learn", "scipy"]},
+        "python": sys.version,
+        "platform": platform.platform(),
+        "packages": {
+            name: version(name) for name in ["numpy", "pandas", "catboost", "scikit-learn", "scipy"]
+        },
         "git_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
         "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
-        "source_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest()
-                          for path in sorted(source.glob("*.py"))},
+        "source_sha256": {
+            path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in sorted(source.glob("*.py"))
+        },
         "dataset": manifest,
         "started_utc": str(pd.Timestamp.now(tz="UTC")),
     }
@@ -49,10 +55,17 @@ def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
     manifest = download(data_root)
     events = load(data_root)
     windows = list(dict.fromkeys(config["manual_days"] + config["candidate_days"]))
-    fingerprint = hashlib.sha256(json.dumps({"windows": windows, "data": manifest,
-        "engine": Path(__file__).with_name("features.py").read_text(),
-        "grammar": Path(__file__).with_name("grammar.py").read_text(),
-        "loader": Path(__file__).with_name("data.py").read_text()}).encode()).hexdigest()[:16]
+    fingerprint = hashlib.sha256(
+        json.dumps(
+            {
+                "windows": windows,
+                "data": manifest,
+                "engine": Path(__file__).with_name("features.py").read_text(),
+                "grammar": Path(__file__).with_name("grammar.py").read_text(),
+                "loader": Path(__file__).with_name("data.py").read_text(),
+            }
+        ).encode()
+    ).hexdigest()[:16]
     cache_root.mkdir(parents=True, exist_ok=True)
     cache = cache_root / f"features-{fingerprint}.pkl"
     stats_path = cache.with_suffix(".json")
@@ -73,7 +86,9 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
     if config["dataset"] != "ml-100k":
         raise ValueError("Поддерживается MovieLens 100K")
     if (output / "results.json").exists() and not resume:
-        raise ValueError("Каталог содержит завершённый запуск. Выберите новый --output или --resume")
+        raise ValueError(
+            "Каталог содержит завершённый запуск. Выберите новый --output или --resume"
+        )
     started = time.perf_counter()
     events, features, manifest, feature_stats = prepare(data_root, config, Path("artifacts/cache"))
     provenance_record = provenance(config_path, manifest)
@@ -97,8 +112,17 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
         manual_columns = STATIC_COLUMNS + [column for pack in manual for column in pack.columns]
         nonconstant = set(features.iloc[fold.train].nunique()[lambda counts: counts > 1].index)
         manual_columns = [column for column in manual_columns if column in nonconstant]
-        all_columns = list(dict.fromkeys(manual_columns + [column for pack in candidates
-                                                          for column in pack.columns if column in nonconstant]))
+        all_columns = list(
+            dict.fromkeys(
+                manual_columns
+                + [
+                    column
+                    for pack in candidates
+                    for column in pack.columns
+                    if column in nonconstant
+                ]
+            )
+        )
         tuning_path = output / f"tuning-fold{fold_index}.json"
         if resume and tuning_path.exists():
             tuning_record = json.loads(tuning_path.read_text())
@@ -111,62 +135,117 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
             if resume and checkpoint.exists():
                 records.extend(json.loads(checkpoint.read_text()))
                 continue
-            baseline = fit_validation(features, events.label, fold, manual_columns, params, config, seed)
-            static = fit_validation(features, events.label, fold, STATIC_COLUMNS, params, config, seed)
-            all_packs = fit_validation(features, events.label, fold, all_columns, params, config, seed)
+            baseline = fit_validation(
+                features, events.label, fold, manual_columns, params, config, seed
+            )
+            static = fit_validation(
+                features, events.label, fold, STATIC_COLUMNS, params, config, seed
+            )
+            all_packs = fit_validation(
+                features, events.label, fold, all_columns, params, config, seed
+            )
             methods = {"manual": baseline, "static": static, "all_packs": all_packs}
             searches = {}
             for strategy in ["random", "residual"]:
-                found = search(features, events.label, fold, baseline, candidates, params, config, seed, strategy)
+                found = search(
+                    features,
+                    events.label,
+                    fold,
+                    baseline,
+                    candidates,
+                    params,
+                    config,
+                    seed,
+                    strategy,
+                )
                 methods[strategy] = found.fitted
                 searches[strategy] = found
             predictions = {}
             seed_records = []
             for method, fitted in methods.items():
-                model, prediction, seconds = refit(features, events.label, fold, fitted, params, config, seed)
+                model, prediction, seconds = refit(
+                    features, events.label, fold, fitted, params, config, seed
+                )
                 predictions[method] = prediction
                 model_root = Path("artifacts/models") / output.name
                 model_root.mkdir(parents=True, exist_ok=True)
                 model.save_model(str(model_root / f"fold{fold_index}-seed{seed}-{method}.cbm"))
                 record = {
-                    "fold": fold_index, "seed": seed, "method": method,
-                    "params": params, "iterations": fitted.model.tree_count_,
-                    "columns": fitted.columns, "feature_count": len(fitted.columns),
-                    "validation_logloss": fitted.logloss, "validation_auc": fitted.auc,
-                    "validation_fit_seconds": fitted.seconds, "refit_seconds": seconds,
+                    "fold": fold_index,
+                    "seed": seed,
+                    "method": method,
+                    "params": params,
+                    "iterations": fitted.model.tree_count_,
+                    "columns": fitted.columns,
+                    "feature_count": len(fitted.columns),
+                    "validation_logloss": fitted.logloss,
+                    "validation_auc": fitted.auc,
+                    "validation_fit_seconds": fitted.seconds,
+                    "refit_seconds": seconds,
                     "test": evaluate(events.iloc[fold.test], prediction),
-                    "segments": segment_metrics(events.iloc[fold.development], events.iloc[fold.test], prediction),
+                    "segments": segment_metrics(
+                        events.iloc[fold.development], events.iloc[fold.test], prediction
+                    ),
                 }
                 if method in searches:
                     found = searches[method]
-                    record.update({"selected_packs": found.selected_packs, "trials": found.trials,
-                                   "search_scoring_seconds": found.scoring_seconds,
-                                   "search_fit_seconds": found.fit_seconds,
-                                   "search_evaluations": len(found.trials)})
+                    record.update(
+                        {
+                            "selected_packs": found.selected_packs,
+                            "trials": found.trials,
+                            "search_scoring_seconds": found.scoring_seconds,
+                            "search_fit_seconds": found.fit_seconds,
+                            "search_evaluations": len(found.trials),
+                        }
+                    )
                 seed_records.append(record)
-                print(f"test fold={fold_index} seed={seed} {method}: "
-                      f"logloss={record['test']['logloss']:.6f}, auc={record['test']['auc']:.6f}", flush=True)
+                print(
+                    f"test fold={fold_index} seed={seed} {method}: "
+                    f"logloss={record['test']['logloss']:.6f}, auc={record['test']['auc']:.6f}",
+                    flush=True,
+                )
             popularity = features.iloc[fold.test]["item__all__positive_rate"].to_numpy()
             predictions["item_prior"] = popularity
-            seed_records.append({"fold": fold_index, "seed": seed, "method": "item_prior",
-                                 "feature_count": 1, "test": evaluate(events.iloc[fold.test], popularity),
-                                 "segments": segment_metrics(events.iloc[fold.development], events.iloc[fold.test], popularity)})
+            seed_records.append(
+                {
+                    "fold": fold_index,
+                    "seed": seed,
+                    "method": "item_prior",
+                    "feature_count": 1,
+                    "test": evaluate(events.iloc[fold.test], popularity),
+                    "segments": segment_metrics(
+                        events.iloc[fold.development], events.iloc[fold.test], popularity
+                    ),
+                }
+            )
             for record in seed_records:
                 if record["method"] != "manual":
                     record["vs_manual"] = paired_bootstrap(
-                        events.iloc[fold.test], predictions["manual"], predictions[record["method"]],
-                        samples=config["bootstrap_samples"], seed=2026)
+                        events.iloc[fold.test],
+                        predictions["manual"],
+                        predictions[record["method"]],
+                        samples=config["bootstrap_samples"],
+                        seed=2026,
+                    )
                 if record["method"] == "residual":
                     record["vs_random"] = paired_bootstrap(
-                        events.iloc[fold.test], predictions["random"], predictions["residual"],
-                        samples=config["bootstrap_samples"], seed=2026)
+                        events.iloc[fold.test],
+                        predictions["random"],
+                        predictions["residual"],
+                        samples=config["bootstrap_samples"],
+                        seed=2026,
+                    )
             prediction_root = Path("artifacts/predictions") / output.name
             prediction_root.mkdir(parents=True, exist_ok=True)
             np.savez_compressed(prediction_root / f"fold{fold_index}-seed{seed}.npz", **predictions)
             write_json(checkpoint, seed_records)
             records.extend(seed_records)
-    result = {"config": config, "folds": fold_records, "records": records,
-              "elapsed_seconds_this_invocation": time.perf_counter() - started}
+    result = {
+        "config": config,
+        "folds": fold_records,
+        "records": records,
+        "elapsed_seconds_this_invocation": time.perf_counter() - started,
+    }
     write_json(output / "results.json", result)
     write_json(output / "folds.json", fold_records)
     return result

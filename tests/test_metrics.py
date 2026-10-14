@@ -6,8 +6,9 @@ from recsys_auto.metrics import evaluate, paired_bootstrap, ranking_per_user
 
 
 def test_known_ranking_and_user_filter():
-    events = pd.DataFrame({"user": [1, 1, 1, 2, 2], "item": [1, 2, 3, 1, 2],
-                           "label": [1, 0, 1, 1, 1]})
+    events = pd.DataFrame(
+        {"user": [1, 1, 1, 2, 2], "item": [1, 2, 3, 1, 2], "label": [1, 0, 1, 1, 1]}
+    )
     frame = ranking_per_user(events, np.array([0.9, 0.8, 0.7, 0.2, 0.3]))
     assert len(frame) == 1
     assert frame.iloc[0]["ndcg@10"] == pytest.approx((1 + 0.5) / (1 + 1 / np.log2(3)))

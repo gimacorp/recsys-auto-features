@@ -33,7 +33,8 @@ class TemporalFold:
         for name in ["train", "validation", "test"]:
             block = events.iloc[getattr(self, name)]
             result[name] = {
-                "rows": len(block), "users": int(block.user.nunique()),
+                "rows": len(block),
+                "users": int(block.user.nunique()),
                 "positive_fraction": float(block.label.mean()),
                 "start_utc": str(pd.to_datetime(block.timestamp.min(), unit="s", utc=True)),
                 "end_utc": str(pd.to_datetime(block.timestamp.max(), unit="s", utc=True)),

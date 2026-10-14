@@ -20,8 +20,13 @@ def main():
     experiment.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     if args.command == "download":
-        print(json.dumps({"archive": download(args.data), "summary": describe(load(args.data))},
-                         ensure_ascii=False, indent=2))
+        print(
+            json.dumps(
+                {"archive": download(args.data), "summary": describe(load(args.data))},
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
     elif args.command == "run":
         run(args.config, args.data, args.output, args.resume)
 

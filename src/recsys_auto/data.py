@@ -9,16 +9,32 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+import certifi
 import numpy as np
 import pandas as pd
-import certifi
 
 URL = "https://files.grouplens.org/datasets/movielens/ml-100k.zip"
 ARCHIVE_SHA256 = "50d2a982c66986937beb9ffb3aa76efe955bf3d5c6b761f4e3a7cd717c6a3229"
 GENRES = [
-    "unknown", "Action", "Adventure", "Animation", "Children", "Comedy", "Crime",
-    "Documentary", "Drama", "Fantasy", "FilmNoir", "Horror", "Musical", "Mystery",
-    "Romance", "SciFi", "Thriller", "War", "Western",
+    "unknown",
+    "Action",
+    "Adventure",
+    "Animation",
+    "Children",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Fantasy",
+    "FilmNoir",
+    "Horror",
+    "Musical",
+    "Mystery",
+    "Romance",
+    "SciFi",
+    "Thriller",
+    "War",
+    "Western",
 ]
 
 
@@ -47,22 +63,35 @@ def download(root: Path) -> dict:
 
 def load(root: Path) -> pd.DataFrame:
     directory = root / "ml-100k"
-    events = pd.read_csv(directory / "u.data", sep="\t", header=None,
-                         names=["user", "item", "rating", "timestamp"])
-    users = pd.read_csv(directory / "u.user", sep="|", header=None,
-                        names=["user", "age", "gender", "occupation", "zip"])
-    items = pd.read_csv(directory / "u.item", sep="|", header=None, encoding="latin-1",
-                        names=["item", "title", "release", "video_release", "url", *GENRES])
-    items["release_year"] = pd.to_datetime(items["release"], format="%d-%b-%Y",
-                                            errors="coerce").dt.year.fillna(0).astype(int)
+    events = pd.read_csv(
+        directory / "u.data", sep="\t", header=None, names=["user", "item", "rating", "timestamp"]
+    )
+    users = pd.read_csv(
+        directory / "u.user",
+        sep="|",
+        header=None,
+        names=["user", "age", "gender", "occupation", "zip"],
+    )
+    items = pd.read_csv(
+        directory / "u.item",
+        sep="|",
+        header=None,
+        encoding="latin-1",
+        names=["item", "title", "release", "video_release", "url", *GENRES],
+    )
+    items["release_year"] = (
+        pd.to_datetime(items["release"], format="%d-%b-%Y", errors="coerce")
+        .dt.year.fillna(0)
+        .astype(int)
+    )
     events = events.merge(users.drop(columns="zip"), on="user", validate="many_to_one")
-    events = events.merge(items[["item", "release_year", *GENRES]], on="item",
-                          validate="many_to_one")
+    events = events.merge(
+        items[["item", "release_year", *GENRES]], on="item", validate="many_to_one"
+    )
     events = events.sort_values(["timestamp", "user", "item"], kind="stable").reset_index(drop=True)
     events["event_id"] = np.arange(len(events))
     events["label"] = (events["rating"] >= 4).astype(np.int8)
-    events["genres"] = [tuple(np.flatnonzero(row)) or (0,)
-                       for row in events[GENRES].to_numpy()]
+    events["genres"] = [tuple(np.flatnonzero(row)) or (0,) for row in events[GENRES].to_numpy()]
     if len(events) != 100_000 or events[["user", "item"]].duplicated().any():
         raise ValueError("Нарушена ожидаемая схема MovieLens 100K")
     return events
@@ -70,8 +99,10 @@ def load(root: Path) -> pd.DataFrame:
 
 def describe(events: pd.DataFrame) -> dict:
     return {
-        "events": len(events), "users": int(events.user.nunique()),
-        "items": int(events.item.nunique()), "positive_fraction": float(events.label.mean()),
+        "events": len(events),
+        "users": int(events.user.nunique()),
+        "items": int(events.item.nunique()),
+        "positive_fraction": float(events.label.mean()),
         "start_utc": str(pd.to_datetime(events.timestamp.min(), unit="s", utc=True)),
         "end_utc": str(pd.to_datetime(events.timestamp.max(), unit="s", utc=True)),
         "distinct_timestamps": int(events.timestamp.nunique()),

@@ -4,8 +4,14 @@ from dataclasses import dataclass
 
 ENTITIES = ("user", "item", "user_item", "genre", "user_genre")
 SCALAR_STATS = ("log_count", "positive_rate", "rating_mean", "gap_days")
-MULTI_STATS = ("log_count_mean", "log_count_max", "positive_rate_mean",
-               "positive_rate_min", "rating_mean", "gap_days_min")
+MULTI_STATS = (
+    "log_count_mean",
+    "log_count_max",
+    "positive_rate_mean",
+    "positive_rate_min",
+    "rating_mean",
+    "gap_days_min",
+)
 
 
 @dataclass(frozen=True, order=True)
@@ -30,17 +36,23 @@ class FeaturePack:
     def sql(self) -> str:
         """Иллюстрирует причинное условие и группировку одного пакета."""
         keys = {
-            "user": "h.user = q.user", "item": "h.item = q.item",
+            "user": "h.user = q.user",
+            "item": "h.item = q.item",
             "user_item": "h.user = q.user AND h.item = q.item",
             "genre": "h.genre = q.genre",
             "user_genre": "h.user = q.user AND h.genre = q.genre",
         }
-        lower = "" if self.days is None else f"\n  AND h.timestamp >= q.timestamp - {self.days * 86400}"
+        lower = (
+            "" if self.days is None else f"\n  AND h.timestamp >= q.timestamp - {self.days * 86400}"
+        )
         return (
             "SELECT COUNT(*) AS count,\n"
             "       (COALESCE(SUM(h.label), 0) + 2.5) / (COUNT(*) + 5) AS positive_rate,\n"
             "       (COALESCE(SUM(h.rating), 0) + 15) / (COUNT(*) + 5) AS rating_mean\n"
-            "FROM history h\nWHERE " + keys[self.entity] + "\n  AND h.timestamp < q.timestamp" + lower
+            "FROM history h\nWHERE "
+            + keys[self.entity]
+            + "\n  AND h.timestamp < q.timestamp"
+            + lower
         )
 
 
