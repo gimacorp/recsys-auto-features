@@ -1,0 +1,9 @@
+{
+  "search_rounds": 8,
+  "proposals_per_round": 3,
+  "min_improvement": 0.0001,
+  "bootstrap_samples": 1000,
+  "pair_long_history": true,
+  "feature_budget_ratio": 0.6,
+  "scope": "preregistered follow-up on untouched user cohort"
+}
