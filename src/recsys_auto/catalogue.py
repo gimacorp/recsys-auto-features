@@ -30,6 +30,10 @@ def catalogue_evaluation(data_root: Path, experiment_root: Path, batch_users: in
     started = time.perf_counter()
     experiment = json.loads((experiment_root / "results.json").read_text())
     config = experiment["config"]
+    if (experiment_root / "from_static.json").exists():
+        experiment["records"].extend(
+            json.loads((experiment_root / "from_static.json").read_text())["records"]
+        )
     events = load(data_root)
     records = []
     fold_descriptions = []
@@ -133,7 +137,13 @@ def catalogue_evaluation(data_root: Path, experiment_root: Path, batch_users: in
             base = pd.DataFrame(per_user[("manual", seed)]).set_index("user")
             rng = np.random.default_rng(2026)
             draws = rng.integers(0, len(base), size=(config["bootstrap_samples"], len(base)))
-            for method in ["random", "residual", "all_packs"]:
+            for method in sorted(
+                {
+                    name
+                    for name, model_seed in per_user
+                    if model_seed == seed and name not in ["manual", "static"]
+                }
+            ):
                 candidate = pd.DataFrame(per_user[(method, seed)]).set_index("user")
                 for metric in ["ndcg@10", "recall@10"]:
                     delta = (candidate[metric] - base[metric]).to_numpy()

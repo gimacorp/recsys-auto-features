@@ -38,9 +38,9 @@ recsys run --config configs/smoke.json --output artifacts/smoke-local
 ```bash
 recsys run --config configs/full.json --output artifacts/reproduced
 python -m recsys_auto.audit --experiment artifacts/reproduced
+python -m recsys_auto.from_static --experiment artifacts/reproduced
 python -m recsys_auto.catalogue --experiment artifacts/reproduced
 python -m recsys_auto.diagnostics --experiment artifacts/reproduced
-python -m recsys_auto.from_static --experiment artifacts/reproduced
 python -m recsys_auto.report --experiment artifacts/reproduced --output docs/reproduced
 ```
 
