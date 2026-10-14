@@ -155,6 +155,26 @@ def generate(experiment: Path, output: Path) -> None:
         "## Стоимость поиска",
         "",
     ]
+    segment_rows = []
+    for row in inputs["catalogue"]["records"]:
+        for segment, metrics in row.get("segments", {}).items():
+            segment_rows.append(
+                {"fold": row["fold"], "method": row["method"], "segment": segment, **metrics}
+            )
+    if segment_rows:
+        sections += [
+            "## Каталог: пользовательские сегменты",
+            "",
+            table(
+                pd.DataFrame(segment_rows)
+                .groupby(["fold", "method", "segment"])[["users", "ndcg@10", "recall@10"]]
+                .mean()
+                .reset_index()
+            ),
+            "",
+            "Warm-user имеет историю до начала test. Cold-user оценивается при допущении, что его статический профиль доступен на момент запроса.",
+            "",
+        ]
     costs = []
     for source in ["results", "from_static"]:
         for row in inputs[source]["records"]:
@@ -226,6 +246,27 @@ def generate(experiment: Path, output: Path) -> None:
             table(pd.DataFrame(metrics)),
             "",
             "Пул окна выводится из train-интервалов. Тестовые периоды MovieLens 100K уже использовались в предыдущем исследовании; результаты имеют exploratory статус.",
+            "",
+        ]
+    if (experiment / "temporal_stress.json").exists():
+        stress = json.loads((experiment / "temporal_stress.json").read_text())
+        rows = [
+            {
+                "fold": row["fold"],
+                "days": row["period_days"],
+                "events": row["events"],
+                "manual": row["logloss"]["manual"],
+                "automatic": row["logloss"]["auto_residual"],
+                "delta": row["auto_residual_minus_manual"],
+            }
+            for row in stress["records"]
+        ]
+        sections += [
+            "## Временной сдвиг внутри test",
+            "",
+            table(pd.DataFrame(rows)),
+            "",
+            "Диагностика фиксированных моделей по времени после начала test. Значения характеризуют наблюдаемый сдвиг; причинное объяснение требует дальнейшей проверки.",
             "",
         ]
     (output / "generated_results.md").write_text("\n".join(sections), encoding="utf-8")

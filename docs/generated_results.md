@@ -172,6 +172,45 @@
 
 ## Стоимость поиска
 
+## Каталог: пользовательские сегменты
+
+| fold | method | segment | users | ndcg@10 | recall@10 |
+| --- | --- | --- | --- | --- | --- |
+| 0 | all_packs | cold_user | 114.000000 | 0.273643 | 0.060696 |
+| 0 | all_packs | warm_user | 95.000000 | 0.120205 | 0.080640 |
+| 0 | auto_random | cold_user | 114.000000 | 0.313146 | 0.069961 |
+| 0 | auto_random | warm_user | 95.000000 | 0.124093 | 0.080563 |
+| 0 | auto_residual | cold_user | 114.000000 | 0.284081 | 0.061140 |
+| 0 | auto_residual | warm_user | 95.000000 | 0.103256 | 0.067033 |
+| 0 | item_prior | cold_user | 114.000000 | 0.174199 | 0.022122 |
+| 0 | item_prior | warm_user | 95.000000 | 0.070021 | 0.053733 |
+| 0 | manual | cold_user | 114.000000 | 0.301377 | 0.069138 |
+| 0 | manual | warm_user | 95.000000 | 0.120626 | 0.080857 |
+| 0 | random | cold_user | 114.000000 | 0.307131 | 0.069055 |
+| 0 | random | warm_user | 95.000000 | 0.118092 | 0.077836 |
+| 0 | residual | cold_user | 114.000000 | 0.264565 | 0.056607 |
+| 0 | residual | warm_user | 95.000000 | 0.112390 | 0.074025 |
+| 0 | static | cold_user | 114.000000 | 0.185769 | 0.030069 |
+| 0 | static | warm_user | 95.000000 | 0.042650 | 0.016494 |
+| 1 | all_packs | cold_user | 192.000000 | 0.271571 | 0.055501 |
+| 1 | all_packs | warm_user | 95.000000 | 0.111904 | 0.099222 |
+| 1 | auto_random | cold_user | 192.000000 | 0.252283 | 0.051859 |
+| 1 | auto_random | warm_user | 95.000000 | 0.111739 | 0.087506 |
+| 1 | auto_residual | cold_user | 192.000000 | 0.243022 | 0.048046 |
+| 1 | auto_residual | warm_user | 95.000000 | 0.101856 | 0.080172 |
+| 1 | item_prior | cold_user | 192.000000 | 0.199549 | 0.036852 |
+| 1 | item_prior | warm_user | 95.000000 | 0.065934 | 0.047091 |
+| 1 | manual | cold_user | 192.000000 | 0.269809 | 0.056627 |
+| 1 | manual | warm_user | 95.000000 | 0.114304 | 0.094392 |
+| 1 | random | cold_user | 192.000000 | 0.268103 | 0.056607 |
+| 1 | random | warm_user | 95.000000 | 0.113919 | 0.094732 |
+| 1 | residual | cold_user | 192.000000 | 0.276629 | 0.059013 |
+| 1 | residual | warm_user | 95.000000 | 0.114744 | 0.097447 |
+| 1 | static | cold_user | 192.000000 | 0.189591 | 0.032040 |
+| 1 | static | warm_user | 95.000000 | 0.050287 | 0.012510 |
+
+Warm-user имеет историю до начала test. Cold-user оценивается при допущении, что его статический профиль доступен на момент запроса.
+
 | method | evaluations | fit_seconds | scoring_seconds | features |
 | --- | --- | --- | --- | --- |
 | auto_random | 24.000 | 32.405 | 0.000 | 58.333 |
