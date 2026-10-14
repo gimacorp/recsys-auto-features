@@ -49,3 +49,10 @@ def validate_config(config: dict) -> None:
         raise ValueError("min_improvement должен быть конечным неотрицательным числом")
     if not config.get("tuning_grid"):
         raise ValueError("tuning_grid должен содержать хотя бы одну конфигурацию")
+    if "pair_long_history" in config and type(config["pair_long_history"]) is not bool:
+        raise ValueError("pair_long_history должен быть boolean")
+    ratio = config.get("feature_budget_ratio")
+    if ratio is not None and (
+        type(ratio) not in [int, float] or not math.isfinite(ratio) or not 0 < ratio <= 1
+    ):
+        raise ValueError("feature_budget_ratio должен принадлежать диапазону (0, 1]")

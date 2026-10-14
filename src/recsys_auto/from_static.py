@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from .artifacts import artifact_path
+from .config import validate_config
 from .experiment import prepare, provenance, write_json
 from .features import STATIC_COLUMNS
 from .grammar import packs
@@ -21,6 +22,7 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
     tick = time.perf_counter()
     original = json.loads((experiment_root / "results.json").read_text())
     config = {**original["config"], **json.loads(additional_path.read_text())}
+    validate_config(config)
     events, features, manifest, _ = prepare(data_root, config, Path("artifacts/cache"))
     candidates = packs(list(dict.fromkeys(config["manual_days"] + config["candidate_days"])))
     records = []
