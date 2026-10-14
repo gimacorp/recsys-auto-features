@@ -36,13 +36,23 @@ def write_json(path: Path, value: dict | list) -> None:
 
 def provenance(config_path: Path, manifest: dict) -> dict:
     source = Path(__file__).parent
+    try:
+        revision = subprocess.run(
+            ["git", "-C", str(source.parent.parent), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        git_revision = revision.stdout.strip() if revision.returncode == 0 else None
+    except FileNotFoundError:
+        git_revision = None
     return {
         "python": sys.version,
         "platform": platform.platform(),
         "packages": {
             name: version(name) for name in ["numpy", "pandas", "catboost", "scikit-learn", "scipy"]
         },
-        "git_revision": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+        "git_revision": git_revision,
         "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
         "source_sha256": {
             path.name: hashlib.sha256(path.read_bytes()).hexdigest()
@@ -50,7 +60,7 @@ def provenance(config_path: Path, manifest: dict) -> dict:
         },
         "dataset": manifest,
         "artifact_layout": "run-local-v2",
-        "started_utc": str(pd.Timestamp.now(tz="UTC")),
+        "captured_utc": str(pd.Timestamp.now(tz="UTC")),
     }
 
 
@@ -94,6 +104,7 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
     if resume and not (output / "provenance.json").exists():
         raise ValueError("Для --resume нужен каталог существующего запуска с provenance.json")
     started = time.perf_counter()
+    started_utc = str(pd.Timestamp.now(tz="UTC"))
     events, features, manifest, feature_stats = prepare(data_root, config, Path("artifacts/cache"))
     provenance_record = provenance(config_path, manifest)
     if resume and (output / "provenance.json").exists():
@@ -254,6 +265,8 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
         "folds": fold_records,
         "records": records,
         "elapsed_seconds_this_invocation": time.perf_counter() - started,
+        "invocation_started_utc": started_utc,
+        "invocation_completed_utc": str(pd.Timestamp.now(tz="UTC")),
     }
     write_json(output / "results.json", result)
     write_json(output / "folds.json", fold_records)
