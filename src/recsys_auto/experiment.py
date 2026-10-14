@@ -200,6 +200,7 @@ def run(config_path: Path, data_root: Path, output: Path, resume: bool = False) 
                             "search_scoring_seconds": found.scoring_seconds,
                             "search_fit_seconds": found.fit_seconds,
                             "search_evaluations": len(found.trials),
+                            "available_packs": found.available_packs,
                         }
                     )
                 seed_records.append(record)

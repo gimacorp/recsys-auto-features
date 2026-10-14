@@ -47,9 +47,12 @@ def audit(data_root: Path, experiment_root: Path) -> dict:
                             raise ValueError(f"Метрика {name} отличается для {row['method']}")
                         metric_checks += 1
                     if row["method"] in ["random", "residual"]:
-                        if (
-                            len(row["trials"])
-                            != config["search_rounds"] * config["proposals_per_round"]
+                        if len(row["trials"]) != min(
+                            config["search_rounds"] * config["proposals_per_round"],
+                            row.get(
+                                "available_packs",
+                                config["search_rounds"] * config["proposals_per_round"],
+                            ),
                         ):
                             raise ValueError("Нарушен бюджет поиска")
                         accepted = [trial["pack"] for trial in row["trials"] if trial["accepted"]]

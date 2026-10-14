@@ -107,3 +107,17 @@ def test_randomized_repeated_interactions_match_oracle(entity):
     )
     pack = FeaturePack(entity, 2)
     np.testing.assert_allclose(history_pack(events, pack), oracle(events, pack), rtol=1e-6)
+
+
+@pytest.mark.parametrize("entity", ENTITIES)
+def test_feature_rows_follow_input_order(entity):
+    events = example().iloc[[4, 1, 3, 0, 2]]
+    pack = FeaturePack(entity, None)
+    np.testing.assert_allclose(history_pack(events, pack), oracle(events, pack), rtol=1e-6)
+
+
+def test_duplicate_event_ids_rejected():
+    events = example()
+    events.loc[1, "event_id"] = events.loc[0, "event_id"]
+    with pytest.raises(ValueError, match="event_id"):
+        history_pack(events, FeaturePack("user", None))

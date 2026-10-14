@@ -20,6 +20,7 @@ class SearchResult:
     trials: list[dict]
     scoring_seconds: float
     fit_seconds: float
+    available_packs: int = 0
 
 
 def residual_scores(
@@ -125,4 +126,4 @@ def search(
             f"logloss={current.logloss:.6f}, selected={selected}",
             flush=True,
         )
-    return SearchResult(current, selected, trials, scoring_seconds, fit_seconds)
+    return SearchResult(current, selected, trials, scoring_seconds, fit_seconds, len(available))

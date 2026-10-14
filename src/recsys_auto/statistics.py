@@ -26,7 +26,12 @@ def macro_cluster_interval(
         aligned = grouped.reindex(users, fill_value=0)
         sums = aligned["sum"].to_numpy()
         counts = aligned["count"].to_numpy()
-        values.append(sums[draws].sum(axis=1) / np.maximum(counts[draws].sum(axis=1), 1))
+        denominators = counts[draws].sum(axis=1)
+        if np.any(denominators == 0):
+            raise ValueError(
+                "Bootstrap создал пустой период: недостаточно пользователей для совместной оценки"
+            )
+        values.append(sums[draws].sum(axis=1) / denominators)
         means.append(float(sums.sum() / counts.sum()))
     distribution = np.mean(values, axis=0)
     return {

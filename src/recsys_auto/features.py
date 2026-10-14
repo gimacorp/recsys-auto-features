@@ -46,6 +46,8 @@ def history_pack(
     events: pd.DataFrame, pack: FeaturePack, expanded: pd.DataFrame | None = None
 ) -> pd.DataFrame:
     """Окно [t-window, t). Сглаживание использует фиксированные априорные значения."""
+    if not events.event_id.is_unique:
+        raise ValueError("event_id должен однозначно определять событие")
     expanded = grouped_history(events, pack.entity) if expanded is None else expanded
     length = len(expanded)
     values = np.zeros((length, 4), dtype=np.float64)
@@ -86,8 +88,11 @@ def history_pack(
         )
         result = aggregated.reindex(events.event_id).to_numpy(dtype=np.float32)
     else:
-        order = np.argsort(expanded.event_id.to_numpy())
-        result = values[order].astype(np.float32)
+        result = (
+            pd.DataFrame(values, index=expanded.event_id)
+            .reindex(events.event_id)
+            .to_numpy(np.float32)
+        )
     return pd.DataFrame(result, index=events.index, columns=pack.columns)
 
 

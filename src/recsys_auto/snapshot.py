@@ -20,6 +20,8 @@ def snapshot_features(
 ) -> pd.DataFrame:
     if queries.timestamp.nunique() != 1:
         raise ValueError("Все кандидаты должны иметь один timestamp")
+    if not queries.event_id.is_unique:
+        raise ValueError("event_id кандидата должен быть уникальным")
     timestamp = int(queries.timestamp.iloc[0])
     history = history[history.timestamp < timestamp]
     frames = [static_features(queries)]

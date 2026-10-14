@@ -69,6 +69,7 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                     "selected_packs": found.selected_packs,
                     "trials": found.trials,
                     "search_evaluations": len(found.trials),
+                    "available_packs": found.available_packs,
                     "search_fit_seconds": found.fit_seconds,
                     "search_scoring_seconds": found.scoring_seconds,
                     "refit_seconds": seconds,
