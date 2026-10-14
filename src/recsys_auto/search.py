@@ -73,6 +73,8 @@ def search(
     scoring_seconds = 0.0
     fit_seconds = 0.0
     maximum_features = config.get("max_features")
+    if maximum_features is not None and maximum_features < len(current.columns):
+        raise ValueError("Бюджет признаков меньше исходного статического набора")
 
     def additions(name):
         columns = available[name].copy()
