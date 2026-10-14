@@ -64,6 +64,7 @@ def prepare(data_root: Path, config: dict, cache_root: Path) -> tuple:
                 "windows": windows,
                 "data": manifest,
                 "cohort_modulus": config.get("cohort_modulus", 1),
+                "cohort_offset": config.get("cohort_offset", 0),
                 "engine": Path(__file__).with_name("features.py").read_text(),
                 "grammar": Path(__file__).with_name("grammar.py").read_text(),
                 "loader": Path(__file__).with_name("data.py").read_text(),

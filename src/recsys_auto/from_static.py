@@ -40,6 +40,11 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                 experiment_root, "predictions", f"fold{fold_index}-seed{seed}.npz", reading=True
             )
             manual_prediction = np.load(prediction_path)["manual"]
+            search_config = config.copy()
+            if config.get("feature_budget_ratio") is not None:
+                search_config["max_features"] = int(
+                    manual["feature_count"] * config["feature_budget_ratio"]
+                )
             for strategy in ["random", "residual"]:
                 found = search(
                     features,
@@ -48,7 +53,7 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                     baseline,
                     candidates,
                     params,
-                    config,
+                    search_config,
                     seed,
                     strategy,
                 )
@@ -70,6 +75,7 @@ def run_from_static(data_root: Path, experiment_root: Path, additional_path: Pat
                     "trials": found.trials,
                     "search_evaluations": len(found.trials),
                     "available_packs": found.available_packs,
+                    "feature_budget": search_config.get("max_features"),
                     "search_fit_seconds": found.fit_seconds,
                     "search_scoring_seconds": found.scoring_seconds,
                     "refit_seconds": seconds,

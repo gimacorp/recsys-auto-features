@@ -164,8 +164,11 @@ def load_for_config(root: Path, config: dict) -> pd.DataFrame:
     modulus = config.get("cohort_modulus", 1)
     if isinstance(modulus, bool) or not isinstance(modulus, int) or modulus < 1:
         raise ValueError("cohort_modulus должен быть положительным целым")
+    offset = config.get("cohort_offset", 0)
+    if type(offset) is not int or not 0 <= offset < modulus:
+        raise ValueError("cohort_offset должен принадлежать диапазону [0, cohort_modulus)")
     if modulus > 1:
-        events = events[events.user % modulus == 0].copy().reset_index(drop=True)
+        events = events[events.user % modulus == offset].copy().reset_index(drop=True)
         events["event_id"] = np.arange(len(events))
     if events.empty:
         raise ValueError("Пустая когорта пользователей")

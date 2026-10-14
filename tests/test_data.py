@@ -51,3 +51,12 @@ def test_bad_download_keeps_cache_retryable(tmp_path, monkeypatch):
         download(tmp_path)
     assert not (tmp_path / "ml-100k.zip").exists()
     assert not (tmp_path / "ml-100k.part").exists()
+
+
+def test_replication_cohorts_are_disjoint(monkeypatch):
+    source = pd.DataFrame({"user": range(12), "event_id": range(12)})
+    monkeypatch.setattr("recsys_auto.data.load", lambda root, dataset: source.copy())
+    zero = load_for_config(None, {"dataset": "ml-1m", "cohort_modulus": 6, "cohort_offset": 0})
+    one = load_for_config(None, {"dataset": "ml-1m", "cohort_modulus": 6, "cohort_offset": 1})
+    assert set(zero.user).isdisjoint(one.user)
+    assert one.user.tolist() == [1, 7]

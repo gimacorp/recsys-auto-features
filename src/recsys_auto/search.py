@@ -72,9 +72,26 @@ def search(
     trials = []
     scoring_seconds = 0.0
     fit_seconds = 0.0
+    maximum_features = config.get("max_features")
+
+    def additions(name):
+        columns = available[name].copy()
+        if config.get("pair_long_history"):
+            entity = name.split("__")[0]
+            columns.extend(available.get(FeaturePack(entity, None).name, []))
+        return [column for column in dict.fromkeys(columns) if column not in current.columns]
+
     for round_index in range(config["search_rounds"]):
         tick = time.perf_counter()
-        remaining = sorted(set(available) - tried)
+        remaining = sorted(
+            name
+            for name in set(available) - tried
+            if additions(name)
+            and (
+                maximum_features is None
+                or len(current.columns) + len(additions(name)) <= maximum_features
+            )
+        )
         count = min(config["proposals_per_round"], len(remaining))
         if not count:
             break
@@ -92,7 +109,7 @@ def search(
         fitted = []
         for name in proposals:
             result = fit_validation(
-                features, labels, fold, current.columns + available[name], params, config, seed
+                features, labels, fold, current.columns + additions(name), params, config, seed
             )
             fit_seconds += result.seconds
             fitted.append((name, result))
@@ -109,6 +126,7 @@ def search(
                     "accepted": False,
                     "starting_logloss": current.logloss,
                     "starting_packs": selected.copy(),
+                    "added_columns": additions(name),
                 }
             )
             tried.add(name)
