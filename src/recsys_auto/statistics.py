@@ -43,6 +43,15 @@ def macro_cluster_interval(
     }
 
 
+def practical_criteria(comparison: dict, feature_ratio: float) -> dict:
+    return {
+        "logloss_margin": 0.01,
+        "feature_ratio_limit": 0.6,
+        "loss_passed": bool(comparison["ci95"][1] < 0.01),
+        "compactness_passed": bool(feature_ratio <= 0.6),
+    }
+
+
 def analyse(experiment: Path, data_root: Path) -> dict:
     primary = json.loads((experiment / "results.json").read_text())
     automatic = json.loads((experiment / "from_static.json").read_text())
@@ -127,12 +136,7 @@ def analyse(experiment: Path, data_root: Path) -> dict:
             for row in comparisons
             if row["method"] == "auto_residual" and row["reference"] == "manual"
         )
-        result["preregistered_criteria"] = {
-            "logloss_margin": 0.01,
-            "feature_ratio_limit": 0.6,
-            "loss_passed": comparison["ci95"][1] < 0.01,
-            "compactness_passed": auto_count / manual_count <= 0.6,
-        }
+        result["preregistered_criteria"] = practical_criteria(comparison, auto_count / manual_count)
     write_json(experiment / "statistics.json", result)
     return result
 
