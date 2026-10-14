@@ -58,6 +58,7 @@ def generate(experiment: Path, output: Path) -> None:
         name: json.loads((experiment / f"{name}.json").read_text())
         for name in ["results", "catalogue", "diagnostics", "from_static", "audit"]
     }
+    fold_count = len(inputs["results"]["config"]["folds"])
     output.mkdir(parents=True, exist_ok=True)
     figures = output / "figures"
     figures.mkdir(exist_ok=True)
@@ -181,7 +182,8 @@ def generate(experiment: Path, output: Path) -> None:
             "axes.spines.right": False,
         }
     )
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), constrained_layout=True)
+    fig, axes = plt.subplots(1, fold_count, figsize=(6 * fold_count, 4.5), constrained_layout=True)
+    axes = np.atleast_1d(axes)
     for fold, ax in enumerate(axes):
         for offset, method, color in [(-0.12, "random", "#868686"), (0.12, "residual", "#007f89")]:
             group = delta_frame[
@@ -190,15 +192,16 @@ def generate(experiment: Path, output: Path) -> None:
             x = np.arange(len(group)) + offset
             ax.errorbar(
                 x,
-                group.delta,
-                yerr=[group.delta - group.low, group.high - group.delta],
+                group.delta.to_numpy(),
+                yerr=np.array([group.delta - group.low, group.high - group.delta]),
                 fmt="o",
                 capsize=4,
                 color=color,
                 label=NAMES[method],
             )
         ax.axhline(0, color="black", linewidth=1, linestyle="--")
-        ax.set_xticks(np.arange(3), inputs["results"]["config"]["seeds"])
+        seeds = inputs["results"]["config"]["seeds"]
+        ax.set_xticks(np.arange(len(seeds)), seeds)
         ax.set_title(f"Период {fold + 1}")
         ax.set_xlabel("Seed")
         ax.set_ylabel("Δ log loss к ручной модели")
@@ -206,7 +209,8 @@ def generate(experiment: Path, output: Path) -> None:
     fig.savefig(figures / "paired_logloss.png", dpi=180)
     plt.close(fig)
     merged = pd.concat([primary, automatic], ignore_index=True)
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), constrained_layout=True)
+    fig, axes = plt.subplots(1, fold_count, figsize=(6 * fold_count, 4.5), constrained_layout=True)
+    axes = np.atleast_1d(axes)
     colors = {
         "manual": "#222222",
         "all_packs": "#777777",
@@ -231,7 +235,8 @@ def generate(experiment: Path, output: Path) -> None:
         ax.legend(fontsize=8)
     fig.savefig(figures / "feature_quality.png", dpi=180)
     plt.close(fig)
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), constrained_layout=True)
+    fig, axes = plt.subplots(1, fold_count, figsize=(6 * fold_count, 4.5), constrained_layout=True)
+    axes = np.atleast_1d(axes)
     methods = [
         "item_prior",
         "static",
