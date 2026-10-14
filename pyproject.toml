@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Воспроизводимый поиск исторических признаков для рекомендательных моделей"
 requires-python = ">=3.11"
 dependencies = [
+  "certifi==2026.2.25",
   "catboost==1.2.8", "numpy==2.2.6", "pandas==2.3.3",
   "scikit-learn==1.7.2", "matplotlib==3.10.7",
 ]

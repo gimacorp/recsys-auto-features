@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import ssl
 import urllib.request
 import zipfile
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import certifi
 
 URL = "https://files.grouplens.org/datasets/movielens/ml-100k.zip"
 GENRES = [
@@ -25,7 +27,9 @@ def download(root: Path) -> dict:
     archive = root / "ml-100k.zip"
     if not archive.exists():
         temporary = archive.with_suffix(".part")
-        urllib.request.urlretrieve(URL, temporary)
+        context = ssl.create_default_context(cafile=certifi.where())
+        with urllib.request.urlopen(URL, context=context, timeout=60) as response:
+            temporary.write_bytes(response.read())
         temporary.replace(archive)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     with zipfile.ZipFile(archive) as source:
