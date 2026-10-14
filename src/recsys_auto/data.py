@@ -58,6 +58,9 @@ def download(root: Path, dataset: str = "ml-100k") -> dict:
         context = ssl.create_default_context(cafile=certifi.where())
         with urllib.request.urlopen(url, context=context, timeout=60) as response:
             temporary.write_bytes(response.read())
+        if hashlib.sha256(temporary.read_bytes()).hexdigest() != expected_digest:
+            temporary.unlink()
+            raise ValueError("Контрольная сумма загрузки отличается от зафиксированной")
         temporary.replace(archive)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     if digest != expected_digest:

@@ -36,3 +36,18 @@ def test_empty_cohort_rejected(monkeypatch):
     )
     with pytest.raises(ValueError, match="Пустая"):
         load_for_config(None, {"dataset": "ml-1m", "cohort_modulus": 6})
+
+
+def test_bad_download_keeps_cache_retryable(tmp_path, monkeypatch):
+    import io
+
+    from recsys_auto.data import download
+
+    monkeypatch.setattr(
+        "recsys_auto.data.urllib.request.urlopen",
+        lambda *args, **kwargs: io.BytesIO(b"bad payload"),
+    )
+    with pytest.raises(ValueError, match="Контрольная сумма"):
+        download(tmp_path)
+    assert not (tmp_path / "ml-100k.zip").exists()
+    assert not (tmp_path / "ml-100k.part").exists()

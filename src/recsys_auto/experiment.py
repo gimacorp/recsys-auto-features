@@ -49,6 +49,7 @@ def provenance(config_path: Path, manifest: dict) -> dict:
             for path in sorted(source.glob("*.py"))
         },
         "dataset": manifest,
+        "artifact_layout": "run-local-v2",
         "started_utc": str(pd.Timestamp.now(tz="UTC")),
     }
 
