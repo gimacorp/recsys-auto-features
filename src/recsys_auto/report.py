@@ -98,6 +98,12 @@ def generate(experiment: Path, output: Path) -> None:
         "## Выбранные пакеты",
         "",
     ]
+    config = inputs["results"]["config"]
+    mode = inputs["from_static"].get("config", {}).get("pair_long_history", False)
+    sections.insert(
+        3,
+        f"Датасет: `{config.get('dataset', 'synthetic')}`; когорта: remainder={config.get('cohort_offset', 0)}, modulus={config.get('cohort_modulus', 1)}. Режим построения: {'парные горизонты с ограничением сложности' if mode else 'исходный поиск'}.\n",
+    )
     chosen = []
     for source in ["results", "from_static"]:
         for row in inputs[source]["records"]:
