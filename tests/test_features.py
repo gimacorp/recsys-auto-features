@@ -29,7 +29,7 @@ def oracle(events, pack):
             if pack.entity in ["item", "user_item"]:
                 past = past[past.item == query.item]
             if genre is not None:
-                past = past[past.genres.map(lambda gs: genre in gs)]
+                past = past.loc[past.genres.map(lambda gs: genre in gs).astype(bool)]
             count = len(past)
             stats.append([
                 np.log1p(count), (past.label.sum() + 2.5) / (count + 5),
